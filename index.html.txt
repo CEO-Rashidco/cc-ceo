@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيرة الذاتية - محمد راشد أحمد الحريري</title>
+    <style>
+        body { font-family: Arial, sans-serif; direction: rtl; text-align: right; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .container { width: 80%; margin: auto; overflow: hidden; background: white; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        header { background: #333; color: white; padding: 15px 0; text-align: center; }
+        h1, h2 { color: #333; }
+        ul { list-style: none; padding: 0; }
+        li { background: #ddd; margin: 5px 0; padding: 10px; border-radius: 5px; }
+        .contact a { color: #0073b1; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>محمد راشد أحمد الحريري</h1>
+        <p>متخصص في التمويل، إدارة الأعمال، التكنولوجيا، وتطوير النظم</p>
+    </header>
+    <div class="container">
+        <section>
+            <h2>نبذة عني</h2>
+            <p>أنا محمد راشد أحمد الحريري، لدي خبرة واسعة في مجالات التمويل، إدارة الأعمال، والتكنولوجيا، وقد قمت بتطوير استراتيجيات خاصة بي في مجال نظم المعلومات الإدارية وتكنولوجيا معلومات الأعمال. 
+               عملت كمفاوض ومدرب في الإرشاد الوظيفي المهني، ومرشد أكاديمي في الجامعة ضمن مجالس الطلبة التطوعية، بالإضافة إلى مشاركتي في مشاريع وندوات تطوير المنصات الإلكترونية للتواصل الاجتماعي.
+               في اعمالي السابقة كان نهجي غير مدفوع الربح يركز على التفاصيل المجدية التي تحقق الهدف المرجو وفهم حاجات الناس لتحقيق نتائج عالية الجودة وتعزيز الثقة المجتمعية، وأسعى دائمًا لتقديم الفائدة وإحداث تأثير إيجابي في المجتمع. حسابي على LinkedIn يمتلك مركزًا مرموقًا وترتيبًا متميزًا.</p>
+        </section>
+        <section>
+            <h2>الخبرات العملية</h2>
+            <ul>
+                <li>عملت مع العديد من الشركات والمنظمات المعروفة</li>
+                <li>متطوع في عدة منظمات غير ربحية</li>
+                <li> مدرب في الإرشاد الوظيفي المهني والاقتصاد الاخضر </li>
+                <li>مشارك في مشاريع تطوير المنصات الإلكترونية</li>
+                <li>مرشد أكاديمي في الجامعة ضمن مجالس الطلبة التطوعية</li>
+  <li>عملت في قسم ادارة العلاقة مع العملاء لدى بنك القاهرة عمان</li>
+            </ul>
+        </section>
+        <section>
+            <h2>المهارات</h2>
+            <ul>
+                <li>PMإدارة المشاريع</li>
+                <li>تحليل البيانات</li>
+                <li>ذكاء الأعمال</li>
+                <li>مهارات سطح المكتب</li>
+                <li>مهارات في جميع حزم مايكروسوفت أوفيس </li>
+   <li>تحكيم واعداد السير الذاتية</li>
+   <li>الاعداد لمقابلات العمل</li>
+  <li>ادارة العلاقة مع العملاءCRM</li>
+            </ul>
+        </section>
+        <section>
+            <h2>الشهادات والدورات</h2>
+            <p>حاصل على العديد من الدورات في التكنولوجيا والإدارة والارشاد المهني، مما عزز من خبرتي في مجالات عدة.</p>
+        </section>
+        <section class="contact">
+            <h2>تواصل معي</h2>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammad-rashid-alhariri-533630287" target="_blank">linkedin.com/in/mohammad-rashid-alhariri-533630287</a></p>
+            <p>Email: <a href="mailto:hmdr2401@gmail.com">hmdr2401@gmail.com</a></p>
+        </section>
+    </div>
+</body>
