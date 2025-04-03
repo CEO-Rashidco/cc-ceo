@@ -55,15 +55,28 @@
         .contact a:hover {
             text-decoration: underline;
         }
-        .image-gallery img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            margin: 10px 0;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
         #google_translate_element {
             margin-top: 20px;
+        }
+        /* تنسيق الصور في المعرض */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .image-gallery img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .image-caption {
+            max-width: 300px;
+            margin: auto;
+            font-size: 14px;
+            color: #f8f8f8;
         }
     </style>
 </head>
@@ -71,7 +84,6 @@
     <header>
         <h1>Mohammad Rashid Alhariri</h1>
         <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
-        <img src="https://drive.google.com/uc?id=1xC5KDmEBcliyXoxBwAcGSnqP0FlnX-tU" alt="Personal Profile" width="150" height="150" style="border-radius: 50%;">
     </header>
     <div class="container">
         <section>
@@ -79,21 +91,45 @@
             <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations.</p>
         </section>
         <section>
-            <h2>Professional Experience in Pictures</h2>
-            <div class="image-gallery">
-                <p>📌 Internship at Cairo Amman Bank - Financial & AI-driven Accounting Systems</p>
-                <img src="https://drive.google.com/uc?id=1xBFfc7pHRCMO-wft5g1vxexIGZVS52MF" alt="Internship at Cairo Amman Bank">
-                
-                <p>📌 Leadership in University Student Councils</p>
-                <img src="https://drive.google.com/uc?id=1xC5KDmEBcliyXoxBwAcGSnqP0FlnX-tU" alt="Student Leadership">
-                
-                <p>📌 Humanitarian Work with Save the Children</p>
-                <img src="https://drive.google.com/uc?id=1xDywKh2tciDSZ-bZVtWPVjcspZTKm0aU" alt="Humanitarian Work with Save the Children">
-                
-                <p>📌 Career Development Training with International Organizations</p>
-                <img src="https://drive.google.com/uc?id=1xEe4wndIKccsGGWE5Cx5EMCX213_Zf_i" alt="Career Development Training">
+            <h2>Key Skills</h2>
+            <ul>
+                <li>Artificial Intelligence & Business Intelligence</li>
+                <li>Technology and System Development</li>
+                <li>Data Analysis & Project Management</li>
+                <li>Leadership & Strategic Consulting</li>
+                <li>Career Guidance & Coaching</li>
+                <li>Public Speaking & Influencing</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Professional Experience</h2>
+            <ul>
+                <li>Led multiple international projects with organizations such as Acted, Blumont, and the World Food Programme.</li>
+                <li>Specialized in designing and analyzing database systems to drive digital transformation.</li>
+                <li>Extensive experience in diplomatic negotiations, strategic consulting, and community engagement.</li>
+            </ul>
+        </section>
+
+        <!-- إضافة معرض الصور هنا -->
+        <section class="image-gallery">
+            <div>
+                <img src="https://i.postimg.cc/Kjvvhxby/1735913961860.jpg" alt="Internship at Cairo Amman Bank">
+                <p class="image-caption">Internship at Cairo Amman Bank, working on financial technologies.</p>
+            </div>
+            <div>
+                <img src="https://i.postimg.cc/Ghdv9yLc/1696938897119.jpg" alt="Student Leadership and Representation">
+                <p class="image-caption">Student Leadership and Representation.</p>
+            </div>
+            <div>
+                <img src="https://i.postimg.cc/3xwpFQ0V/Photoroom.png" alt="Humanitarian Work with Save the Children">
+                <p class="image-caption">Engaged in humanitarian work with Save the Children.</p>
+            </div>
+            <div>
+                <img src="https://i.postimg.cc/g0XZ1yDK/image-65a8ba8a-2a87-4194-a338-6c6e5f52744820250403-192921.jpg" alt="Professional Training and Career Development">
+                <p class="image-caption">Professional training in career guidance and job market readiness with Blumont and university programs.</p>
             </div>
         </section>
+
         <section class="contact">
             <h2>Connect with Me</h2>
             <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammad-rashid-alhariri-533630287" target="_blank">linkedin.com/in/mohammad-rashid-alhariri</a></p>
