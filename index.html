@@ -41,14 +41,14 @@
             background: #355c7d;
         }
         header img {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
         header img:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         h1, h2 {
             color: #f8f8f8;
@@ -71,10 +71,7 @@
             transform: translateY(-5px);
         }
         .contact {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            margin-top: 50px;
         }
         .contact a {
             color: #ffcc00;
@@ -86,41 +83,30 @@
             color: #f8f8f8;
         }
         .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            display: block;
             margin-top: 30px;
         }
         .image-gallery div {
+            margin-bottom: 50px;
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
         .image-gallery img {
             width: 100%;
+            max-width: 600px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
         }
         .image-gallery img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         .image-caption {
+            max-width: 600px;
+            margin: 10px auto;
             font-size: 14px;
             color: #f8f8f8;
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideIn 1s forwards;
-        }
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -133,24 +119,16 @@
         </div>
     </header>
     <div class="container">
+        <section class="image-gallery">
+            <div>
+                <img src="https://i.postimg.cc/T1ZSqJCH/Photoroom.png" alt="Humanitarian Work with Save the Children">
+                <p class="image-caption">Engaged in humanitarian work with Save the Children, providing aid and support to vulnerable populations.</p>
+            </div>
+        </section>
         <section class="contact">
             <h2>Connect with Me</h2>
             <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammad-rashid-alhariri-533630287" target="_blank">linkedin.com/in/mohammad-rashid-alhariri</a></p>
             <p>Email: <a href="mailto:hmdr2401@gmail.com">hmdr2401@gmail.com</a></p>
-        </section>
-        <section class="image-gallery">
-            <div class="scroll-animate">
-                <img src="https://i.postimg.cc/T1ZSqJCH/Photoroom.png" alt="Humanitarian Work with Save the Children">
-                <p class="image-caption">Engaged in humanitarian work with Save the Children.</p>
-            </div>
-            <div class="scroll-animate">
-                <img src="https://i.postimg.cc/Kjvvhxby/1735913961860.jpg" alt="Internship at Cairo Amman Bank">
-                <p class="image-caption">Internship at Cairo Amman Bank.</p>
-            </div>
-            <div class="scroll-animate">
-                <img src="https://i.postimg.cc/Ghdv9yLc/1696938897119.jpg" alt="Student Leadership and Representation">
-                <p class="image-caption">Student leadership and representation.</p>
-            </div>
         </section>
     </div>
 </body>
