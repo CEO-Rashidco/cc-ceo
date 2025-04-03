@@ -29,9 +29,19 @@
             background: #1f4068;
             padding: 30px 0;
             border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         h1, h2 {
             color: #f8f8f8;
+        }
+        header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
         }
         ul {
             list-style: none;
@@ -60,35 +70,37 @@
         }
         /* تنسيق الصور في المعرض */
         .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+            display: block;
             margin-top: 30px;
         }
+        .image-gallery div {
+            margin-bottom: 30px;
+        }
         .image-gallery img {
-            width: 300px;
+            width: 100%;
+            max-width: 500px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin: auto;
         }
         .image-caption {
-            max-width: 300px;
-            margin: auto;
             font-size: 14px;
             color: #f8f8f8;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <header>
+        <img src="https://i.postimg.cc/SxZPg4TM/Whats-App-Image-2025-04-03-at-9-19-53-PM.jpg" alt="Profile Picture">
         <h1>Mohammad Rashid Alhariri</h1>
         <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
     </header>
     <div class="container">
         <section>
             <h2>About Me</h2>
-            <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations.</p>
+            <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over the Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations. My previous work focuses on non-profit, high-quality, and socially responsible projects that reflect a deep commitment to improving the lives of others, collecting feedback from stakeholders to inform my work.</p>
         </section>
         <section>
             <h2>Key Skills</h2>
@@ -107,6 +119,7 @@
                 <li>Led multiple international projects with organizations such as Acted, Blumont, and the World Food Programme.</li>
                 <li>Specialized in designing and analyzing database systems to drive digital transformation.</li>
                 <li>Extensive experience in diplomatic negotiations, strategic consulting, and community engagement.</li>
+                <li>My non-profit work emphasizes quality outcomes, public love, and high social responsibility. I focus on improving people's lives and gathering feedback from key stakeholders as reference points for my work.</li>
             </ul>
         </section>
 
