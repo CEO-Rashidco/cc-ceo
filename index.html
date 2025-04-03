@@ -1,75 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="auto">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Rashid Alhariri - Official Website</title>
+    <meta http-equiv="Content-Language" content="en, ar">
+    <title>Mohammad Rashid Alhariri - Leading Excellence</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
             text-align: center;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
-            overflow: hidden;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
         header {
-            background: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 24px;
+            background: #1f4068;
+            padding: 30px 0;
+            border-radius: 15px 15px 0 0;
+        }
+        h1, h2 {
+            color: #f8f8f8;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        li:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .contact a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        #google_translate_element {
+            margin-top: 20px;
         }
         .image-gallery {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            margin: 20px 0;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
         }
-        .image-box {
-            margin: 15px;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        .image-gallery img {
             width: 300px;
-        }
-        .image-box img {
-            width: 100%;
+            height: auto;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-        .image-box p {
-            font-size: 16px;
-            margin-top: 10px;
-            color: #333;
+        .image-caption {
+            max-width: 300px;
+            margin: auto;
+            font-size: 14px;
+            color: #f8f8f8;
         }
     </style>
 </head>
 <body>
     <header>
-        Mohammad Rashid Alhariri - Expert in AI & BI
+        <h1>Mohammad Rashid Alhariri</h1>
+        <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
     </header>
-    
     <div class="container">
-        <h2>My Journey in Pictures</h2>
-        <div class="image-gallery">
-            <div class="image-box">
-                <img src="Photoroom-٢٠٢٥٠١٠١_٠٢٤١٤٤.png" alt="Professional Photo">
-                <p>As a student leader, we were asked to write impactful messages about the university, highlighting its role in our academic and leadership journey.</p>
+        <section>
+            <h2>About Me</h2>
+            <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations.</p>
+        </section>
+        <section>
+            <h2>Key Skills</h2>
+            <ul>
+                <li>Artificial Intelligence & Business Intelligence</li>
+                <li>Technology and System Development</li>
+                <li>Data Analysis & Project Management</li>
+                <li>Leadership & Strategic Consulting</li>
+                <li>Career Guidance & Coaching</li>
+                <li>Public Speaking & Influencing</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Professional Experience</h2>
+            <ul>
+                <li>Led multiple international projects with organizations such as Acted, Blumont, and the World Food Programme.</li>
+                <li>Specialized in designing and analyzing database systems to drive digital transformation.</li>
+                <li>Extensive experience in diplomatic negotiations, strategic consulting, and community engagement.</li>
+            </ul>
+        </section>
+        <section class="image-gallery">
+            <div>
+                <img src="file-EqwLFSbmkV6Qaj4sr7GqyR" alt="Professional Student Leader">
+                <p class="image-caption">As a student leader, I was asked to write impactful messages and represent the university through various initiatives.</p>
             </div>
-            <div class="image-box">
-                <img src="1696938897119.png" alt="Internship at Cairo Amman Bank">
-                <p>During my internship at Cairo Amman Bank, I worked on financial and accounting systems, integrating AI tools for better decision-making.</p>
+            <div>
+                <img src="file-KRZ1UeCtmdpT7iLpCcWcRA" alt="Internship at Cairo Amman Bank">
+                <p class="image-caption">During my internship at Cairo Amman Bank, I worked on financial systems integrated with AI-powered tools.</p>
             </div>
-            <div class="image-box">
-                <img src="1735913961860.jpg" alt="Humanitarian Work">
-                <p>Engaged in humanitarian efforts with international organizations, focusing on community support and strategic development.</p>
+            <div>
+                <img src="file-DUQqbxDCrVNgLoJn8fS8Wz" alt="Community Engagement with NGOs">
+                <p class="image-caption">Active in humanitarian work, collaborating with international NGOs to drive social impact.</p>
             </div>
-        </div>
+        </section>
+        <section class="contact">
+            <h2>Connect with Me</h2>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammad-rashid-alhariri-533630287" target="_blank">linkedin.com/in/mohammad-rashid-alhariri</a></p>
+            <p>Email: <a href="mailto:hmdr2401@gmail.com">hmdr2401@gmail.com</a></p>
+        </section>
+        <div id="google_translate_element"></div>
     </div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'auto'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
