@@ -14,6 +14,7 @@
             background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: white;
             text-align: center;
+            transition: background 0.5s ease-in-out;
         }
         .container {
             width: 90%;
@@ -24,28 +25,40 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
         header {
             background: #1f4068;
             padding: 30px 0;
             border-radius: 15px 15px 0 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            transition: background 0.3s ease-in-out;
+        }
+        header:hover {
+            background: #355c7d;
+        }
+        header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        header img:hover {
+            transform: scale(1.1);
         }
         h1, h2 {
             color: #f8f8f8;
         }
-        header img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-        }
         ul {
             list-style: none;
             padding: 0;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
         }
         li {
             background: rgba(255, 255, 255, 0.2);
@@ -56,53 +69,86 @@
         }
         li:hover {
             background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
         }
         .contact a {
             color: #ffcc00;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
         .contact a:hover {
-            text-decoration: underline;
+            color: #f8f8f8;
         }
         #google_translate_element {
             margin-top: 20px;
         }
-        /* تنسيق الصور في المعرض */
         .image-gallery {
             display: block;
             margin-top: 30px;
         }
         .image-gallery div {
             margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
         .image-gallery img {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            margin: auto;
+            transition: transform 0.3s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.05);
         }
         .image-caption {
+            max-width: 600px;
+            margin: auto;
             font-size: 14px;
             color: #f8f8f8;
-            margin-top: 10px;
+        }
+
+        /* Animation for fade-in effect */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Animation for sliding effect when scrolling */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Adding the "active" class when element is in view (via JS) */
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://i.postimg.cc/SxZPg4TM/Whats-App-Image-2025-04-03-at-9-19-53-PM.jpg" alt="Profile Picture">
-        <h1>Mohammad Rashid Alhariri</h1>
-        <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
+        <img src="https://i.postimg.cc/SxZPg4TM/Whats-App-Image-2025-04-03-at-9-19-53-PM.jpg" alt="Mohammad Rashid Alhariri">
+        <div>
+            <h1>Mohammad Rashid Alhariri</h1>
+            <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
+        </div>
     </header>
     <div class="container">
-        <section>
+        <section class="scroll-animate">
             <h2>About Me</h2>
-            <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over the Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations. My previous work focuses on non-profit, high-quality, and socially responsible projects that reflect a deep commitment to improving the lives of others, collecting feedback from stakeholders to inform my work.</p>
+            <p>I am a highly skilled and ambitious entrepreneur in finance, business, and technology. Ranked first academically, which may not always define success but often reflects dedication, precision, high results, and social responsibility. I possess complete mastery over Microsoft Office Suite and deep expertise in resume consultancy, interview preparation, and professional development. My leadership extends to multiple honorary positions at my university and collaborations with international organizations.</p>
         </section>
-        <section>
+        <section class="scroll-animate">
             <h2>Key Skills</h2>
             <ul>
                 <li>Artificial Intelligence & Business Intelligence</li>
@@ -113,31 +159,30 @@
                 <li>Public Speaking & Influencing</li>
             </ul>
         </section>
-        <section>
+        <section class="scroll-animate">
             <h2>Professional Experience</h2>
             <ul>
                 <li>Led multiple international projects with organizations such as Acted, Blumont, and the World Food Programme.</li>
                 <li>Specialized in designing and analyzing database systems to drive digital transformation.</li>
                 <li>Extensive experience in diplomatic negotiations, strategic consulting, and community engagement.</li>
-                <li>My non-profit work emphasizes quality outcomes, public love, and high social responsibility. I focus on improving people's lives and gathering feedback from key stakeholders as reference points for my work.</li>
+                <li>Worked on high-impact, non-profit, community-focused projects that aim to improve people's quality of life while emphasizing social responsibility and the importance of gathering feedback from community members.</li>
             </ul>
         </section>
 
-        <!-- إضافة معرض الصور هنا -->
         <section class="image-gallery">
-            <div>
+            <div class="scroll-animate">
                 <img src="https://i.postimg.cc/T1ZSqJCH/Photoroom.png" alt="Humanitarian Work with Save the Children">
                 <p class="image-caption">Engaged in humanitarian work with Save the Children, providing aid and support to vulnerable populations.</p>
             </div>
-            <div>
+            <div class="scroll-animate">
                 <img src="https://i.postimg.cc/Kjvvhxby/1735913961860.jpg" alt="Internship at Cairo Amman Bank">
                 <p class="image-caption">Internship at Cairo Amman Bank, working on financial technologies to enhance banking operations.</p>
             </div>
-            <div>
+            <div class="scroll-animate">
                 <img src="https://i.postimg.cc/Ghdv9yLc/1696938897119.jpg" alt="Student Leadership and Representation">
                 <p class="image-caption">Student leadership and representation, promoting collaboration and student advocacy at the university.</p>
             </div>
-            <div>
+            <div class="scroll-animate">
                 <img src="https://i.postimg.cc/g0XZ1yDK/image-65a8ba8a-2a87-4194-a338-6c6e5f52744820250403-192921.jpg" alt="Professional Training and Career Development">
                 <p class="image-caption">Professional training in career guidance and job market readiness with Blumont and university programs.</p>
             </div>
@@ -150,10 +195,27 @@
         </section>
         <div id="google_translate_element"></div>
     </div>
+
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'auto'}, 'google_translate_element');
         }
+
+        // Scroll Animation Trigger
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        const elementInView = (el) => {
+            const rect = el.getBoundingClientRect();
+            return rect.top >= 0 && rect.bottom <= window.innerHeight;
+        };
+        const displayScrollElement = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', displayScrollElement);
+        displayScrollElement();
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
