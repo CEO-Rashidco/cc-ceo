@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,6 +7,7 @@
     <title>Mohammad Rashid Alhariri - Leading Excellence</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -15,6 +17,7 @@
             text-align: center;
             transition: background 0.5s ease-in-out;
         }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -24,9 +27,14 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            opacity: 0;
-            animation: fadeIn 1s forwards;
+            opacity: 1; /* جعل العنصر يظهر مباشرة */
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         header {
             background: #1f4068;
             padding: 30px 0;
@@ -37,9 +45,11 @@
             gap: 20px;
             transition: background 0.3s ease-in-out;
         }
+
         header:hover {
             background: #355c7d;
         }
+
         header img {
             width: 100px;
             height: 100px;
@@ -47,18 +57,20 @@
             object-fit: cover;
             transition: transform 0.3s ease;
         }
+
         header img:hover {
             transform: scale(1.1);
         }
+
         h1, h2 {
             color: #f8f8f8;
         }
+
         ul {
             list-style: none;
             padding: 0;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards;
         }
+
         li {
             background: rgba(255, 255, 255, 0.2);
             margin: 10px 0;
@@ -66,31 +78,32 @@
             border-radius: 8px;
             transition: 0.3s;
         }
+
         li:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: translateY(-5px);
         }
+
         .contact {
             margin-top: 50px;
         }
+
         .contact a {
             color: #ffcc00;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
+
         .contact a:hover {
             color: #f8f8f8;
         }
+
         .image-gallery {
             display: block;
             margin-top: 30px;
         }
-        .image-gallery div {
-            margin-bottom: 50px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
+
         .image-gallery img {
             width: 100%;
             max-width: 600px;
@@ -99,9 +112,11 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease;
         }
+
         .image-gallery img:hover {
             transform: scale(1.05);
         }
+
         .image-caption {
             max-width: 600px;
             margin: 10px auto;
@@ -118,6 +133,7 @@
             <p>Ranked First in My Specialization | Expert in AI, BI & System Development</p>
         </div>
     </header>
+
     <div class="container">
         <section class="image-gallery">
             <div>
@@ -125,6 +141,7 @@
                 <p class="image-caption">Engaged in humanitarian work with Save the Children, providing aid and support to vulnerable populations.</p>
             </div>
         </section>
+
         <section class="contact">
             <h2>Connect with Me</h2>
             <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammad-rashid-alhariri-533630287" target="_blank">linkedin.com/in/mohammad-rashid-alhariri</a></p>
