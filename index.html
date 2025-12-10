@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Rashid Al-Hariri | Official Portfolio</title>
+    <title>Mohammad Rashid Al-Hariri | Portfolio</title>
+    <meta name="description" content="Official Portfolio of Mohammad Rashid Al-Hariri - Head of Marketing & Advertising, MIS Top Graduate, and AI/BI Expert.">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE VARIABLES --- */
+        /* --- CSS VARIABLES & RESET --- */
         :root {
             --gold: #d4af37;
-            --dark-navy: #0a192f;
-            --darker-navy: #020c1b;
+            --gold-dim: rgba(212, 175, 55, 0.1);
+            --navy: #0a192f;
+            --navy-dark: #020c1b;
             --slate: #8892b0;
             --white: #e6f1ff;
             --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
-        /* --- RESET & BASIC SETUP --- */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
         body {
-            background-color: var(--darker-navy);
+            background-color: var(--navy-dark);
             color: var(--slate);
-            font-family: 'Montserrat', sans-serif; /* English Default */
-            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body.rtl {
@@ -42,30 +45,49 @@
         ul { list-style: none; }
         img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
 
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--dark-navy); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 5px; }
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section { padding: 100px 0; }
+
+        .section-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: var(--gold);
+            margin: 10px auto 0;
+        }
 
         /* --- HEADER & NAV --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 80px;
             background: rgba(10, 25, 47, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .nav-container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
+        nav {
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,12 +98,12 @@
             font-weight: 900;
             color: var(--gold);
             border: 2px solid var(--gold);
-            padding: 5px 15px;
-            letter-spacing: 2px;
+            padding: 5px 12px;
+            letter-spacing: 1px;
         }
 
         .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--white); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; }
+        .nav-links a { color: var(--white); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
         .nav-links a:hover { color: var(--gold); }
 
         .lang-btn {
@@ -94,62 +116,68 @@
             font-family: inherit;
             transition: var(--transition);
         }
-        .lang-btn:hover { background: rgba(212, 175, 55, 0.1); }
+        .lang-btn:hover { background: var(--gold-dim); }
 
         /* --- HERO SECTION --- */
-        .hero {
+        #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 150px 20px 100px;
-            background: radial-gradient(circle at 50% 50%, #112240 0%, #020c1b 100%);
+            background: radial-gradient(circle at center, #112240 0%, #020c1b 100%);
+            padding-top: 80px;
         }
 
         .hero-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 50px;
-            max-width: 1300px;
-            width: 100%;
             align-items: center;
         }
 
-        .hero-text h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 1px; }
-        .hero-text h1 { color: var(--white); font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .hero-text p { font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; }
+        .hero-text h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--white); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.1rem; max-width: 600px; margin-bottom: 30px; }
+        
+        .hero-btn {
+            padding: 15px 35px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            display: inline-block;
+        }
+        .hero-btn:hover { background: var(--gold-dim); transform: translateY(-3px); }
 
-        .hero-img-box {
+        .hero-img-container {
             position: relative;
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
             aspect-ratio: 1/1.2;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             margin: 0 auto;
         }
 
-        .hero-img-box::after {
+        .hero-img-container img {
+            border-radius: 10px;
+            filter: grayscale(20%) contrast(1.1);
+        }
+        
+        .hero-img-container::after {
             content: '';
             position: absolute;
-            inset: 0;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
             border: 2px solid var(--gold);
-            border-radius: 20px;
-            transform: translate(15px, 15px);
+            border-radius: 10px;
             z-index: -1;
+            transition: var(--transition);
         }
+        .hero-img-container:hover::after { top: 10px; left: 10px; right: -10px; bottom: -10px; }
+        body.rtl .hero-img-container::after { left: auto; right: 20px; }
+        body.rtl .hero-img-container:hover::after { right: 10px; }
 
-        /* --- SECTIONS GENERAL --- */
-        section { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
-        
-        .section-header { margin-bottom: 60px; text-align: center; }
-        .section-header h2 { font-size: 2.5rem; color: var(--white); display: inline-block; position: relative; }
-        .section-header h2::after {
-            content: ''; display: block; width: 50%; height: 3px; background: var(--gold); margin: 15px auto 0;
-        }
-
-        /* --- ABOUT & SKILLS --- */
+        /* --- ABOUT SECTION --- */
         .about-content {
             background: #112240;
             padding: 40px;
@@ -157,20 +185,21 @@
             border-left: 5px solid var(--gold);
         }
         body.rtl .about-content { border-left: none; border-right: 5px solid var(--gold); }
+        
+        .about-text p { margin-bottom: 15px; font-size: 1.05rem; }
+        .highlight { color: var(--gold); font-weight: bold; }
+        .company-link { color: var(--gold); text-decoration: underline; }
 
-        .about-text strong { color: var(--white); }
-        .company-link { color: var(--gold); text-decoration: underline; font-weight: bold; }
-
+        /* --- SKILLS --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-top: 40px;
         }
-
         .skill-item {
-            background: rgba(2, 12, 27, 0.5);
-            padding: 20px;
+            background: rgba(2, 12, 27, 0.7);
+            padding: 25px;
             text-align: center;
             border: 1px solid #233554;
             border-radius: 5px;
@@ -178,787 +207,275 @@
         }
         .skill-item:hover { border-color: var(--gold); transform: translateY(-5px); }
         .skill-item i { color: var(--gold); font-size: 2rem; margin-bottom: 15px; }
-        .skill-item h4 { color: var(--white); font-size: 1rem; }
+        .skill-item h4 { color: var(--white); }
 
-        /* --- STORY GALLERY (MASONRY) --- */
+        /* --- STORY GALLERY (MASONRY-LIKE) --- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .story-card {
             background: #112240;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .story-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-
-        .story-img {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .story-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
-        .story-content h3 { color: var(--white); margin-bottom: 10px; font-size: 1.3rem; }
-        .story-content p { font-size: 0.95rem; margin-bottom: 15px; color: #a8b2d1; }
-        .story-tag { 
-            display: inline-block; padding: 5px 12px; background: rgba(212, 175, 55, 0.1); 
-            color: var(--gold); font-size: 0.8rem; border-radius: 20px; width: fit-content;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            background: #020c1b;
-            margin-top: 50px;
-            border-top: 1px solid #233554;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--slate);
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            margin: 0 10px;
-            font-size: 1.2rem;
-            color: var(--slate);
-        }
-        .social-icons a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .hero-img-box { margin: 0 auto 40px; order: -1; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for mobile */
-        }
-    </style>
-</head>
-<body id="body">
-
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">M.R.A</a>
-            <ul class="nav-links">
-                <li><a href="#about" class="lang-nav-about">About</a></li>
-                <li><a href="#expertise" class="lang-nav-skills">Expertise</a></li>
-                <li><a href="#journey" class="lang-nav-journey">My Journey</a></li>
-                <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
-            </ul>
-            <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <h3 class="lang-hero-subtitle">Head of Marketing & Advertising Dept.</h3>
-                <h1 class="lang-hero-title">Mohamed Rashid Al-Hariri</h1>
-                <p class="lang-hero-desc">
-                    Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.
-                </p>
-                <a href="mailto:hmdr2401@gmail.com" class="lang-btn" style="display:inline-block; text-align:center; text-decoration:none; padding:15px 30px; background:var(--gold); color:var(--darker-navy);">
-                    <i class="fas fa-envelope"></i> <span class="lang-contact-btn">Get in Touch</span>
-                </a>
-            </div>
-            <div class="hero-img-box">
-                <img src="https://postimg.cc/Lqg3c0wQ" alt="Mohamed Rashid Al-Hariri"> 
-                <img src="https://i.postimg.cc/HsjG02g9/1000715039.jpg" alt="Mohamed Profile" style="object-fit:cover;"> 
-                </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-header">
-            <h2 class="lang-about-title">Professional Profile</h2>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p class="lang-about-p1" style="margin-bottom:20px; font-size:1.1rem;">
-                    My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.
-                </p>
-                <p class="lang-about-p2" style="font-size:1.1rem;">
-                    Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at 
-                    <a href="http://www.AlAmeenfood.Com" target="_blank" class="company-link">Alameen Food Industries</a>. 
-                    My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.
-                </p>
-            </div>
-        </div>
-
-        <div class="skills-grid" id="expertise">
-            <div class="skill-item">
-                <i class="fas fa-bullseye"></i>
-                <h4 class="lang-skill-1">Strategic Marketing</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chart-line"></i>
-                <h4 class="lang-skill-2">Business Intelligence (BI)</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-brain"></i>
-                <h4 class="lang-skill-3">AI & Data Analysis</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-users-cog"></i>
-                <h4 class="lang-skill-4">CRM System Design</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h4 class="lang-skill-5">Team Training & Dev.</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-file-alt"></i>
-                <h4 class="lang-skill-6">Executive Reporting</h4>
-            </div>
-        </div>
-    </section>
-
-    <section id="journey">
-        <div class="section-header">
-            <h2 class="lang-journey-title">Milestones of Success</h2>
-        </div>
-        <div class="gallery-grid">
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/J4yqjQh6/image.jpg" onerror="this.src='https://postimg.cc/rDb0xysp'" alt="Academic">
-                    </div>
-                <div class="story-content">
-                    <h3 class="lang-card-1-title">Ranked First</h3>
-                    <p class="lang-card-1-desc">Achieved the #1 rank in MIS Specialization. A testament to dedication and precision in System Analysis.</p>
-                    <span class="story-tag">Academic Excellence</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/XvJFJ5x3/image.jpg" onerror="this.src='https://postimg.cc/jDwf2ncX'" alt="Bank">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-2-title">CRM Specialist</h3>
-                    <p class="lang-card-2-desc">Experience at Cairo Amman Bank in the CRM Department, enhancing banking operations and customer loyalty.</p>
-                    <span class="story-tag">Professional Experience</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/k4WzF5yM/image.jpg" onerror="this.src='https://postimg.cc/K32ks9h9'" alt="Training">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-3-title">Impact & Rehabilitation</h3>
-                    <p class="lang-card-3-desc">Led a project to rehabilitate 78 university students for the labor market. A shared success story as the majority secured jobs.</p>
-                    <span class="story-tag">Leadership & Training</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/VNfyzR8G/image.jpg" onerror="this.src='https://postimg.cc/R3WM1wyN'" alt="Writer">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-4-title">The Content Creator</h3>
-                    <p class="lang-card-4-desc">5 years of daily consistency. Published daily advice and contemporary life insights without interruption. A professional Digital Content Writer.</p>
-                    <span class="story-tag">Content & PR</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/Y9Dqj3xL/image.jpg" onerror="this.src='https://postimg.cc/1g0fVGq9'" alt="Union">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-5-title">Student Leader</h3>
-                    <p class="lang-card-5-desc">Served as President of the Arab and Foreign Students Union, fostering unity and representation.</p>
-                    <span class="story-tag">Leadership</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/CKH4v9zG/image.jpg" onerror="this.src='https://postimg.cc/3kByfjtC'" alt="Winning">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-6-title">The Victory</h3>
-                    <p class="lang-card-6-desc">Winning the Youth & Technology Conference award. Led the team to present the best project under high competition.</p>
-                    <span class="story-tag">Achievement</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/c15yHn8R/image.jpg" onerror="this.src='https://postimg.cc/94dLnn6V'" alt="Speaking">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-7-title">Public Speaking</h3>
-                    <p class="lang-card-7-desc">Standing before the audience, sharing knowledge on Entrepreneurship and Technology employment.</p>
-                    <span class="story-tag">Speaker</span>
-                </div>
-            </div>
-
-             <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/B6mS43z9/image.jpg" onerror="this.src='https://postimg.cc/KRpwPC2r'" alt="Jury">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-8-title">Defending the Vision</h3>
-                    <p class="lang-card-8-desc">Presenting and defending the project before the conference jury with confidence and technical expertise.</p>
-                    <span class="story-tag">Presentation</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p style="margin-top:20px;">&copy; 2025 Mohamed Rashid Al-Hariri. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        const content = {
-            en: {
-                navAbout: "About", navSkills: "Expertise", navJourney: "My Journey", navContact: "Contact",
-                heroSub: "Head of Marketing & Advertising Dept.",
-                heroTitle: "Mohamed Rashid Al-Hariri",
-                heroDesc: "Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.",
-                contactBtn: "Get in Touch",
-                aboutTitle: "Professional Profile",
-                aboutP1: "My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.",
-                aboutP2: "Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at <a href='http://www.AlAmeenfood.Com' target='_blank' class='company-link'>Alameen Food Industries</a>. My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.",
-                skill1: "Strategic Marketing", skill2: "Business Intelligence (BI)", skill3: "AI & Data Analysis", 
-                skill4: "CRM System Design", skill5: "Team Training & Dev.", skill6: "Executive Reporting",
-                journeyTitle: "Milestones            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        }
-
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
-        img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--dark-navy); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 5px; }
-
-        /* --- HEADER & NAV --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 5px 15px;
-            letter-spacing: 2px;
-        }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--white); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--gold); }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .lang-btn:hover { background: rgba(212, 175, 55, 0.1); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 150px 20px 100px;
-            background: radial-gradient(circle at 50% 50%, #112240 0%, #020c1b 100%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
-            max-width: 1300px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .hero-text h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 1px; }
-        .hero-text h1 { color: var(--white); font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .hero-text p { font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; }
-
-        .hero-img-box {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-            aspect-ratio: 1/1.2;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin: 0 auto;
-        }
-
-        .hero-img-box::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            transform: translate(15px, 15px);
-            z-index: -1;
-        }
-
-        /* --- SECTIONS GENERAL --- */
-        section { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
-        
-        .section-header { margin-bottom: 60px; text-align: center; }
-        .section-header h2 { font-size: 2.5rem; color: var(--white); display: inline-block; position: relative; }
-        .section-header h2::after {
-            content: ''; display: block; width: 50%; height: 3px; background: var(--gold); margin: 15px auto 0;
-        }
-
-        /* --- ABOUT & SKILLS --- */
-        .about-content {
-            background: #112240;
-            padding: 40px;
             border-radius: 10px;
-            border-left: 5px solid var(--gold);
-        }
-        body.rtl .about-content { border-left: none; border-right: 5px solid var(--gold); }
-
-        .about-text strong { color: var(--white); }
-        .company-link { color: var(--gold); text-decoration: underline; font-weight: bold; }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .skill-item {
-            background: rgba(2, 12, 27, 0.5);
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #233554;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        .skill-item:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .skill-item i { color: var(--gold); font-size: 2rem; margin-bottom: 15px; }
-        .skill-item h4 { color: var(--white); font-size: 1rem; }
-
-        /* --- STORY GALLERY (MASONRY) --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .story-card {
-            background: #112240;
-            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
         }
-        
-        .story-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .story-card:hover { transform: translateY(-10px); }
 
-        .story-img {
+        .story-img-box {
             height: 250px;
             overflow: hidden;
-            position: relative;
+        }
+        .story-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This fixes the size issues */
         }
 
-        .story-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
-        .story-content h3 { color: var(--white); margin-bottom: 10px; font-size: 1.3rem; }
-        .story-content p { font-size: 0.95rem; margin-bottom: 15px; color: #a8b2d1; }
+        .story-text { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .story-text h3 { color: var(--white); margin-bottom: 10px; font-size: 1.2rem; }
+        .story-text p { font-size: 0.95rem; margin-bottom: 15px; color: #a8b2d1; flex-grow: 1; }
         .story-tag { 
-            display: inline-block; padding: 5px 12px; background: rgba(212, 175, 55, 0.1); 
-            color: var(--gold); font-size: 0.8rem; border-radius: 20px; width: fit-content;
+            display: inline-block; 
+            padding: 4px 12px; 
+            background: var(--gold-dim); 
+            color: var(--gold); 
+            font-size: 0.8rem; 
+            border-radius: 20px; 
+            width: fit-content; 
         }
 
-        /* --- FOOTER --- */
-        footer {
+        /* --- CONTACT & FOOTER --- */
+        .contact-box {
             text-align: center;
-            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        footer {
             background: #020c1b;
+            text-align: center;
+            padding: 40px 0;
             margin-top: 50px;
             border-top: 1px solid #233554;
         }
-        
-        .social-icons a {
+        .social-links a {
             display: inline-flex;
+            justify-content: center;
+            align-items: center;
             width: 50px;
             height: 50px;
             border: 1px solid var(--slate);
             border-radius: 50%;
-            align-items: center;
-            justify-content: center;
             margin: 0 10px;
             font-size: 1.2rem;
-            color: var(--slate);
         }
-        .social-icons a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+        .social-links a:hover { color: var(--gold); border-color: var(--gold); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .hero-img-box { margin: 0 auto 40px; order: -1; }
-            .hero-text h1 { font-size: 2.5rem; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-img-container { order: -1; margin-bottom: 40px; }
             .nav-links { display: none; } /* Simplified for mobile */
+            .hero-text h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body id="body">
 
+    <!-- Navbar -->
     <header>
-        <div class="nav-container">
-            <a href="#" class="logo">M.R.A</a>
-            <ul class="nav-links">
-                <li><a href="#about" class="lang-nav-about">About</a></li>
-                <li><a href="#expertise" class="lang-nav-skills">Expertise</a></li>
-                <li><a href="#journey" class="lang-nav-journey">My Journey</a></li>
-                <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
-            </ul>
-            <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
+        <div class="container">
+            <nav>
+                <div class="logo">M.R.H</div>
+                <ul class="nav-links">
+                    <li><a href="#about" class="lang-nav-about">About</a></li>
+                    <li><a href="#skills" class="lang-nav-skills">Expertise</a></li>
+                    <li><a href="#journey" class="lang-nav-journey">My Journey</a></li>
+                    <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
+                </ul>
+                <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-grid">
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-grid">
             <div class="hero-text">
-                <h3 class="lang-hero-subtitle">Head of Marketing & Advertising Dept.</h3>
-                <h1 class="lang-hero-title">Mohamed Rashid Al-Hariri</h1>
+                <h3 class="lang-hero-sub">Head of Marketing & Advertising Dept.</h3>
+                <h1 class="lang-hero-name">Mohammad Rashid Al-Hariri</h1>
                 <p class="lang-hero-desc">
-                    Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.
+                    Ranked First in Business Information Systems. An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.
                 </p>
-                <a href="mailto:hmdr2401@gmail.com" class="lang-btn" style="display:inline-block; text-align:center; text-decoration:none; padding:15px 30px; background:var(--gold); color:var(--darker-navy);">
-                    <i class="fas fa-envelope"></i> <span class="lang-contact-btn">Get in Touch</span>
-                </a>
+                <a href="#contact" class="hero-btn lang-hero-btn">Get in Touch</a>
             </div>
-            <div class="hero-img-box">
-                <img src="https://postimg.cc/Lqg3c0wQ" alt="Mohamed Rashid Al-Hariri"> 
-                <img src="https://i.postimg.cc/HsjG02g9/1000715039.jpg" alt="Mohamed Profile" style="object-fit:cover;"> 
-                </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-header">
-            <h2 class="lang-about-title">Professional Profile</h2>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p class="lang-about-p1" style="margin-bottom:20px; font-size:1.1rem;">
-                    My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.
-                </p>
-                <p class="lang-about-p2" style="font-size:1.1rem;">
-                    Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at 
-                    <a href="http://www.AlAmeenfood.Com" target="_blank" class="company-link">Alameen Food Industries</a>. 
-                    My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.
-                </p>
-            </div>
-        </div>
-
-        <div class="skills-grid" id="expertise">
-            <div class="skill-item">
-                <i class="fas fa-bullseye"></i>
-                <h4 class="lang-skill-1">Strategic Marketing</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chart-line"></i>
-                <h4 class="lang-skill-2">Business Intelligence (BI)</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-brain"></i>
-                <h4 class="lang-skill-3">AI & Data Analysis</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-users-cog"></i>
-                <h4 class="lang-skill-4">CRM System Design</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h4 class="lang-skill-5">Team Training & Dev.</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-file-alt"></i>
-                <h4 class="lang-skill-6">Executive Reporting</h4>
+            <div class="hero-img-container">
+                <!-- Personal Photo -->
+                <img src="https://postimg.cc/Lqg3c0wQ/download" onerror="this.src='https://i.postimg.cc/Lqg3c0wQ/image.jpg'" alt="Mohammad Rashid Al-Hariri">
             </div>
         </div>
     </section>
 
-    <section id="journey">
-        <div class="section-header">
-            <h2 class="lang-journey-title">Milestones of Success</h2>
-        </div>
-        <div class="gallery-grid">
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/J4yqjQh6/image.jpg" onerror="this.src='https://postimg.cc/rDb0xysp'" alt="Academic">
-                    </div>
-                <div class="story-content">
-                    <h3 class="lang-card-1-title">Ranked First</h3>
-                    <p class="lang-card-1-desc">Achieved the #1 rank in MIS Specialization. A testament to dedication and precision in System Analysis.</p>
-                    <span class="story-tag">Academic Excellence</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/XvJFJ5x3/image.jpg" onerror="this.src='https://postimg.cc/jDwf2ncX'" alt="Bank">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-2-title">CRM Specialist</h3>
-                    <p class="lang-card-2-desc">Experience at Cairo Amman Bank in the CRM Department, enhancing banking operations and customer loyalty.</p>
-                    <span class="story-tag">Professional Experience</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/k4WzF5yM/image.jpg" onerror="this.src='https://postimg.cc/K32ks9h9'" alt="Training">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-3-title">Impact & Rehabilitation</h3>
-                    <p class="lang-card-3-desc">Led a project to rehabilitate 78 university students for the labor market. A shared success story as the majority secured jobs.</p>
-                    <span class="story-tag">Leadership & Training</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/VNfyzR8G/image.jpg" onerror="this.src='https://postimg.cc/R3WM1wyN'" alt="Writer">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-4-title">The Content Creator</h3>
-                    <p class="lang-card-4-desc">5 years of daily consistency. Published daily advice and contemporary life insights without interruption. A professional Digital Content Writer.</p>
-                    <span class="story-tag">Content & PR</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/Y9Dqj3xL/image.jpg" onerror="this.src='https://postimg.cc/1g0fVGq9'" alt="Union">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-5-title">Student Leader</h3>
-                    <p class="lang-card-5-desc">Served as President of the Arab and Foreign Students Union, fostering unity and representation.</p>
-                    <span class="story-tag">Leadership</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/CKH4v9zG/image.jpg" onerror="this.src='https://postimg.cc/3kByfjtC'" alt="Winning">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-6-title">The Victory</h3>
-                    <p class="lang-card-6-desc">Winning the Youth & Technology Conference award. Led the team to present the best project under high competition.</p>
-                    <span class="story-tag">Achievement</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/c15yHn8R/image.jpg" onerror="this.src='https://postimg.cc/94dLnn6V'" alt="Speaking">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-7-title">Public Speaking</h3>
-                    <p class="lang-card-7-desc">Standing before the audience, sharing knowledge on Entrepreneurship and Technology employment.</p>
-                    <span class="story-tag">Speaker</span>
-                </div>
-            </div>
-
-             <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/B6mS43z9/image.jpg" onerror="this.src='https://postimg.cc/KRpwPC2r'" alt="Jury">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-8-title">Defending the Vision</h3>
-                    <p class="lang-card-8-desc">Presenting and defending the project before the conference jury with confidence and technical expertise.</p>
-                    <span class="story-tag">Presentation</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p style="margin-top:20px;">&copy; 2025 Mohamed Rashid Al-Hariri. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        const content = {
-            en: {
-                navAbout: "About", navSkills: "Expertise", navJourney: "My Journey", navContact: "Contact",
-                heroSub: "Head of Marketing & Advertising Dept.",
-                heroTitle: "Mohamed Rashid Al-Hariri",
-                heroDesc: "Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.",
-                contactBtn: "Get in Touch",
-                aboutTitle: "Professional Profile",
-                aboutP1: "My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.",
-                aboutP2: "Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at <a href='http://www.AlAmeenfood.Com' target='_blank' class='company-link'>Alameen Food Industries</a>. My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.",
-                skill1: "Strategic Marketing", skill2: "Business Intelligence (BI)", skill3: "AI & Data Analysis", 
-                skill4: "CRM System Design", skill5: "Team Training & Dev.", skill6: "Executive Reporting",
-                journeyTitle: "Milestonestext" id="typing"></div>
-            <a href="#contact" class="btn-main">تواصل للتعاون المهني</a>
-        </div>
-    </section>
-
+    <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title">نبذة عن ريادتي</h2>
-            <div class="about-grid">
+            <div class="section-header">
+                <h2 class="lang-about-title">Professional Profile</h2>
+            </div>
+            <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        رائد أعمال طموح وخبير في تقنيات التسويق الحديث (SEO/SEM) وإدارة المشاريع الاحترافية. بصفتي طالباً في السنة الأخيرة لتخصص <strong>نظم المعلومات الإدارية (تكنولوجيا معلومات الأعمال)</strong>، لم أكتفِ بالتفوق الأكاديمي وحصولي على <strong>الترتيب الأول</strong> على التخصص، بل دمجت العلم بالخبرة العملية.
+                    <p class="lang-about-p1">
+                        My journey began in the halls of academia where I didn't just study <span class="highlight">Business Information Technology</span>; I mastered it, achieving the <span class="highlight">First Rank</span> in my specialization. This wasn't just a grade; it was a reflection of my obsession with precision and system analysis.
                     </p>
-                    <p>
-                        أشغل حالياً منصب <strong>رئيس قسم التسويق والتصدير في شركة الأمين للصناعات الغذائية</strong>، حيث أقود استراتيجيات التحول الرقمي وتحليل البيانات الضخمة لتعزيز نمو الأعمال. شغفي هو صنع الأثر، سواء من خلال القيادة، التدريب، أو الحلول التقنية المبتكرة.
+                    <p class="lang-about-p2">
+                        Currently, I serve as the <strong>Head of Marketing & Advertising Department</strong> at <a href="http://www.AlAmeenfood.Com" target="_blank" class="company-link">Alameen Food Industries</a>. I don't just run campaigns; I leverage <strong>Artificial Intelligence, Business Intelligence (BI), and CRM systems</strong> to analyze data and drive decision-making. My strength lies in designing systems that work, training teams to excel, and reporting to top management with clarity.
+                    </p>
+                    <p class="lang-about-p3">
+                        From leading student unions to winning technology conferences, my career is defined by <span class="highlight">Leadership</span> and <span class="highlight">Innovation</span>. I am a System Analyst by training and a Marketer by passion.
                     </p>
                 </div>
-                <div class="stats-container">
-                    <div class="stats-box">
-                        <i class="fas fa-trophy fa-2x" style="color:var(--primary-color); margin-bottom:10px;"></i>
-                        <h3>الأول</h3>
-                        <p>الترتيب الأكاديمي على التخصص</p>
-                    </div>
-                    <div class="stats-box">
-                        <i class="fas fa-chalkboard-teacher fa-2x" style="color:var(--primary-color); margin-bottom:10px;"></i>
-                        <h3>+114</h3>
-                        <p>محاضرة وندوة علمية وورشة عمل</p>
-                    </div>
-                    <div class="stats-box">
-                        <i class="fas fa-briefcase fa-2x" style="color:var(--primary-color); margin-bottom:10px;"></i>
-                        <h3>مدير قسم</h3>
-                        <p>التسويق في شركة عالمية</p>
-                    </div>
-                    <div class="stats-box">
-                        <i class="fas fa-handshake fa-2x" style="color:var(--primary-color); margin-bottom:10px;"></i>
-                        <h3>تدريب دولي</h3>
-                        <p>مع منظمات Acted & WFP</p>
-                    </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="skills-grid" id="skills">
+                <div class="skill-item">
+                    <i class="fas fa-brain"></i>
+                    <h4 class="lang-skill-1">Artificial Intelligence (AI)</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4 class="lang-skill-2">Business Intelligence (BI)</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h4 class="lang-skill-3">System Analysis & Design</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-users-cog"></i>
+                    <h4 class="lang-skill-4">CRM & Team Training</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" style="background-color: #0d1e36;">
+    <!-- Journey / Gallery Section -->
+    <section id="journey">
         <div class="container">
-            <h2 class="section-title">مجالات الخبرة والاحتراف</h2>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <h3><i class="fas fa-bullhorn"></i> التسويق الاستراتيجي & SEO</h3>
-                    <p style="color:#8892b0; margin-bottom:15px;">خبرة عميقة في إدارة الحملات الرقمية، تحسين محركات البحث، واستراتيجيات التصدير لكبرى الشركات.</p>
-                    <div class="skill-tags">
-                        <span>SEO / SEM</span>
-                        <span>Google Analytics</span>
-                        <span>إدارة الحملات</span>
-                        <span>الهوية البصرية</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-database"></i> ذكاء الأعمال & تطوير النظم</h3>
-                    <p style="color:#8892b0; margin-bottom:15px;">تحليل البيانات الضخمة وتطوير نظم المعلومات لدعم اتخاذ القرار وتطوير الويب.</p>
-                    <div class="skill-tags">
-                        <span>HTML/CSS</span>
-                        <span>Data Analysis</span>
-                        <span>BI Tools</span>
-                        <span>System Security</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3><i class="fas fa-user-tie"></i> الإرشاد المهني والقيادة</h3>
-                    <p style="color:#8892b0; margin-bottom:15px;">مستشار تطوير وظيفي، مدرب معتمد، وخبرة في إعداد السير الذاتية وتجهيز الخريجين لسوق العمل.</p>
-                    <div class="skill-tags">
-                        <span>Resume Consulting</span>
-                        <span>Interview Prep</span>
-                        <span>Public Speaking</span>
-                        <span>Team Leadership</span>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="lang-journey-title">Milestones of Success</h2>
             </div>
-        </div>
-    </section>
-
-    <section id="stories">
-        <div class="container">
-            <h2 class="section-title">محطات تروي القصة</h2>
             <div class="gallery-grid">
                 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="التفوق الأكاديمي">
-                    <div class="overlay">
-                        <h3>القمة الأكاديمية</h3>
-                        <p>بفضل الله، الأول على تخصص نظم المعلومات الإدارية. رحلة تضمنت المشاركة بـ 114 ندوة ومبادرة علمية داخل الحرم الجامعي، مما يعكس شغفاً لا ينقطع بالتعلم.</p>
+                <!-- 1. Academic Excellence -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/rDb0xysp/download" onerror="this.src='https://i.postimg.cc/rDb0xysp/image.jpg'" alt="Academic">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c1-title">Academic Excellence</h3>
+                        <p class="lang-c1-desc">Ranked First in MIS. A testament to dedication in system analysis and business technology.</p>
+                        <span class="story-tag">#1 Rank</span>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="الكاتب والمحرر">
-                    <div class="overlay">
-                        <h3>القلم المحترف</h3>
-                        <p>الجانب الهادئ والمبدع: عملت سابقاً ككاتب محترف ومحرر لقسم العلاقات العامة في الجامعة، حيث كانت كلماتي صوتاً للطلاب وواجهة للجامعة.</p>
+                <!-- 2. Training 78 Students -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/K32ks9h9/download" onerror="this.src='https://i.postimg.cc/K32ks9h9/image.jpg'" alt="Training">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c2-title">Empowering the Future</h3>
+                        <p class="lang-c2-desc">Led a project to rehabilitate 78 university students. A shared success story as the majority secured jobs post-graduation.</p>
+                        <span class="story-tag">Leadership & Training</span>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="الفوز والريادة">
-                    <div class="overlay">
-                        <h3>لحظة الانتصار</h3>
-                        <p>منسق ومدرب لفريق المستوى الثاني، والفائز في مؤتمر الشباب والتكنولوجيا بالتعاون مع منظمة ACTED ومؤسسة تضامن. إثبات عملي على قدرات القيادة وإدارة المشاريع.</p>
+                <!-- 3. Cairo Amman Bank -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/jDwf2ncX/download" onerror="this.src='https://i.postimg.cc/jDwf2ncX/image.jpg'" alt="Bank">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c3-title">CRM Specialist</h3>
+                        <p class="lang-c3-desc">Professional experience at Cairo Amman Bank in Customer Relationship Management, enhancing banking operations.</p>
+                        <span class="story-tag">Banking & CRM</span>
+                    </div>
+                </div>
+
+                <!-- 4. Writer (5 Years) -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/R3WM1wyN/download" onerror="this.src='https://i.postimg.cc/R3WM1wyN/image.jpg'" alt="Writer">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c4-title">The Content Creator</h3>
+                        <p class="lang-c4-desc">5 years of daily consistency. Publishing advice on contemporary life without interruption. A professional Digital Content Writer.</p>
+                        <span class="story-tag">Content & PR</span>
+                    </div>
+                </div>
+
+                <!-- 5. Student Union -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/1g0fVGq9/download" onerror="this.src='https://i.postimg.cc/1g0fVGq9/image.jpg'" alt="Union">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c5-title">Student Leader</h3>
+                        <p class="lang-c5-desc">President of the Arab and Foreign Students Union. Promoting collaboration and student advocacy.</p>
+                        <span class="story-tag">Leadership</span>
+                    </div>
+                </div>
+
+                <!-- 6. Winning Conference -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/3kByfjtC/download" onerror="this.src='https://i.postimg.cc/3kByfjtC/image.jpg'" alt="Winning">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c6-title">The Victory</h3>
+                        <p class="lang-c6-desc">Winning the Youth & Technology Conference award. Led the team to present the best project under high competition.</p>
+                        <span class="story-tag">Achievement</span>
+                    </div>
+                </div>
+
+                <!-- 7. Speaking to Audience -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/94dLnn6V/download" onerror="this.src='https://i.postimg.cc/94dLnn6V/image.jpg'" alt="Speaking">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c7-title">Public Speaking</h3>
+                        <p class="lang-c7-desc">Standing before the audience, sharing knowledge on Entrepreneurship and Technology employment.</p>
+                        <span class="story-tag">Speaker</span>
+                    </div>
+                </div>
+
+                <!-- 8. Jury Presentation -->
+                <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/KRpwPC2r/download" onerror="this.src='https://i.postimg.cc/KRpwPC2r/image.jpg'" alt="Jury">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c8-title">Defending the Vision</h3>
+                        <p class="lang-c8-desc">Presenting and defending the project before the conference jury with confidence and technical expertise.</p>
+                        <span class="story-tag">Presentation</span>
+                    </div>
+                </div>
+                
+                 <!-- 9. Seminar Prep -->
+                 <div class="story-card">
+                    <div class="story-img-box">
+                        <img src="https://postimg.cc/cK3f9t8G/download" onerror="this.src='https://i.postimg.cc/cK3f9t8G/image.jpg'" alt="Seminar">
+                    </div>
+                    <div class="story-content story-text">
+                        <h3 class="lang-c9-title">Seminar & Workshop</h3>
+                        <p class="lang-c9-desc">Preparing and attending seminars on Entrepreneurship and Technology application.</p>
+                        <span class="story-tag">Workshop</span>
                     </div>
                 </div>
 
@@ -966,530 +483,123 @@
         </div>
     </section>
 
-    <section id="biography" style="background: #0a192f;">
-        <div class="container">
-            <h2 class="section-title">السيرة المهنية والشخصية</h2>
-            <div class="bio-box">
-                <div class="bio-header">
-                    <h3 style="color:var(--primary-color); font-size:1.5rem;">محمد راشد الحريري | رحلة طموح</h3>
-                </div>
-                <div class="bio-content">
-                    <p style="margin-bottom: 15px;">
-                        أنا رائد أعمال ومختص في الشؤون المالية والتجارية والتكنولوجية، أتمتع بمهارات عالية وطموح لا يحده سقف. التصنيف الأكاديمي الأول لم يكن مجرد رقم، بل هو انعكاس للتفاني والدقة والمسؤولية الاجتماعية التي أحملها.
-                    </p>
-                    <p style="margin-bottom: 15px;">
-                        تمتد خبرتي لتقلد مناصب قيادية فخرية متعددة، والعمل على مشاريع دولية عالية التأثير مع منظمات عريقة مثل <strong>Acted, Blumont, WFP</strong>. متخصص في تصميم وتحليل قواعد البيانات لقيادة التحول الرقمي، ولدي باع طويل في المفاوضات الدبلوماسية والاستشارات الاستراتيجية.
-                    </p>
-                    <p style="margin-bottom: 15px;">
-                        أؤمن بأهمية المسؤولية المجتمعية، وقد عملت في مشاريع إنسانية تهدف لتحسين جودة الحياة مع "أنقذوا الأطفال". كما اكتسبت خبرة عملية في التقنيات المالية خلال تدريبي في <strong>بنك القاهرة عمان</strong>.
-                    </p>
-                    <p style="color: var(--accent-color); font-weight: bold;">
-                        "النجاح ليس صدفة، بل هو نتاج تخطيط استراتيجي، تحليل دقيق للبيانات، وشغف لا ينطفئ بالتطوير."
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title">لنتحدث عن المستقبل</h2>
-            <p style="color:#8892b0; margin-bottom: 30px; font-size: 1.2rem;">
-                هل تبحث عن استراتيجية تسويقية تكتسح السوق؟ أو استشارة في تطوير النظم؟ أنا جاهز للتعاون.
-            </p>
-            <a href="mailto:hmdr2401@gmail.com" class="btn-main" style="margin: 10px;"><i class="fas fa-envelope"></i> راسلني عبر الإيميل</a>
-            <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" class="btn-main" style="margin: 10px;"><i class="fab fa-linkedin"></i> ملفي على LinkedIn</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-icons" style="margin-bottom: 20px;">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>جميع الحقوق محفوظة &copy; 2025 محمد راشد الحريري</p>
-        </div>
-    </section>
-
-    <script>
-        // تأثير الكتابة التلقائية في الهيرو
-        const textElement = document.getElementById('typing');
-        const phrases = [
-            "خبير الذكاء الاصطناعي وتطوير النظم",
-            "رئيس قسم التسويق - Alameen Foods",
-            "الأول على تخصص نظم المعلومات الإدارية",
-            "مدرب ومستشار تطوير وظيفي"
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeEffect() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(typeEffect, 2000); // انتظار قبل المسح
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Rashid Al-Hariri | Official Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <style>
-        /* --- CORE VARIABLES --- */
-        :root {
-            --gold: #d4af37;
-            --dark-navy: #0a192f;
-            --darker-navy: #020c1b;
-            --slate: #8892b0;
-            --white: #e6f1ff;
-            --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-        /* --- RESET & BASIC SETUP --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        
-        body {
-            background-color: var(--darker-navy);
-            color: var(--slate);
-            font-family: 'Montserrat', sans-serif; /* English Default */
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        body.rtl {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        }
-
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
-        img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--dark-navy); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 5px; }
-
-        /* --- HEADER & NAV --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 5px 15px;
-            letter-spacing: 2px;
-        }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--white); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--gold); }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .lang-btn:hover { background: rgba(212, 175, 55, 0.1); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 150px 20px 100px;
-            background: radial-gradient(circle at 50% 50%, #112240 0%, #020c1b 100%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
-            max-width: 1300px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .hero-text h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 1px; }
-        .hero-text h1 { color: var(--white); font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
-        .hero-text p { font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; }
-
-        .hero-img-box {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-            aspect-ratio: 1/1.2;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin: 0 auto;
-        }
-
-        .hero-img-box::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            transform: translate(15px, 15px);
-            z-index: -1;
-        }
-
-        /* --- SECTIONS GENERAL --- */
-        section { padding: 100px 20px; max-width: 1300px; margin: 0 auto; }
-        
-        .section-header { margin-bottom: 60px; text-align: center; }
-        .section-header h2 { font-size: 2.5rem; color: var(--white); display: inline-block; position: relative; }
-        .section-header h2::after {
-            content: ''; display: block; width: 50%; height: 3px; background: var(--gold); margin: 15px auto 0;
-        }
-
-        /* --- ABOUT & SKILLS --- */
-        .about-content {
-            background: #112240;
-            padding: 40px;
-            border-radius: 10px;
-            border-left: 5px solid var(--gold);
-        }
-        body.rtl .about-content { border-left: none; border-right: 5px solid var(--gold); }
-
-        .about-text strong { color: var(--white); }
-        .company-link { color: var(--gold); text-decoration: underline; font-weight: bold; }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .skill-item {
-            background: rgba(2, 12, 27, 0.5);
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #233554;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        .skill-item:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .skill-item i { color: var(--gold); font-size: 2rem; margin-bottom: 15px; }
-        .skill-item h4 { color: var(--white); font-size: 1rem; }
-
-        /* --- STORY GALLERY (MASONRY) --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .story-card {
-            background: #112240;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .story-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-
-        .story-img {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .story-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
-        .story-content h3 { color: var(--white); margin-bottom: 10px; font-size: 1.3rem; }
-        .story-content p { font-size: 0.95rem; margin-bottom: 15px; color: #a8b2d1; }
-        .story-tag { 
-            display: inline-block; padding: 5px 12px; background: rgba(212, 175, 55, 0.1); 
-            color: var(--gold); font-size: 0.8rem; border-radius: 20px; width: fit-content;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            background: #020c1b;
-            margin-top: 50px;
-            border-top: 1px solid #233554;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--slate);
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            margin: 0 10px;
-            font-size: 1.2rem;
-            color: var(--slate);
-        }
-        .social-icons a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .hero-img-box { margin: 0 auto 40px; order: -1; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for mobile */
-        }
-    </style>
-</head>
-<body id="body">
-
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">M.R.A</a>
-            <ul class="nav-links">
-                <li><a href="#about" class="lang-nav-about">About</a></li>
-                <li><a href="#expertise" class="lang-nav-skills">Expertise</a></li>
-                <li><a href="#journey" class="lang-nav-journey">My Journey</a></li>
-                <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
-            </ul>
-            <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <h3 class="lang-hero-subtitle">Head of Marketing & Advertising Dept.</h3>
-                <h1 class="lang-hero-title">Mohamed Rashid Al-Hariri</h1>
-                <p class="lang-hero-desc">
-                    Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.
-                </p>
-                <a href="mailto:hmdr2401@gmail.com" class="lang-btn" style="display:inline-block; text-align:center; text-decoration:none; padding:15px 30px; background:var(--gold); color:var(--darker-navy);">
-                    <i class="fas fa-envelope"></i> <span class="lang-contact-btn">Get in Touch</span>
-                </a>
-            </div>
-            <div class="hero-img-box">
-                <img src="https://postimg.cc/Lqg3c0wQ" alt="Mohamed Rashid Al-Hariri"> 
-                <img src="https://i.postimg.cc/HsjG02g9/1000715039.jpg" alt="Mohamed Profile" style="object-fit:cover;"> 
-                </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-header">
-            <h2 class="lang-about-title">Professional Profile</h2>
-        </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p class="lang-about-p1" style="margin-bottom:20px; font-size:1.1rem;">
-                    My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.
-                </p>
-                <p class="lang-about-p2" style="font-size:1.1rem;">
-                    Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at 
-                    <a href="http://www.AlAmeenfood.Com" target="_blank" class="company-link">Alameen Food Industries</a>. 
-                    My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.
-                </p>
-            </div>
-        </div>
-
-        <div class="skills-grid" id="expertise">
-            <div class="skill-item">
-                <i class="fas fa-bullseye"></i>
-                <h4 class="lang-skill-1">Strategic Marketing</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chart-line"></i>
-                <h4 class="lang-skill-2">Business Intelligence (BI)</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-brain"></i>
-                <h4 class="lang-skill-3">AI & Data Analysis</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-users-cog"></i>
-                <h4 class="lang-skill-4">CRM System Design</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h4 class="lang-skill-5">Team Training & Dev.</h4>
-            </div>
-            <div class="skill-item">
-                <i class="fas fa-file-alt"></i>
-                <h4 class="lang-skill-6">Executive Reporting</h4>
-            </div>
-        </div>
-    </section>
-
-    <section id="journey">
-        <div class="section-header">
-            <h2 class="lang-journey-title">Milestones of Success</h2>
-        </div>
-        <div class="gallery-grid">
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/J4yqjQh6/image.jpg" onerror="this.src='https://postimg.cc/rDb0xysp'" alt="Academic">
-                    </div>
-                <div class="story-content">
-                    <h3 class="lang-card-1-title">Ranked First</h3>
-                    <p class="lang-card-1-desc">Achieved the #1 rank in MIS Specialization. A testament to dedication and precision in System Analysis.</p>
-                    <span class="story-tag">Academic Excellence</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/XvJFJ5x3/image.jpg" onerror="this.src='https://postimg.cc/jDwf2ncX'" alt="Bank">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-2-title">CRM Specialist</h3>
-                    <p class="lang-card-2-desc">Experience at Cairo Amman Bank in the CRM Department, enhancing banking operations and customer loyalty.</p>
-                    <span class="story-tag">Professional Experience</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/k4WzF5yM/image.jpg" onerror="this.src='https://postimg.cc/K32ks9h9'" alt="Training">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-3-title">Impact & Rehabilitation</h3>
-                    <p class="lang-card-3-desc">Led a project to rehabilitate 78 university students for the labor market. A shared success story as the majority secured jobs.</p>
-                    <span class="story-tag">Leadership & Training</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/VNfyzR8G/image.jpg" onerror="this.src='https://postimg.cc/R3WM1wyN'" alt="Writer">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-4-title">The Content Creator</h3>
-                    <p class="lang-card-4-desc">5 years of daily consistency. Published daily advice and contemporary life insights without interruption. A professional Digital Content Writer.</p>
-                    <span class="story-tag">Content & PR</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/Y9Dqj3xL/image.jpg" onerror="this.src='https://postimg.cc/1g0fVGq9'" alt="Union">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-5-title">Student Leader</h3>
-                    <p class="lang-card-5-desc">Served as President of the Arab and Foreign Students Union, fostering unity and representation.</p>
-                    <span class="story-tag">Leadership</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/CKH4v9zG/image.jpg" onerror="this.src='https://postimg.cc/3kByfjtC'" alt="Winning">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-6-title">The Victory</h3>
-                    <p class="lang-card-6-desc">Winning the Youth & Technology Conference award. Led the team to present the best project under high competition.</p>
-                    <span class="story-tag">Achievement</span>
-                </div>
-            </div>
-
-            <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/c15yHn8R/image.jpg" onerror="this.src='https://postimg.cc/94dLnn6V'" alt="Speaking">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-7-title">Public Speaking</h3>
-                    <p class="lang-card-7-desc">Standing before the audience, sharing knowledge on Entrepreneurship and Technology employment.</p>
-                    <span class="story-tag">Speaker</span>
-                </div>
-            </div>
-
-             <div class="story-card">
-                <div class="story-img">
-                    <img src="https://i.postimg.cc/B6mS43z9/image.jpg" onerror="this.src='https://postimg.cc/KRpwPC2r'" alt="Jury">
-                </div>
-                <div class="story-content">
-                    <h3 class="lang-card-8-title">Defending the Vision</h3>
-                    <p class="lang-card-8-desc">Presenting and defending the project before the conference jury with confidence and technical expertise.</p>
-                    <span class="story-tag">Presentation</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
+    <!-- Contact & Footer -->
     <footer id="contact">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+        <div class="container">
+            <div class="contact-box">
+                <h2 class="section-header lang-contact-title" style="margin-bottom: 20px; color:var(--white);">Let's Build the Future</h2>
+                <p style="margin-bottom: 30px;" class="lang-contact-desc">Ready to discuss Marketing Strategies, AI integration, or System Development?</p>
+                <a href="mailto:hmdr2401@gmail.com" class="hero-btn" style="text-transform: lowercase;">hmdr2401@gmail.com</a>
+                <div class="social-links" style="margin-top: 30px;">
+                    <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <p style="margin-top: 50px; font-size: 0.9rem; color: #555;">&copy; 2025 Mohammad Rashid Al-Hariri</p>
         </div>
-        <p style="margin-top:20px;">&copy; 2025 Mohamed Rashid Al-Hariri. All Rights Reserved.</p>
     </footer>
 
+    <!-- Language Script -->
     <script>
         const content = {
             en: {
                 navAbout: "About", navSkills: "Expertise", navJourney: "My Journey", navContact: "Contact",
                 heroSub: "Head of Marketing & Advertising Dept.",
-                heroTitle: "Mohamed Rashid Al-Hariri",
-                heroDesc: "Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.",
-                contactBtn: "Get in Touch",
+                heroName: "Mohammad Rashid Al-Hariri",
+                heroDesc: "Ranked First in Business Information Systems. An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at Alameen Food Industries.",
+                heroBtn: "Get in Touch",
                 aboutTitle: "Professional Profile",
-                aboutP1: "My career began with a solid foundation in <strong>Business Information Technology</strong>, where I mastered the art of System Analysis & Design. This technical prowess, combined with a strategic mindset, propelled me to rank <strong>First in my Specialization</strong> academically.",
-                aboutP2: "Today, I serve as the <strong>Head of Marketing & Advertising Department</strong> at <a href='http://www.AlAmeenfood.Com' target='_blank' class='company-link'>Alameen Food Industries</a>. My role is not just about management; it is about integrating <strong>Business Intelligence (BI), Artificial Intelligence (AI)</strong>, and <strong>CRM Systems</strong> to revolutionize how we connect with customers and drive sales.",
-                skill1: "Strategic Marketing", skill2: "Business Intelligence (BI)", skill3: "AI & Data Analysis", 
-                skill4: "CRM System Design", skill5: "Team Training & Dev.", skill6: "Executive Reporting",
-                journeyTitle: "Milestones
+                aboutP1: "My journey began in the halls of academia where I didn't just study <span class='highlight'>Business Information Technology</span>; I mastered it, achieving the <span class='highlight'>First Rank</span> in my specialization. This wasn't just a grade; it was a reflection of my obsession with precision and system analysis.",
+                aboutP2: "Currently, I serve as the <strong>Head of Marketing & Advertising Department</strong> at <a href='http://www.AlAmeenfood.Com' target='_blank' class='company-link'>Alameen Food Industries</a>. I don't just run campaigns; I leverage <strong>Artificial Intelligence, Business Intelligence (BI), and CRM systems</strong> to analyze data and drive decision-making.",
+                aboutP3: "From leading student unions to winning technology conferences, my career is defined by <span class='highlight'>Leadership</span> and <span class='highlight'>Innovation</span>. I am a System Analyst by training and a Marketer by passion.",
+                skill1: "Artificial Intelligence (AI)", skill2: "Business Intelligence (BI)", skill3: "System Analysis & Design", skill4: "CRM & Team Training",
+                journeyTitle: "Milestones of Success",
+                c1t: "Academic Excellence", c1d: "Ranked First in MIS. A testament to dedication in system analysis and business technology.",
+                c2t: "Empowering the Future", c2d: "Led a project to rehabilitate 78 university students. A shared success story as the majority secured jobs post-graduation.",
+                c3t: "CRM Specialist", c3d: "Professional experience at Cairo Amman Bank in Customer Relationship Management, enhancing banking operations.",
+                c4t: "The Content Creator", c4d: "5 years of daily consistency. Publishing advice on contemporary life without interruption. A professional Digital Content Writer.",
+                c5t: "Student Leader", c5d: "President of the Arab and Foreign Students Union. Promoting collaboration and student advocacy.",
+                c6t: "The Victory", c6d: "Winning the Youth & Technology Conference award. Led the team to present the best project under high competition.",
+                c7t: "Public Speaking", c7d: "Standing before the audience, sharing knowledge on Entrepreneurship and Technology employment.",
+                c8t: "Defending the Vision", c8d: "Presenting and defending the project before the conference jury with confidence and technical expertise.",
+                c9t: "Seminar & Workshop", c9d: "Preparing and attending seminars on Entrepreneurship and Technology application.",
+                contactTitle: "Let's Build the Future", contactDesc: "Ready to discuss Marketing Strategies, AI integration, or System Development?"
+            },
+            ar: {
+                navAbout: "عني", navSkills: "الخبرات", navJourney: "مسيرتي", navContact: "تواصل",
+                heroSub: "رئيس قسم التسويق والدعاية",
+                heroName: "محمد راشد الحريري",
+                heroDesc: "الأول على تخصص نظم المعلومات الإدارية. قائد تنفيذي يجمع بين تحليل النظم، الذكاء الاصطناعي، والتسويق الاستراتيجي. أقود التحول الرقمي في شركة الأمين للصناعات الغذائية.",
+                heroBtn: "تواصل معي",
+                aboutTitle: "الملف المهني",
+                aboutP1: "بدأت رحلتي في أروقة الجامعة، حيث لم أكتفِ بدراسة <span class='highlight'>تكنولوجيا معلومات الأعمال</span>، بل أتقنتها وحصلت على <span class='highlight'>الترتيب الأول</span> على التخصص. لم يكن هذا مجرد رقم، بل انعكاس لشغفي بالدقة وتحليل النظم.",
+                aboutP2: "حالياً، أشغل منصب <strong>رئيس قسم التسويق والدعاية</strong> في <a href='http://www.AlAmeenfood.Com' target='_blank' class='company-link'>شركة الأمين للصناعات الغذائية</a>. لا أدير الحملات فحسب، بل أوظف <strong>الذكاء الاصطناعي وذكاء الأعمال (BI) وأنظمة CRM</strong> لتحليل البيانات واتخاذ القرارات.",
+                aboutP3: "من قيادة اتحادات الطلبة إلى الفوز في مؤتمرات التكنولوجيا، مسيرتي تعرف بكلمتين: <span class='highlight'>القيادة</span> و <span class='highlight'>الابتكار</span>. أنا محلل نظم بالدراسة، ومسوق بالشغف.",
+                skill1: "الذكاء الاصطناعي (AI)", skill2: "ذكاء الأعمال (BI)", skill3: "تحليل وتصميم النظم", skill4: "إدارة علاقات العملاء والتدريب",
+                journeyTitle: "محطات النجاح",
+                c1t: "التميز الأكاديمي", c1d: "الأول على تخصص نظم المعلومات. دليل على الالتزام والدقة في التكنولوجيا والأعمال.",
+                c2t: "تمكين المستقبل", c2d: "قدت مشروعاً لتأهيل 78 طالباً جامعياً. قصة نجاح مشتركة حيث توظف أغلبيتهم بعد التخرج.",
+                c3t: "خبير CRM", c3d: "خبرة مهنية في بنك القاهرة عمان في قسم إدارة علاقات العملاء، وتحسين العمليات المصرفية.",
+                c4t: "صانع المحتوى", c4d: "5 سنوات من الالتزام اليومي. نشرت نصائح عن الحياة المعاصرة دون انقطاع. كاتب محتوى رقمي محترف.",
+                c5t: "قيادة طلابية", c5d: "رئيس اتحاد الطلبة العرب والأجانب. تعزيز التعاون وتمثيل الطلاب.",
+                c6t: "لحظة الانتصار", c6d: "الفوز بجائزة مؤتمر الشباب والتكنولوجيا. قدت الفريق لتقديم أفضل مشروع وسط منافسة شديدة.",
+                c7t: "التحدث أمام الجمهور", c7d: "الوقوف أمام الجمهور لمشاركة المعرفة حول ريادة الأعمال وتوظيف التكنولوجيا.",
+                c8t: "الدفاع عن الرؤية", c8d: "تقديم والدفاع عن المشروع أمام لجنة التحكيم بثقة وخبرة تقنية.",
+                c9t: "ورش العمل والندوات", c9d: "التحضير وحضور الندوات حول ريادة الأعمال وتطبيقات التكنولوجيا.",
+                contactTitle: "لنبنِ المستقبل معاً", contactDesc: "هل تبحث عن استراتيجيات تسويقية أو تطوير أنظمة ذكية؟"
+            }
+        };
 
+        let currentLang = 'en';
 
+        function toggleLanguage() {
+            const body = document.getElementById('body');
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const t = content[currentLang];
+            
+            // Direction & Font
+            if(currentLang === 'ar') {
+                body.classList.add('rtl');
+            } else {
+                body.classList.remove('rtl');
+            }
 
+            // Update Text
+            document.querySelector('.lang-nav-about').textContent = t.navAbout;
+            document.querySelector('.lang-nav-skills').textContent = t.navSkills;
+            document.querySelector('.lang-nav-journey').textContent = t.navJourney;
+            document.querySelector('.lang-nav-contact').textContent = t.navContact;
+            
+            document.querySelector('.lang-hero-sub').textContent = t.heroSub;
+            document.querySelector('.lang-hero-name').textContent = t.heroName;
+            document.querySelector('.lang-hero-desc').textContent = t.heroDesc;
+            document.querySelector('.lang-hero-btn').textContent = t.heroBtn;
+            
+            document.querySelector('.lang-about-title').textContent = t.aboutTitle;
+            document.querySelector('.lang-about-p1').innerHTML = t.aboutP1;
+            document.querySelector('.lang-about-p2').innerHTML = t.aboutP2;
+            document.querySelector('.lang-about-p3').innerHTML = t.aboutP3;
+
+            document.querySelector('.lang-skill-1').textContent = t.skill1;
+            document.querySelector('.lang-skill-2').textContent = t.skill2;
+            document.querySelector('.lang-skill-3').textContent = t.skill3;
+            document.querySelector('.lang-skill-4').textContent = t.skill4;
+
+            document.querySelector('.lang-journey-title').textContent = t.journeyTitle;
+            document.querySelector('.lang-c1-title').textContent = t.c1t; document.querySelector('.lang-c1-desc').textContent = t.c1d;
+            document.querySelector('.lang-c2-title').textContent = t.c2t; document.querySelector('.lang-c2-desc').textContent = t.c2d;
+            document.querySelector('.lang-c3-title').textContent = t.c3t; document.querySelector('.lang-c3-desc').textContent = t.c3d;
+            document.querySelector('.lang-c4-title').textContent = t.c4t; document.querySelector('.lang-c4-desc').textContent = t.c4d;
+            document.querySelector('.lang-c5-title').textContent = t.c5t; document.querySelector('.lang-c5-desc').textContent = t.c5d;
+            document.querySelector('.lang-c6-title').textContent = t.c6t; document.querySelector('.lang-c6-desc').textContent = t.c6d;
+            document.querySelector('.lang-c7-title').textContent = t.c7t; document.querySelector('.lang-c7-desc').textContent = t.c7d;
+            document.querySelector('.lang-c8-title').textContent = t.c8t; document.querySelector('.lang-c8-desc').textContent = t.c8d;
+            document.querySelector('.lang-c9-title').textContent = t.c9t; document.querySelector('.lang-c9-desc').textContent = t.c9d;
+
+            document.querySelector('.lang-contact-title').textContent = t.contactTitle;
+            document.querySelector('.lang-contact-desc').textContent = t.contactDesc;
+        }
+    </script>
+</body>
+</html>
