@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Rashid Al-Hariri | Portfolio</title>
-    <meta name="description" content="Official Portfolio of Mohammad Rashid Al-Hariri - Head of Marketing & Advertising, MIS Top Graduate, and AI/BI Expert.">
+    <title>Mohammad Rashid Al-Hariri | Official Profile</title>
+    <meta name="description" content="Executive Portfolio of Mohammad Rashid Al-Hariri - Marketing Lead, AI/BI Expert, and PMP Certified Trainer.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +18,12 @@
         /* --- CSS VARIABLES & RESET --- */
         :root {
             --gold: #d4af37;
-            --gold-dim: rgba(212, 175, 55, 0.1);
+            --gold-dim: rgba(212, 175, 55, 0.15);
             --navy: #0a192f;
             --navy-dark: #020c1b;
             --slate: #8892b0;
             --white: #e6f1ff;
-            --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
@@ -32,9 +32,442 @@
             background-color: var(--navy-dark);
             color: var(--slate);
             font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
+
+        body.rtl {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        section { padding: 120px 0; position: relative; }
+
+        .section-header { margin-bottom: 70px; text-align: center; }
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+        }
+        .section-header h2::after {
+            content: ''; display: block; width: 40%; height: 4px;
+            background: var(--gold); margin: 15px auto 0; border-radius: 2px;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 12, 27, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 10px 0;
+        }
+
+        nav {
+            min-height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+        }
+
+        .brand-text {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            max-width: 300px;
+        }
+
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a { 
+            color: var(--white); font-weight: 600; font-size: 0.85rem; 
+            text-transform: uppercase; letter-spacing: 1px;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--gold); transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .lang-btn:hover { background: var(--gold-dim); }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 70% 30%, #112240 0%, #020c1b 70%);
+            padding-top: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h3 { 
+            color: var(--gold); font-size: 1.3rem; margin-bottom: 15px; 
+            font-weight: 600; letter-spacing: 1px; 
+        }
+        .hero-text h1 { 
+            font-size: 3.8rem; color: var(--white); font-weight: 900; 
+            line-height: 1.1; margin-bottom: 25px; 
+        }
+        .hero-text p { 
+            font-size: 1.15rem; margin-bottom: 40px; max-width: 600px; 
+            color: var(--slate); border-left: 3px solid var(--gold); padding-left: 20px;
+        }
+        body.rtl .hero-text p { border-left: none; border-right: 3px solid var(--gold); padding-left: 0; padding-right: 20px; }
+
+        .btn-main {
+            padding: 18px 40px;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            display: inline-block;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-main:hover { background: var(--gold-dim); transform: translateY(-5px); }
+
+        .hero-img-box {
+            position: relative;
+            z-index: 1;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.5);
+        }
+        .hero-img-box img { 
+            border-radius: 20px; 
+            filter: grayscale(10%) contrast(1.05);
+        }
+        .hero-img-box::before {
+            content: ''; position: absolute; top: -20px; left: -20px; 
+            width: 100%; height: 100%; border: 2px solid var(--gold); 
+            border-radius: 20px; z-index: -1; transition: var(--transition);
+        }
+        .hero-img-box:hover::before { top: -10px; left: -10px; }
+        body.rtl .hero-img-box::before { left: auto; right: -20px; }
+        body.rtl .hero-img-box:hover::before { right: -10px; }
+
+        /* --- PARTNERS STRIP --- */
+        .partners-strip {
+            background: #112240;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        .partner-logo {
+            color: var(--slate);
+            font-weight: 700;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .partner-logo:hover { opacity: 1; color: var(--gold); }
+
+        /* --- WHAT I OFFER (Services) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #112240;
+            padding: 40px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border-top: 3px solid transparent;
+        }
+        .service-card:hover { transform: translateY(-10px); border-top-color: var(--gold); }
+        .service-card i { color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; }
+        .service-card h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 15px; }
+        .service-card ul { margin-top: 20px; padding-left: 20px; }
+        .service-card ul li { list-style: disc; margin-bottom: 10px; font-size: 0.95rem; }
+
+        /* --- JOURNEY GALLERY (Overlay Style) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .gallery-item {
+            position: relative;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        
+        .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(2, 12, 27, 0.95) 0%, rgba(2, 12, 27, 0.7) 60%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 30px;
+            transform: translateY(100px); opacity: 0;
+            transition: all 0.4s ease-in-out;
+        }
+        .gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
+        
+        .overlay h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.4rem; }
+        .overlay p { color: var(--white); font-size: 0.95rem; line-height: 1.6; }
+        .overlay-tag { 
+            position: absolute; top: 20px; right: 20px;
+            background: var(--gold); color: var(--navy-dark);
+            padding: 5px 15px; font-weight: bold; border-radius: 20px; font-size: 0.8rem;
+        }
+
+        /* --- CONTACT & LINKEDIN STYLE --- */
+        .contact-section { background: #0a192f; text-align: center; }
+        .linkedin-badge {
+            background: #0077b5; color: white; padding: 20px;
+            border-radius: 8px; display: inline-block; margin-top: 30px;
+            text-align: left; max-width: 500px; width: 100%;
+        }
+        .badge-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .badge-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; }
+
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 2000; transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        body.rtl .whatsapp-float { left: 30px; right: auto; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 960px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-img-box { order: -1; max-width: 400px; margin: 0 auto; }
+            .hero-text p { border: none !important; padding: 0 !important; margin: 0 auto 30px; }
+            .nav-links { display: none; }
+            .section-header h2 { font-size: 2rem; }
+            .hero-text h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body id="body">
+
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="brand-area">
+                    <!-- Personal Icon -->
+                    <div class="profile-icon">
+                        <img src="https://postimg.cc/Lqg3c0wQ/download" onerror="this.src='https://i.postimg.cc/Lqg3c0wQ/image.jpg'" alt="Profile">
+                    </div>
+                    <!-- The Long Title you requested -->
+                    <div class="brand-text">
+                        SEO/SEM & Marketing Lead<br>
+                        Trainer | AI & BI
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#about" class="lang-nav-about">About</a></li>
+                    <li><a href="#offer" class="lang-nav-offer">Services</a></li>
+                    <li><a href="#journey" class="lang-nav-journey">Journey</a></li>
+                    <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
+                </ul>
+                <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h3 class="lang-hero-sub">Head of Marketing & Advertising Dept.</h3>
+                <h1 class="lang-hero-name">Mohammad Rashid Al-Hariri</h1>
+                <p class="lang-hero-desc">
+                    <strong>Ranked First</strong> in Business Information Systems. Bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation at <a href="http://www.AlAmeenfood.Com" target="_blank" style="color:var(--gold); text-decoration:underline;">Alameen Food Industries</a>.
+                </p>
+                <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content: inherit;">
+                    <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" class="btn-main">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="#contact" class="btn-main" style="border-color:var(--white); color:var(--white);">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-img-box">
+                <!-- IMPORTANT: Replace this src with your Office Photo Direct Link when ready. 
+                     Using your profile photo as placeholder for now since Sharepoint link is broken. -->
+                <img src="https://i.postimg.cc/Lqg3c0wQ/image.jpg" alt="Mohammad Rashid Office">
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Strip -->
+    <div class="partners-strip">
+        <div class="container partners-grid">
+            <a href="#" class="partner-logo"><i class="fas fa-building"></i> Alameen Food Ind.</a>
+            <a href="#" class="partner-logo"><i class="fas fa-globe-europe"></i> Acted</a>
+            <a href="#" class="partner-logo"><i class="fas fa-hand-holding-heart"></i> Blumont</a>
+            <a href="#" class="partner-logo"><i class="fas fa-child"></i> Save the Children</a>
+            <a href="#" class="partner-logo"><i class="fas fa-certificate"></i> PMP Certified</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-about-title">The Executive Profile</h2>
+            </div>
+            <div style="background:#112240; padding:50px; border-radius:10px; border-left:5px solid var(--gold);">
+                <p class="lang-about-text" style="font-size:1.1rem; margin-bottom:20px;">
+                    My professional philosophy is built on one core principle: <strong>"Data-Driven Leadership"</strong>. Starting as the top graduate in Business Information Systems (MIS), I realized that technology without strategy is noise, and marketing without data is guessing.
+                </p>
+                <p class="lang-about-text-2" style="font-size:1.1rem;">
+                    With extensive experience working with international NGOs like <strong>Acted, Blumont, and Save the Children</strong>, I honed my skills in community engagement and high-impact project management. Today, I lead the Marketing & Advertising strategies at Alameen Food Industries, utilizing AI and BI to craft campaigns that don't just reach audiences, but resonate with them.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / What I Offer -->
+    <section id="offer">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-offer-title">What I Bring to the Table</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3 class="lang-s1-title">Strategic Marketing (SEO/SEM)</h3>
+                    <p class="lang-s1-desc">Leading digital transformation through data. I design campaigns that dominate search results and maximize ROI.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h3 class="lang-s2-title">AI & Business Intelligence</h3>
+                    <p class="lang-s2-desc">Turning raw data into actionable insights using advanced BI tools and Artificial Intelligence algorithms.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3 class="lang-s3-title">Training & Career Guidance</h3>
+                    <p class="lang-s3-desc">Certified International Trainer. I empower teams and fresh graduates to bridge the gap between academia and the labor market.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3 class="lang-s4-title">Project Management (PMP)</h3>
+                    <p class="lang-s4-desc">Managing complex projects with precision, adhering to international PMP standards for efficiency and success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Gallery (The Requested Overlay Style) -->
+    <section id="journey">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-journey-title">Milestones of Excellence</h2>
+            </div>
+            <div class="gallery-grid">
+                
+                <!-- 1. Academic #1 -->
+                <div class="gallery-item">
+                    <img src="https://i.postimg.cc/rDb0xysp/image.jpg" alt="Ranked First">
+                    <div class="overlay">
+                        <span class="overlay-tag">#1 Rank</span>
+                        <h3 class="lang-c1-title">Academic Excellence</h3>
+                        <p class="lang-c1-desc">Ranked First in MIS. A testament to dedication in system analysis and business technology.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Project Ahlny (78 Students) -->
+                <div class="gallery-item">
+                    <img src="https://i.postimg.cc/K32ks9h9/image.jpg" alt="Training">
+                    <div class="overlay">
+                        <span class="overlay-tag">Success Story</span>
+                        <h3 class="lang-c2-title">Project "Ahlny"</h3>
+                        <p class="lang-c2-desc">Led the "Ahlny" initiative with Blumont. Successfully rehabilitated 78 students for the labor market, achieving high employment rates.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Student Union (New Image) -->
+                <div class="gallery-item">
+                    <img src="https://i.postimg.cc/25LvGqs0/DSC04937.jpg" alt="Community">
+                    <div class="overlay">
+                        <span class="overlay-tag">Community Leader</span>
+                        <h3 class="lang-c3-title">Social Impact</h3>
+                        <p class="lang-        }
 
         body.rtl {
             font-family: 'Cairo', sans-serif;
@@ -603,5 +1036,6 @@
     </script>
 </body>
 </html>
+
 
 
