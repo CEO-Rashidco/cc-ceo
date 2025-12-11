@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Rashid Alhariri | Strategic Leader</title>
-    <meta name="description" content="Executive Portfolio of Mohammad Rashid Alhariri - Head of Marketing at Alameen, AI/BI Expert, and Certified Trainer.">
+    <title>محمد راشد الحريري | القائد الاستراتيجي</title>
+    <meta name="description" content="الموقع الرسمي لمحمد راشد الحريري - رئيس قسم التسويق في شركة الأمين، خبير الذكاء الاصطناعي، ومؤسس مبادرة أهلني.">
     
+    <!-- الخطوط: القاهرة (عربي) ومونتسيرات (إنجليزي) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & THEME --- */
+        /* --- متغيرات الألوان والسمة --- */
         :root {
             --gold: #d4af37;
             --gold-glow: rgba(212, 175, 55, 0.4);
@@ -29,41 +31,41 @@
         body {
             background-color: var(--navy-dark);
             color: var(--slate);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Cairo', sans-serif; /* الخط الافتراضي عربي */
             line-height: 1.8;
             overflow-x: hidden;
         }
 
-        body.rtl {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
+        body.ltr {
+            font-family: 'Montserrat', sans-serif;
+            direction: ltr;
         }
 
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
         
-        /* Image Positioning Helpers */
-        img.face-focus { object-position: top center; } /* For portraits */
-        img.group-focus { object-position: center 20%; } /* For training/groups */
-        img.desk-focus { object-position: center center; } /* For office */
+        /* تحسين تموضع الصور للتركيز على الوجه */
+        img.face-focus { object-position: top center; } 
+        img.group-focus { object-position: center 20%; }
+        img.desk-focus { object-position: center center; }
 
         img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
 
-        /* Links style */
+        /* ستايل الروابط النصية */
         .text-link {
-            color: var(--gold); font-weight: 600; border-bottom: 1px solid transparent;
+            color: var(--gold); font-weight: 700; border-bottom: 1px solid transparent;
         }
         .text-link:hover { border-bottom-color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); }
 
-        /* --- LAYOUT --- */
+        /* --- التخطيط العام --- */
         .container { max-width: 1250px; margin: 0 auto; padding: 0 25px; }
         section { padding: 100px 0; position: relative; }
 
         .section-header { margin-bottom: 60px; text-align: center; }
         .section-header h2 {
             font-size: 2.5rem; color: var(--white); position: relative;
-            display: inline-block; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; text-shadow: 0 0 15px rgba(230, 241, 255, 0.1);
+            display: inline-block; font-weight: 900; 
+            letter-spacing: 0; text-shadow: 0 0 15px rgba(230, 241, 255, 0.1);
         }
         .section-header h2::after {
             content: ''; display: block; width: 60%; height: 3px;
@@ -71,7 +73,7 @@
             box-shadow: 0 0 10px var(--gold-glow);
         }
 
-        /* --- HEADER --- */
+        /* --- الهيدر (القائمة العلوية) --- */
         header {
             position: fixed; top: 0; width: 100%;
             background: rgba(2, 12, 27, 0.95); backdrop-filter: blur(15px);
@@ -79,6 +81,7 @@
             padding: 8px 0;
         }
         nav { min-height: 70px; display: flex; justify-content: space-between; align-items: center; }
+        
         .brand-area { display: flex; align-items: center; gap: 15px; }
         .profile-icon {
             width: 55px; height: 55px; border-radius: 50%;
@@ -87,14 +90,16 @@
         }
         .brand-text {
             font-size: 0.8rem; font-weight: 700; color: var(--gold);
-            line-height: 1.3; text-transform: uppercase; letter-spacing: 0.5px;
+            line-height: 1.4; max-width: 350px;
         }
+        
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { 
-            color: var(--white); font-weight: 600; font-size: 0.85rem; 
-            text-transform: uppercase; letter-spacing: 1px; position: relative;
+            color: var(--white); font-weight: 600; font-size: 0.9rem; 
+            position: relative;
         }
         .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px var(--gold-glow); }
+        
         .lang-btn {
             background: transparent; border: 1px solid var(--gold);
             color: var(--gold); padding: 6px 15px; cursor: pointer;
@@ -103,27 +108,28 @@
         }
         .lang-btn:hover { background: rgba(212, 175, 55, 0.1); box-shadow: 0 0 10px var(--gold-glow); }
 
-        /* --- HERO --- */
+        /* --- واجهة الهيرو (Hero) --- */
         #hero {
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             background: radial-gradient(circle at 75% 30%, #112240 0%, #020c1b 70%);
             padding-top: 100px;
         }
         .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; }
+        
         .hero-text h3 { 
-            color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; 
-            font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-            text-shadow: 0 0 10px var(--gold-glow);
+            color: var(--gold); font-size: 1.3rem; margin-bottom: 15px; 
+            font-weight: 700; text-shadow: 0 0 10px var(--gold-glow);
         }
         .hero-text h1 { 
             font-size: 3.5rem; color: var(--white); font-weight: 900; 
-            line-height: 1.1; margin-bottom: 25px; 
+            line-height: 1.2; margin-bottom: 25px; 
         }
         .hero-text p { 
             font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; 
-            color: var(--slate); border-left: 3px solid var(--gold); padding-left: 20px;
+            color: var(--slate); border-right: 3px solid var(--gold); padding-right: 20px;
         }
-        body.rtl .hero-text p { border-left: none; border-right: 3px solid var(--gold); padding-left: 0; padding-right: 20px; }
+        body.ltr .hero-text p { border-right: none; border-left: 3px solid var(--gold); padding-right: 0; padding-left: 20px; }
+        
         .btn-main {
             padding: 15px 35px; background: transparent;
             border: 2px solid var(--gold); color: var(--gold);
@@ -134,6 +140,7 @@
             background: rgba(212, 175, 55, 0.1); 
             box-shadow: 0 0 20px var(--gold-glow); transform: translateY(-5px); 
         }
+        
         .hero-img-box {
             position: relative; z-index: 1; border-radius: 20px;
             box-shadow: 0 30px 60px -10px rgba(0,0,0,0.6);
@@ -141,14 +148,16 @@
         }
         .hero-img-box img { border-radius: 20px; filter: grayscale(10%) contrast(1.1); }
         .hero-img-box::before {
-            content: ''; position: absolute; top: -20px; left: -20px; 
+            content: ''; position: absolute; top: -20px; right: -20px; 
             width: 100%; height: 100%; border: 2px solid var(--gold); 
             border-radius: 20px; z-index: -1; transition: var(--transition);
             box-shadow: 0 0 15px var(--gold-glow);
         }
-        .hero-img-box:hover::before { top: -10px; left: -10px; }
+        body.ltr .hero-img-box::before { right: auto; left: -20px; }
+        .hero-img-box:hover::before { top: -10px; right: -10px; }
+        body.ltr .hero-img-box:hover::before { left: -10px; }
 
-        /* --- PARTNERS --- */
+        /* --- شريط الشركاء --- */
         .partners-strip { background: #112240; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .partners-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; }
         .partner-link {
@@ -157,15 +166,15 @@
         }
         .partner-link:hover { opacity: 1; color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); }
 
-        /* --- ABOUT --- */
+        /* --- الملف التعريفي (About) --- */
         .about-container {
             background: #112240; padding: 50px; border-radius: 10px;
-            border-left: 5px solid var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-right: 5px solid var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        body.rtl .about-container { border-left: none; border-right: 5px solid var(--gold); }
-        .about-text { margin-bottom: 25px; font-size: 1.1rem; text-align: justify; }
+        body.ltr .about-container { border-right: none; border-left: 5px solid var(--gold); }
+        .about-text { margin-bottom: 25px; font-size: 1.15rem; text-align: justify; }
 
-        /* --- AHLNI --- */
+        /* --- مشروع أهلني (Highlight) --- */
         .highlight-section {
             background: linear-gradient(135deg, #112240 0%, #0a192f 100%);
             border: 1px solid var(--gold); border-radius: 15px; padding: 60px;
@@ -176,7 +185,7 @@
             padding: 5px 15px; border-radius: 20px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;
         }
 
-        /* --- SERVICES (6 Cards) --- */
+        /* --- الخدمات والكفاءات --- */
         .services-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
@@ -190,10 +199,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
         }
         .service-card i { color: var(--gold); font-size: 2.2rem; margin-bottom: 20px; text-shadow: 0 0 10px var(--gold-glow); }
-        .service-card h3 { color: var(--white); font-size: 1.25rem; margin-bottom: 15px; font-weight: 700; }
-        .service-card p { font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
+        .service-card h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+        .service-card p { font-size: 1rem; line-height: 1.6; flex-grow: 1; }
 
-        /* --- GALLERY (9 Images) --- */
+        /* --- معرض الصور (9 صور) --- */
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
@@ -212,26 +221,28 @@
             transition: all 0.4s ease-in-out;
         }
         .gallery-item:hover .overlay { transform: translateY(0); opacity: 1; }
-        .overlay h3 { color: var(--gold); margin-bottom: 8px; font-size: 1.2rem; font-weight: 700; }
-        .overlay p { color: var(--white); font-size: 0.9rem; line-height: 1.4; }
+        .overlay h3 { color: var(--gold); margin-bottom: 8px; font-size: 1.3rem; font-weight: 700; }
+        .overlay p { color: var(--white); font-size: 0.95rem; line-height: 1.4; }
         .overlay-tag { 
             position: absolute; top: 15px; right: 15px;
             background: var(--gold); color: var(--navy-dark);
-            padding: 4px 12px; font-weight: bold; border-radius: 20px; font-size: 0.75rem;
+            padding: 4px 12px; font-weight: bold; border-radius: 20px; font-size: 0.8rem;
         }
-        body.rtl .overlay-tag { right: auto; left: 15px; }
+        body.ltr .overlay-tag { right: auto; left: 15px; }
 
-        /* --- FOOTER --- */
+        /* --- الفوتر والتواصل --- */
         footer { background: #0a192f; padding: 80px 0 40px; margin-top: 50px; text-align: center; }
         .linkedin-badge {
             background: #0077b5; color: white; padding: 25px;
-            border-radius: 10px; display: inline-block; text-align: left; 
+            border-radius: 10px; display: inline-block; text-align: right; 
             max-width: 450px; width: 100%; margin-top: 30px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: var(--transition);
         }
+        body.ltr .linkedin-badge { text-align: left; }
         .linkedin-badge:hover { transform: translateY(-5px); }
+        
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
+            position: fixed; bottom: 30px; left: 30px; /* يسار للعربي */
             background: #25D366; color: white;
             width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -239,7 +250,7 @@
             z-index: 2000; transition: var(--transition);
         }
         .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
-        body.rtl .whatsapp-float { left: 30px; right: auto; }
+        body.ltr .whatsapp-float { left: auto; right: 30px; }
 
         @media (max-width: 960px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
@@ -251,229 +262,254 @@
 </head>
 <body id="body">
 
+    <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <div class="brand-area">
                     <div class="profile-icon">
-                        <img src="https://i.postimg.cc/j5xhX6bN/IMG-20251009-170944-554.jpg" class="face-focus" alt="Icon">
+                        <!-- New Icon Image -->
+                        <img src="https://i.postimg.cc/hPqDKm6V/IMG-20251210-WA0203.jpg" class="face-focus" alt="Icon">
                     </div>
                     <div class="brand-text">
-                        SEO/SEM & Marketing Lead<br>
-                        Trainer | AI & BI
+                        محمد راشد الحريري<br>
+                        قائد تسويق | ذكاء أعمال | مدرب
                     </div>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#about" class="lang-nav-about">Profile</a></li>
-                    <li><a href="#offer" class="lang-nav-offer">Competencies</a></li>
-                    <li><a href="#journey" class="lang-nav-journey">Gallery</a></li>
-                    <li><a href="#contact" class="lang-nav-contact">Contact</a></li>
+                    <li><a href="#about" class="lang-nav-about">الملف الشخصي</a></li>
+                    <li><a href="#ahlni" class="lang-nav-ahlni">مشروع أهلني</a></li>
+                    <li><a href="#offer" class="lang-nav-offer">الكفاءات</a></li>
+                    <li><a href="#journey" class="lang-nav-journey">المعرض</a></li>
                 </ul>
-                <button class="lang-btn" onclick="toggleLanguage()">عربي / EN</button>
+                <button class="lang-btn" onclick="toggleLanguage()">EN / عربي</button>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section id="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <h3 class="lang-hero-sub">Head of Marketing & Advertising Dept.</h3>
-                <h1 class="lang-hero-name">Mohammad Rashid Alhariri</h1>
+                <h3 class="lang-hero-sub">رئيس قسم التسويق والدعاية</h3>
+                <h1 class="lang-hero-name">محمد راشد الحريري</h1>
                 <p class="lang-hero-desc">
-                    Ranked First in Business Information Systems (MIS). An executive leader bridging the gap between System Analysis, AI, and Strategic Marketing. Driving digital transformation and market dominance at <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">Alameen Food Industries</a>.
+                    الأول على تخصص نظم المعلومات الإدارية (MIS). قائد استراتيجي يجمع بين تحليل النظم، الذكاء الاصطناعي، وتسويق السمعة. أقود التحول الرقمي ونمو المبيعات في <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">شركة الأمين للصناعات الغذائية</a>.
                 </p>
                 <div class="hero-btns">
                     <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" class="btn-main">
                         <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
                     <a href="#contact" class="btn-main" style="border-color:var(--slate); color:var(--white);">
-                        <i class="fas fa-envelope"></i> Contact Me
+                        <i class="fas fa-envelope"></i> تواصل معي
                     </a>
                 </div>
             </div>
+            <!-- Main Hero Image -->
             <div class="hero-img-box">
                 <img src="https://i.postimg.cc/g0djXNVy/IMG-20250820-WA0201.jpg" class="face-focus" alt="Mohammad Rashid">
             </div>
         </div>
     </section>
 
+    <!-- Partners Strip -->
     <div class="partners-strip">
         <div class="container partners-grid">
-            <a href="http://www.AlAmeenfood.Com" target="_blank" class="partner-link"><i class="fas fa-building"></i> Alameen Food Ind.</a>
-            <a href="https://www.bdc.org.jo" target="_blank" class="partner-link"><i class="fas fa-award"></i> BDC Jordan</a>
+            <a href="http://www.AlAmeenfood.Com" target="_blank" class="partner-link"><i class="fas fa-building"></i> الأمين للصناعات الغذائية</a>
+            <a href="https://www.bdc.org.jo" target="_blank" class="partner-link"><i class="fas fa-award"></i> مركز تطوير الأعمال BDC</a>
             <a href="https://blumont.org" target="_blank" class="partner-link"><i class="fas fa-hand-holding-heart"></i> Blumont</a>
             <a href="https://www.acted.org" target="_blank" class="partner-link"><i class="fas fa-globe-europe"></i> ACTED</a>
             <a href="https://www.savethechildren.net" target="_blank" class="partner-link"><i class="fas fa-child"></i> Save the Children</a>
         </div>
     </div>
 
+    <!-- Executive Profile -->
     <section id="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-about-title">Executive Profile</h2>
+                <h2 class="lang-about-title">الملف التنفيذي</h2>
             </div>
             <div class="about-container">
                 <p class="lang-about-p1 about-text">
-                    As a dynamic and results-oriented professional with a strong foundation in <strong>Business Information Technology (MIS)</strong>, I thrive on building bridges between innovative ideas and tangible business outcomes. My journey began with academic excellence, graduating as the <strong>Top Student (Ranked First)</strong> in my specialization.
+                    بصفتي محترفاً ديناميكياً بخلفية قوية في <strong>تكنولوجيا معلومات الأعمال (MIS)</strong>، أعمل على بناء الجسور بين الأفكار المبتكرة ونتائج الأعمال. بدأت رحلتي بالتميز الأكاديمي، حيث تخرجت بصفة <strong>الطالب الأول</strong> على التخصص، مما يعكس شغفي بالدقة وتحليل النظم.
                 </p>
                 <p class="lang-about-p2 about-text">
-                    Currently, I drive growth as the <strong>Head of Marketing & Advertising</strong> at <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">Alameen Food Industries</a>. In this role, I manage the company's reputation, oversee international exhibition participation, and leverage <strong>Advanced Data Analytics</strong> to achieve noticeable sales growth and SEO dominance.
+                    حالياً، أقود النمو بصفتي <strong>مدير التسويق والدعاية</strong> في <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">شركة الأمين للصناعات الغذائية</a>. أدير سمعة الشركة، وأشرف على المشاركة في المعارض الدولية، وأوظف <strong>تحليل البيانات المتقدم</strong> لتحقيق نمو ملحوظ في المبيعات والسيطرة على محركات البحث (SEO).
                 </p>
                 <p class="lang-about-p3 about-text">
-                    My impact extends to the humanitarian sector with <a href="https://blumont.org" target="_blank" class="text-link">Blumont</a> and <a href="https://www.bdc.org.jo" target="_blank" class="text-link">BDC</a>, where I was honored as the <strong>"Ideal Employee"</strong>. I combine technical mastery of the <strong>Microsoft Suite & BI Tools</strong> with strategic leadership to empower teams and transform organizations.
+                    يمتد أثري للعمل الإنساني مع منظمات دولية؛ ففي <a href="https://www.bdc.org.jo" target="_blank" class="text-link">مركز تطوير الأعمال (BDC)</a>، عملت كمنسق ومدرب، وتم تكريمي بلقب <strong>"الموظف المثالي"</strong> تقديراً لمساهماتي في التدريب والتطوير المهني، بالإضافة لعملي الدبلوماسي والمجتمعي مع <a href="https://blumont.org" target="_blank" class="text-link">Blumont</a>.
                 </p>
             </div>
         </div>
     </section>
 
+    <!-- Project Ahlni -->
     <section id="ahlni">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-ahlni-title">Featured Initiative: "Ahlni"</h2>
+                <h2 class="lang-ahlni-title">مبادرة مميزة: "أهلني"</h2>
             </div>
             <div class="highlight-section">
-                <span class="ahlni-badge">Founder & Director</span>
-                <h3 class="lang-ahlni-head" style="color:var(--white); margin-bottom:20px; font-size:1.8rem;">Project "Ahlni" (Empower Me)</h3>
+                <span class="ahlni-badge">المؤسس والمدير</span>
+                <h3 class="lang-ahlni-head" style="color:var(--white); margin-bottom:20px; font-size:1.8rem;">مشروع "أهلني" (لتمكين الشباب)</h3>
                 <div class="about-text" style="color: #ccd6f6;">
                     <p class="lang-ahlni-p1">
-                        I am proud to share one of the initiatives I managed and coordinated, <strong>"Ahlni"</strong>. This initiative started as a creative idea of mine and transformed into a full-scale project at <a href="https://blumont.org" target="_blank" class="text-link">Blumont</a>, responding to the urgent need for youth to enhance their skills.
+                        أفخر بمشاركة إحدى المبادرات التي أدرتها ونسقتها، <strong>"أهلني"</strong>. بدأت هذه المبادرة كفكرة إبداعية وتحولت إلى مشروع متكامل مع منظمة <a href="https://blumont.org" target="_blank" class="text-link">Blumont</a>، استجابةً لحاجة الشباب الماسة لتطوير مهاراتهم لسوق العمل.
                     </p>
                     <p class="lang-ahlni-p2">
-                        Through this project, I graduated <strong>three cohorts</strong> of talented youth. They received specialized training in negotiation and communication. I personally guided them on creating professional resumes and standout LinkedIn profiles.
+                        من خلال هذا المشروع، قمت بتخريج <strong>ثلاثة أفواج</strong> من الشباب الموهوبين. تلقوا تدريباً متخصصاً في التفاوض والتواصل. قمت بتوجيههم شخصياً لإنشاء سير ذاتية احترافية وحسابات LinkedIn متميزة، لتكون جسراً بين التعليم والتوظيف.
                     </p>
                     <p class="lang-ahlni-p3">
-                        The project yielded remarkable results, with participants achieving clear success in the job market. As the creator and director, I received substantial support to provide resources, making it a true bridge between education and employment.
+                        حقق المشروع نتائج مبهرة، حيث حقق المشاركون نجاحات واضحة في سوق العمل. بصفتي المؤسس والمدير، تلقيت دعماً كبيراً من الإدارة لتوفير الموارد اللازمة. لم يكن مجرد تدريب، بل رحلة تحول مهني حقيقية.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Competencies (6 Cards) -->
     <section id="offer">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-offer-title">Core Competencies</h2>
+                <h2 class="lang-offer-title">الكفاءات الجوهرية</h2>
             </div>
             <div class="services-grid">
+                <!-- 1. Strategic Marketing -->
                 <div class="service-card">
                     <i class="fas fa-chart-line"></i>
-                    <h3 class="lang-s1-title">Strategic Marketing</h3>
-                    <p class="lang-s1-desc">Managing corporate reputation and driving sales growth through high-ROI campaigns and SEO/SEM dominance.</p>
+                    <h3 class="lang-s1-title">التسويق الاستراتيجي</h3>
+                    <p class="lang-s1-desc">إدارة سمعة الشركة وتحقيق نمو المبيعات عبر حملات ذات عائد عالي والسيطرة على SEO/SEM.</p>
                 </div>
+                <!-- 2. AI & BI -->
                 <div class="service-card">
                     <i class="fas fa-brain"></i>
-                    <h3 class="lang-s2-title">AI & BI Solutions</h3>
-                    <p class="lang-s2-desc">Transforming raw data into actionable intelligence to support executive decision-making.</p>
+                    <h3 class="lang-s2-title">حلول الذكاء الاصطناعي</h3>
+                    <p class="lang-s2-desc">تحويل البيانات الخام إلى ذكاء أعمال (BI) قابل للتنفيذ لدعم القرارات التنفيذية.</p>
                 </div>
+                <!-- 3. Digital Transformation -->
                 <div class="service-card">
                     <i class="fas fa-laptop-code"></i>
-                    <h3 class="lang-s3-title">Digital Transformation</h3>
-                    <p class="lang-s3-desc">Mastery of Microsoft Suite & System Analysis to automate workflows and modernize business operations.</p>
+                    <h3 class="lang-s3-title">التحول الرقمي</h3>
+                    <p class="lang-s3-desc">إتقان حزمة مايكروسوفت وتحليل النظم لأتمتة سير العمل وتحديث العمليات التجارية.</p>
                 </div>
+                <!-- 4. Reputation Management -->
                 <div class="service-card">
                     <i class="fas fa-globe"></i>
-                    <h3 class="lang-s4-title">Brand Reputation & PR</h3>
-                    <p class="lang-s4-desc">Representing the brand in international exhibitions and managing public relations to foster trust.</p>
+                    <h3 class="lang-s4-title">إدارة السمعة والعلاقات</h3>
+                    <p class="lang-s4-desc">تمثيل العلامة التجارية في المعارض الدولية وإدارة العلاقات العامة لتعزيز الثقة.</p>
                 </div>
+                <!-- 5. Training -->
                 <div class="service-card">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    <h3 class="lang-s5-title">Professional Training</h3>
-                    <p class="lang-s5-desc">Certified Trainer providing career guidance, soft skills, and market readiness programs.</p>
+                    <h3 class="lang-s5-title">التدريب الاحترافي</h3>
+                    <p class="lang-s5-desc">مدرب معتمد أقدم التوجيه المهني، المهارات الناعمة، وبرامج الجاهزية لسوق العمل.</p>
                 </div>
+                <!-- 6. Project Management -->
                 <div class="service-card">
                     <i class="fas fa-tasks"></i>
-                    <h3 class="lang-s6-title">Project Management (PMP)</h3>
-                    <p class="lang-s6-desc">Managing complex projects with precision standards to ensure efficiency and impact.</p>
+                    <h3 class="lang-s6-title">إدارة المشاريع (PMP)</h3>
+                    <p class="lang-s6-desc">إدارة المشاريع المعقدة بمعايير دقيقة لضمان الكفاءة والأثر.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Gallery (9 Images) -->
     <section id="journey">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-journey-title">Milestones of Success</h2>
+                <h2 class="lang-journey-title">محطات التميز</h2>
             </div>
             <div class="gallery-grid">
                 
+                <!-- 1. Office (Alameen) -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/rwzSPY6G/Screenshot-20251210-183429.jpg" class="desk-focus" alt="Alameen Office">
                     <div class="overlay">
-                        <span class="overlay-tag">Alameen Foods</span>
-                        <h3 class="lang-c9-title">Head of Marketing</h3>
-                        <p class="lang-c9-desc">Driving sales growth and managing the corporate digital reputation from HQ.</p>
+                        <span class="overlay-tag">الأمين</span>
+                        <h3 class="lang-c9-title">مدير التسويق</h3>
+                        <p class="lang-c9-desc">قيادة نمو المبيعات وإدارة السمعة الرقمية للشركة في الأمين.</p>
                     </div>
                 </div>
 
+                <!-- 2. Academic #1 - UPDATED FROM DRIVE LINK -->
                 <div class="gallery-item">
-                    <img src="https://i.postimg.cc/5t9Bc6M8/1762635363084.png" alt="Ranked First">
+                    <!-- Google Drive Link Converted for Embed -->
+                    <img src="https://lh3.googleusercontent.com/d/10AHeTIGLEym87xE-N9-Nf97L_3cCXeVi" class="group-focus" alt="Ranked First">
                     <div class="overlay">
-                        <span class="overlay-tag">#1 Rank</span>
-                        <h3 class="lang-c1-title">Academic Excellence</h3>
-                        <p class="lang-c1-desc">Ranked First in MIS. A testament to dedication in system analysis and business technology.</p>
+                        <span class="overlay-tag">الترتيب الأول</span>
+                        <h3 class="lang-c1-title">التميز الأكاديمي</h3>
+                        <p class="lang-c1-desc">الأول على التخصص. برهان على الالتزام والدقة في تكنولوجيا الأعمال.</p>
                     </div>
                 </div>
 
+                <!-- 3. Project Ahlni -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/Y9G5pwvZ/image-65a8ba8a-2a87-4194-a338-6c6e5f52744820250403-192921.jpg" class="group-focus" alt="Training">
                     <div class="overlay">
-                        <span class="overlay-tag">Founder</span>
-                        <h3 class="lang-c2-title">Project "Ahlni"</h3>
-                        <p class="lang-c2-desc">Successfully rehabilitated 3 cohorts of students for the labor market.</p>
+                        <span class="overlay-tag">المؤسس</span>
+                        <h3 class="lang-c2-title">مشروع "أهلني"</h3>
+                        <p class="lang-c2-desc">مؤسس مبادرة أهلني. قمت بتأهيل 3 أفواج من الطلاب لسوق العمل.</p>
                     </div>
                 </div>
 
+                <!-- 4. Banking - UPDATED IMAGE -->
                 <div class="gallery-item">
-                    <img src="https://i.postimg.cc/Pxs4wG3r/1735913961860.jpg" class="face-focus" alt="Bank">
+                    <img src="https://i.postimg.cc/zGXqRj0w/Screenshot-20251210-214752.jpg" class="face-focus" alt="Bank">
                     <div class="overlay">
-                        <span class="overlay-tag">Banking</span>
-                        <h3 class="lang-c3-title">CRM Specialist</h3>
-                        <p class="lang-c3-desc">Enhancing customer relationships at Cairo Amman Bank.</p>
+                        <span class="overlay-tag">بنوك</span>
+                        <h3 class="lang-c3-title">خبير CRM</h3>
+                        <p class="lang-c3-desc">تحسين علاقات العملاء والعمليات المصرفية في بنك القاهرة عمان.</p>
                     </div>
                 </div>
 
+                <!-- 5. Student Union -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/25LvGqs0/DSC04937.jpg" class="group-focus" alt="Union">
                     <div class="overlay">
-                        <span class="overlay-tag">Leadership</span>
-                        <h3 class="lang-c4-title">Student Union President</h3>
-                        <p class="lang-c4-desc">Leading the Arab & Foreign Students Union.</p>
+                        <span class="overlay-tag">القيادة</span>
+                        <h3 class="lang-c4-title">رئيس اتحاد الطلبة</h3>
+                        <p class="lang-c4-desc">قيادة اتحاد الطلبة العرب والأجانب، وتعزيز التعاون.</p>
                     </div>
                 </div>
 
+                <!-- 6. Innovation Award -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/hjLHJ109/IMG-20250922-WA0133(1).jpg" class="group-focus" alt="Winning">
                     <div class="overlay">
-                        <span class="overlay-tag">Victory</span>
-                        <h3 class="lang-c5-title">Tech Innovation Award</h3>
-                        <p class="lang-c5-desc">Winning the Youth & Technology Conference award with Acted.</p>
+                        <span class="overlay-tag">الفوز</span>
+                        <h3 class="lang-c5-title">جائزة الابتكار التقني</h3>
+                        <p class="lang-c5-desc">الفوز بجائزة مؤتمر الشباب والتكنولوجيا مع Acted.</p>
                     </div>
                 </div>
 
+                <!-- 7. Content Creator -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/LXDxKCDH/DSC7899.jpg" class="face-focus" alt="Writer">
                     <div class="overlay">
-                        <span class="overlay-tag">5 Years</span>
-                        <h3 class="lang-c6-title">Content Creator</h3>
-                        <p class="lang-c6-desc">5 years of daily consistency in writing professional advice.</p>
+                        <span class="overlay-tag">5 سنوات</span>
+                        <h3 class="lang-c6-title">صانع محتوى</h3>
+                        <p class="lang-c6-desc">5 سنوات من الالتزام اليومي في كتابة نصائح مهنية وتسويقية.</p>
                     </div>
                 </div>
 
+                <!-- 8. Speaking -->
                 <div class="gallery-item">
                     <img src="https://i.postimg.cc/ht4PKfKn/IMG-20251209-162707-249.jpg" class="face-focus" alt="Speaking">
                     <div class="overlay">
-                        <span class="overlay-tag">Speaker</span>
-                        <h3 class="lang-c7-title">Public Speaking</h3>
-                        <p class="lang-c7-desc">Sharing knowledge on Entrepreneurship and Tech employment.</p>
+                        <span class="overlay-tag">متحدث</span>
+                        <h3 class="lang-c7-title">التحدث أمام الجمهور</h3>
+                        <p class="lang-c7-desc">مشاركة المعرفة حول ريادة الأعمال وتوظيف التكنولوجيا.</p>
                     </div>
                 </div>
 
+                 <!-- 9. Seminars -->
                  <div class="gallery-item">
                     <img src="https://i.postimg.cc/Ss6wXfGZ/IMG-20251209-162801-004.jpg" class="group-focus" alt="Seminar">
                     <div class="overlay">
-                        <span class="overlay-tag">Trainer</span>
-                        <h3 class="lang-c8-title">Workshops & Seminars</h3>
-                        <p class="lang-c8-desc">Leading seminars on technology adoption and business.</p>
+                        <span class="overlay-tag">مدرب</span>
+                        <h3 class="lang-c8-title">ورش العمل والندوات</h3>
+                        <p class="lang-c8-desc">قيادة ندوات حول تبني التكنولوجيا وتطوير الأعمال.</p>
                     </div>
                 </div>
 
@@ -481,31 +517,34 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-contact-title">Let's Connect</h2>
+                <h2 class="lang-contact-title">لنتواصل</h2>
             </div>
             
             <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; color: var(--white);">
-                Open to executive opportunities in Marketing, Digital Transformation, or Training.
+                مستعد لمناقشة فرص في التسويق الاستراتيجي، التحول الرقمي، أو التدريب.
             </p>
 
             <a href="mailto:hmdr2401@gmail.com" class="btn-main">
                 <i class="fas fa-envelope"></i> hmdr2401@gmail.com
             </a>
 
+            <!-- LinkedIn Badge -->
             <br>
             <div class="linkedin-badge">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                    <img src="https://i.postimg.cc/j5xhX6bN/IMG-20251009-170944-554.jpg" class="face-focus" style="width:60px; height:60px; border-radius:50%; border:2px solid white; object-fit:cover;" alt="Profile">
+                    <!-- New Icon Image here as well -->
+                    <img src="https://i.postimg.cc/hPqDKm6V/IMG-20251210-WA0203.jpg" class="face-focus" style="width:60px; height:60px; border-radius:50%; border:2px solid white; object-fit:cover;" alt="Profile">
                     <div>
-                        <div style="font-weight:bold; font-size:1.1rem; color:white;">Mohammad Rashid Alhariri</div>
-                        <div style="font-size:0.8rem; opacity:0.9; color:#e0e0e0;">Marketing Lead | Trainer | AI & BI</div>
+                        <div style="font-weight:bold; font-size:1.1rem; color:white;">محمد راشد الحريري</div>
+                        <div style="font-size:0.8rem; opacity:0.9; color:#e0e0e0;">قائد تسويق | مدرب | ذكاء أعمال</div>
                     </div>
                 </div>
                 <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" style="background:white; color:#0077b5; padding:8px 20px; border-radius:20px; font-weight:bold; font-size:0.9rem; text-decoration:none; display:inline-block;">
-                    View Profile
+                    عرض الملف الشخصي
                 </a>
             </div>
 
@@ -519,6 +558,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Translation Logic -->
     <script>
         const content = {
             en: {
@@ -589,7 +629,7 @@
             }
         };
 
-        let currentLang = 'en';
+        let currentLang = 'ar'; // Default Language is Arabic
 
         function toggleLanguage() {
             const body = document.getElementById('body');
@@ -597,9 +637,13 @@
             const t = content[currentLang];
             
             if(currentLang === 'ar') {
-                body.classList.add('rtl');
+                body.classList.remove('ltr');
+                body.dir = 'rtl';
+                document.documentElement.lang = 'ar';
             } else {
-                body.classList.remove('rtl');
+                body.classList.add('ltr');
+                body.dir = 'ltr';
+                document.documentElement.lang = 'en';
             }
 
             document.querySelector('.lang-nav-about').textContent = t.navProfile;
