@@ -535,9 +535,179 @@
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========== INTRO SCREEN ========== */
+        #intro-screen {
+            position: fixed; inset: 0; z-index: 99999;
+            background: var(--navy-dark);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        #intro-screen.hide {
+            animation: intro-exit 1s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+        }
+        @keyframes intro-exit {
+            0%   { clip-path: inset(0 0 0 0); opacity: 1; }
+            60%  { clip-path: inset(0 0 0 0); opacity: 1; }
+            100% { clip-path: inset(0 100% 0 0); opacity: 0; pointer-events: none; }
+        }
+
+        /* grid lines background */
+        .intro-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        /* scanning line */
+        .intro-scan {
+            position: absolute; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            box-shadow: 0 0 20px var(--gold-glow);
+            animation: scan 2.5s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        @keyframes scan {
+            0%   { top: -2px; }
+            100% { top: 100%; }
+        }
+
+        /* corner decorations */
+        .intro-corner {
+            position: absolute; width: 50px; height: 50px;
+            border-color: var(--gold); border-style: solid; opacity: 0.6;
+        }
+        .intro-corner.tl { top: 40px; right: 40px; border-width: 2px 0 0 2px; }
+        .intro-corner.tr { top: 40px; left: 40px;  border-width: 2px 2px 0 0; }
+        .intro-corner.bl { bottom: 40px; right: 40px; border-width: 0 0 2px 2px; }
+        .intro-corner.br { bottom: 40px; left: 40px;  border-width: 0 2px 2px 0; }
+
+        body.ltr .intro-corner.tl { right: auto; left: 40px;  border-width: 2px 2px 0 0; }
+        body.ltr .intro-corner.tr { left: auto;  right: 40px; border-width: 2px 0 0 2px; }
+        body.ltr .intro-corner.bl { right: auto; left: 40px;  border-width: 0 2px 2px 0; }
+        body.ltr .intro-corner.br { left: auto;  right: 40px; border-width: 0 0 2px 2px; }
+
+        /* main content */
+        .intro-content {
+            position: relative; z-index: 2;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0;
+        }
+
+        /* avatar ring */
+        .intro-avatar {
+            width: 120px; height: 120px; border-radius: 50%;
+            overflow: hidden; position: relative;
+            margin-bottom: 30px;
+            opacity: 0; animation: pop-in 0.6s 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+        }
+        .intro-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+        .intro-avatar::before {
+            content: ''; position: absolute; inset: -4px;
+            border-radius: 50%; z-index: -1;
+            background: conic-gradient(var(--gold), var(--gold-light), transparent, var(--gold));
+            animation: spin-ring 3s linear infinite;
+        }
+        .intro-avatar::after {
+            content: ''; position: absolute; inset: -8px;
+            border-radius: 50%; z-index: -2;
+            background: conic-gradient(rgba(212,175,55,0.2), transparent, rgba(212,175,55,0.2));
+            animation: spin-ring 5s linear infinite reverse;
+        }
+        @keyframes spin-ring { to { transform: rotate(360deg); } }
+        @keyframes pop-in {
+            from { opacity:0; transform: scale(0.5); }
+            to   { opacity:1; transform: scale(1); }
+        }
+
+        /* name */
+        .intro-name {
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 900; color: var(--white);
+            line-height: 1.1; text-align: center; margin-bottom: 12px;
+            opacity: 0; animation: fade-up 0.7s 0.7s forwards;
+        }
+        .intro-name span { color: var(--gold); display: block; }
+
+        /* typewriter role */
+        .intro-role {
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
+            color: var(--slate); letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 600; text-align: center; margin-bottom: 40px; min-height: 1.5em;
+            opacity: 0; animation: fade-up 0.7s 1s forwards;
+        }
+        .intro-cursor-blink {
+            display: inline-block; width: 2px; height: 1em;
+            background: var(--gold); margin-right: 2px; vertical-align: middle;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* progress bar */
+        .intro-loader {
+            width: min(320px, 80vw); height: 2px;
+            background: rgba(255,255,255,0.06); border-radius: 10px;
+            overflow: hidden; margin-bottom: 20px;
+            opacity: 0; animation: fade-up 0.5s 1.2s forwards;
+        }
+        .intro-loader-fill {
+            height: 100%; width: 0; border-radius: 10px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            box-shadow: 0 0 10px var(--gold-glow);
+            transition: width 0.05s linear;
+        }
+        .intro-pct {
+            color: var(--gold); font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 2px;
+            opacity: 0; animation: fade-up 0.5s 1.3s forwards;
+        }
+
+        /* skip button */
+        .intro-skip {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: transparent; border: none; color: var(--slate);
+            font-size: 0.78rem; letter-spacing: 2px; cursor: pointer;
+            font-family: inherit; opacity: 0;
+            animation: fade-up 0.5s 2s forwards;
+            transition: color 0.3s;
+        }
+        .intro-skip:hover { color: var(--gold); }
+
+        /* hide body scroll while intro plays */
+        body.intro-active { overflow: hidden; }
     </style>
 </head>
-<body id="body">
+<body id="body" class="intro-active">
+
+<!-- ===== INTRO SCREEN ===== -->
+<div id="intro-screen">
+    <div class="intro-grid"></div>
+    <div class="intro-scan"></div>
+    <div class="intro-corner tl"></div>
+    <div class="intro-corner tr"></div>
+    <div class="intro-corner bl"></div>
+    <div class="intro-corner br"></div>
+
+    <div class="intro-content">
+        <div class="intro-avatar">
+            <img src="https://i.postimg.cc/hPqDKm6V/IMG-20251210-WA0203.jpg" alt="Mohammad Rashid">
+        </div>
+        <div class="intro-name">
+            محمد راشد<span>الحريري</span>
+        </div>
+        <div class="intro-role" id="intro-role">
+            <span class="intro-cursor-blink"></span>
+        </div>
+        <div class="intro-loader">
+            <div class="intro-loader-fill" id="intro-fill"></div>
+        </div>
+        <div class="intro-pct" id="intro-pct">0%</div>
+    </div>
+
+    <button class="intro-skip" onclick="skipIntro()" id="intro-skip-btn">تخطي ← </button>
+</div>
 
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
@@ -1105,6 +1275,84 @@
 </button>
 
 <script>
+// ====== INTRO SCREEN ======
+(function() {
+    const roles = [
+        'قائد تسويق استراتيجي',
+        'خبير أنظمة ERP & CRM',
+        'محلل بيانات · Power BI · Tableau',
+        'مؤسس مبادرة أهلني',
+        'مدرب ومطوّر مهني'
+    ];
+
+    const roleEl   = document.getElementById('intro-role');
+    const fillEl   = document.getElementById('intro-fill');
+    const pctEl    = document.getElementById('intro-pct');
+    const screen   = document.getElementById('intro-screen');
+
+    let roleIdx = 0, charIdx = 0, typing = true;
+    let pct = 0;
+    let introDone = false;
+
+    // Typewriter
+    function typeNext() {
+        if (introDone) return;
+        const current = roles[roleIdx];
+        const cursor  = '<span class="intro-cursor-blink"></span>';
+
+        if (typing) {
+            charIdx++;
+            roleEl.innerHTML = current.slice(0, charIdx) + cursor;
+            if (charIdx < current.length) {
+                setTimeout(typeNext, 65);
+            } else {
+                setTimeout(() => { typing = false; typeNext(); }, 900);
+            }
+        } else {
+            charIdx--;
+            roleEl.innerHTML = current.slice(0, charIdx) + cursor;
+            if (charIdx > 0) {
+                setTimeout(typeNext, 35);
+            } else {
+                roleIdx = (roleIdx + 1) % roles.length;
+                typing  = true;
+                setTimeout(typeNext, 300);
+            }
+        }
+    }
+
+    // Progress loader
+    function tick() {
+        if (introDone) return;
+        // speed: fast at start/end, slight pause mid
+        const increment = pct < 40 ? 1.6 : pct < 80 ? 0.9 : 1.4;
+        pct = Math.min(pct + increment, 100);
+        fillEl.style.width = pct + '%';
+        pctEl.textContent  = Math.round(pct) + '%';
+
+        if (pct < 100) {
+            setTimeout(tick, 30);
+        } else {
+            // small pause then exit
+            setTimeout(exitIntro, 400);
+        }
+    }
+
+    function exitIntro() {
+        if (introDone) return;
+        introDone = true;
+        screen.classList.add('hide');
+        document.getElementById('body').classList.remove('intro-active');
+        setTimeout(() => { screen.style.display = 'none'; }, 1050);
+    }
+
+    window.skipIntro = exitIntro;
+
+    // Kick off after avatar animates in
+    setTimeout(typeNext, 900);
+    setTimeout(tick, 1300);
+})();
+
 // ====== CURSOR ======
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
