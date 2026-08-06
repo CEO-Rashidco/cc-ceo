@@ -30,6 +30,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--navy-mid); border: 1px solid var(--gold); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
         body {
             background-color: var(--navy-dark);
             color: var(--slate);
@@ -40,12 +46,6 @@
         }
         body.ltr { font-family: 'Montserrat', sans-serif; direction: ltr; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--navy-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--navy-mid); border: 1px solid var(--gold); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
-
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
         img { width: 100%; height: 100%; object-fit: cover; }
@@ -55,9 +55,9 @@
         .text-link:hover { color: var(--gold-light); border-bottom-style: solid; text-shadow: 0 0 8px var(--gold-glow); }
 
         .container { max-width: 1280px; margin: 0 auto; padding: 0 25px; }
-        section { padding: 100px 0; position: relative; }
+        section { padding: 90px 0; position: relative; }
 
-        .section-header { margin-bottom: 60px; text-align: center; position: relative; }
+        .section-header { margin-bottom: 55px; text-align: center; position: relative; }
         .section-header h2 {
             font-size: 2.6rem; color: var(--white);
             display: inline-block; font-weight: 900; letter-spacing: -0.5px;
@@ -235,6 +235,7 @@
         }
         .btn-cyan:hover { background: var(--cyan); color: var(--navy-dark); transform: translateY(-3px); box-shadow: 0 0 20px rgba(100,255,218,0.4); }
 
+        /* HERO IMAGE CONTAINER */
         .hero-img-box {
             position: relative; z-index: 1; border-radius: 20px;
             max-width: 420px; margin: 0 auto;
@@ -242,14 +243,26 @@
             perspective: 1000px;
         }
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        
         .hero-img-card {
             border-radius: 20px; overflow: hidden; position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            border: 2px solid rgba(212,175,55,0.3);
-            transition: transform 0.2s ease-out;
+            border: 2px solid rgba(212,175,55,0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .hero-img-card img { filter: contrast(1.05) brightness(1.02); display: block; }
-        
+        .hero-img-card img { 
+            filter: contrast(1.05) brightness(1.03); 
+            display: block; width: 100%; height: auto;
+            transition: transform 0.5s ease;
+        }
+        .hero-img-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 25px 60px var(--gold-glow);
+        }
+        .hero-img-card:hover img {
+            transform: scale(1.03);
+        }
+
         .hero-img-box::before {
             content: ''; position: absolute; top: -18px; right: -18px;
             width: 100%; height: 100%; border: 2px solid var(--gold);
@@ -261,20 +274,19 @@
         .hero-img-box:hover::before { top: -10px; right: -10px; }
         body.ltr .hero-img-box:hover::before { left: -10px; }
 
-        /* Floating Badge on Image */
         .hero-floating-card {
-            position: absolute; bottom: 25px; left: -25px;
-            background: rgba(11, 25, 47, 0.92); backdrop-filter: blur(12px);
-            border: 1px solid var(--gold); padding: 14px 20px; border-radius: 12px;
-            display: flex; align-items: center; gap: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: absolute; bottom: -20px; left: -20px;
+            background: rgba(11, 25, 47, 0.95); backdrop-filter: blur(12px);
+            border: 1px solid var(--gold); padding: 12px 18px; border-radius: 12px;
+            display: flex; align-items: center; gap: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             z-index: 3; animation: float-slow 4s ease-in-out infinite;
         }
-        body.ltr .hero-floating-card { left: auto; right: -25px; }
+        body.ltr .hero-floating-card { left: auto; right: -20px; }
         @keyframes float-slow {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
-        .hero-floating-card i { font-size: 1.8rem; color: var(--gold); }
+        .hero-floating-card i { font-size: 1.6rem; color: var(--gold); }
         .hero-floating-card .text { font-size: 0.82rem; color: var(--white); font-weight: 700; line-height: 1.2; }
         .hero-floating-card .sub { font-size: 0.72rem; color: var(--slate); font-weight: 400; }
 
@@ -320,7 +332,6 @@
             pointer-events: none;
         }
         .about-text { margin-bottom: 22px; font-size: 1.1rem; text-align: justify; position: relative; z-index: 1; line-height: 1.95; }
-
         .about-actions { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
 
         /* ========== INTERACTIVE STRATEGY / ROI CALCULATOR ========== */
@@ -364,7 +375,6 @@
 
         /* ========== SKILLS & MATRIX ========== */
         .skills-section { background: var(--navy-mid); }
-        
         .skills-filter { display: flex; justify-content: center; gap: 12px; margin-bottom: 45px; flex-wrap: wrap; }
         .filter-btn {
             padding: 8px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2);
@@ -376,7 +386,6 @@
         }
 
         .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-
         .skill-group h3 { color: var(--white); font-size: 1.25rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
         .skill-group h3 i { color: var(--gold); }
 
@@ -568,22 +577,23 @@
         }
         .gallery-item.featured { grid-column: span 2; height: 360px; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item:hover img { transform: scale(1.06); }
+        
         .gallery-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(2,12,27,0.95) 0%, rgba(2,12,27,0.6) 50%, transparent 100%);
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(2,12,27,0.95) 0%, rgba(2,12,27,0.7) 60%, transparent 100%);
             display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 25px; transform: translateY(60px); opacity: 0;
-            transition: all 0.4s ease;
+            padding: 20px 22px; transform: translateY(20px); opacity: 0;
+            transition: transform 0.35s ease, opacity 0.35s ease;
         }
         .gallery-item:hover .gallery-overlay { transform: translateY(0); opacity: 1; }
-        .gallery-overlay h3 { color: var(--gold); margin-bottom: 6px; font-size: 1.15rem; font-weight: 800; }
-        .gallery-overlay p { color: var(--white); font-size: 0.88rem; }
+        .gallery-overlay h3 { color: var(--gold); margin-bottom: 4px; font-size: 1.1rem; font-weight: 800; }
+        .gallery-overlay p { color: var(--white); font-size: 0.85rem; line-height: 1.4; }
         .gallery-tag {
             position: absolute; top: 15px; right: 15px;
             background: var(--gold); color: var(--navy-dark);
             padding: 4px 14px; font-weight: 800; border-radius: 20px; font-size: 0.75rem;
-            box-shadow: 0 0 10px var(--gold-glow);
+            box-shadow: 0 0 10px var(--gold-glow); z-index: 2;
         }
         body.ltr .gallery-tag { right: auto; left: 15px; }
 
@@ -658,7 +668,7 @@
         .modal-close {
             position: absolute; top: 20px; left: 25px;
             color: var(--slate); font-size: 1.5rem; cursor: pointer; background: none; border: none;
-            transition: var(--transition);
+            transition: var(--transition); z-index: 100;
         }
         body.ltr .modal-close { left: auto; right: 25px; }
         .modal-close:hover { color: var(--gold); transform: rotate(90deg); }
@@ -1135,7 +1145,6 @@
             <h2 id="skills-title">المهارات والأدوات التقنية</h2>
         </div>
 
-        <!-- Skills Category Filter Buttons -->
         <div class="skills-filter reveal">
             <button class="filter-btn active" onclick="filterSkills('all', this)" id="flt-all">الكل</button>
             <button class="filter-btn" onclick="filterSkills('mkt', this)" id="flt-mkt">التسويق الرقمي</button>
@@ -1478,11 +1487,11 @@
                     <p id="g1-desc">قيادة نمو المبيعات وإدارة السمعة الرقمية في شركة الأمين للصناعات الغذائية.</p>
                 </div>
             </div>
-            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/6QXyhwBy/swrt-mn-Rashid-X.jpg')">
-                <img src="https://lh3.googleusercontent.com/d/10AHeTIGLEym87xE-N9-Nf97L_3cCXeVi" alt="Ranked First" style="object-position: center 20%;">
+            <div class="gallery-item" onclick="openLightbox('https://lh3.googleusercontent.com/d/1eLj6q605C_V4bJdFaoYYUsI0HHvD2WIt')">
+                <img src="https://lh3.googleusercontent.com/d/1eLj6q605C_V4bJdFaoYYUsI0HHvD2WIt" alt="Ranked First Graduation" style="object-position: center 20%;">
                 <span class="gallery-tag" id="g2-tag">الترتيب الأول</span>
                 <div class="gallery-overlay">
-                    <h3 id="g2-title">التميز الأكاديمي 2025</h3>
+                    <h3 id="g2-title">حفل التخرج والتميز 2025</h3>
                     <p id="g2-desc">الأول على التخصص نظم المعلومات الإدارية — برهان على الالتزام والدقة.</p>
                 </div>
             </div>
@@ -1866,7 +1875,6 @@ window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', scrollY > 40);
     document.getElementById('scrollTop').classList.toggle('show', scrollY > 400);
 
-    // Active Navigation Highlight
     const sections = document.querySelectorAll('section');
     sections.forEach(sec => {
         const top = sec.offsetTop - 120;
@@ -2244,7 +2252,7 @@ const T = {
         modalConsultTitle:'طلب استشارة استراتيجية / تدريب', modalConsultSub:'اختر مجال الاستشارة وسأقوم بالتواصل معك مباشرة لمناقشة خطة العمل.',
         lblService:'نوع الخدمة المطلوب:', lblName:'الاسم الكريم / الجهة:', lblNotes:'تفاصيل المشروع أو الاستفسار:', btnSendWa:'إرسال الطلب فوراً عبر WhatsApp',
         g1tag:'الأمين', g1t:'مدير التسويق والدعاية', g1d:'قيادة نمو المبيعات وإدارة السمعة الرقمية في شركة الأمين للصناعات الغذائية.',
-        g2tag:'الترتيب الأول', g2t:'التميز الأكاديمي 2025', g2d:'الأول على التخصص نظم المعلومات الإدارية — برهان على الالتزام والدقة.',
+        g2tag:'الترتيب الأول', g2t:'حفل التخرج والتميز 2025', g2d:'الأول على التخصص نظم المعلومات الإدارية — برهان على الالتزام والدقة.',
         g3tag:'المؤسس', g3t:'مبادرة "أهلني"', g3d:'تأهيل 3 أفواج من الشباب الموهوبين لسوق العمل مع Blumont.',
         g4tag:'جائزة', g4t:'جائزة الابتكار التقني', g4d:'الفوز بمركز المبتكرين في مؤتمر الشباب والتكنولوجيا مع ACTED.',
         g5tag:'القيادة', g5t:'رئيس اتحاد الطلبة', g5d:'قيادة اتحاد الطلبة العرب والأجانب وتعزيز التعاون الطلابي.',
@@ -2309,7 +2317,7 @@ const T = {
         modalConsultTitle:'Request Strategy Consultation / Training', modalConsultSub:'Select your requirement and I will connect with you directly to align on execution.',
         lblService:'Required Service Domain:', lblName:'Your Full Name / Entity:', lblNotes:'Project Scope / Key Objectives:', btnSendWa:'Send Request Directly via WhatsApp',
         g1tag:'Alameen', g1t:'Head of Marketing & Advertising', g1d:'Driving sales growth and digital brand dominance at Al-Ameen Food Industries.',
-        g2tag:'Ranked 1st', g2t:'Academic Excellence 2025', g2d:'Ranked 1st in MIS specialization — proof of precision and dedication.',
+        g2tag:'Ranked 1st', g2t:'Graduation & Excellence Ceremony 2025', g2d:'Ranked 1st in MIS specialization — proof of precision and dedication.',
         g3tag:'Founder', g3t:'Project "Ahlni"', g3d:'Prepared 3 cohorts of young talent for market opportunities.',
         g4tag:'Award', g4t:'Tech Innovation Award', g4d:'Winner at the ACTED Youth & Tech Conference.',
         g5tag:'Leadership', g5t:'Student Union President', g5d:'Led International Students Union promoting collaboration.',
