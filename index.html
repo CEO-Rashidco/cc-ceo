@@ -12,9 +12,791 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+/* ==========================================================================
+   MOHAMMAD RASHID — STANDALONE DESIGN SYSTEM
+   ========================================================================== */
+:root {
+    --gold: #d4af37;
+    --gold-light: #f0d060;
+    --gold-dark: #aa8822;
+    --gold-glow: rgba(212, 175, 55, 0.35);
+    --navy: #0a192f;
+    --navy-dark: #020c1b;
+    --navy-mid: #112240;
+    --navy-card: #172a45;
+    --slate: #8892b0;
+    --slate-light: #a8b2d1;
+    --white: #e6f1ff;
+    --cyan: #64ffda;
+    --emerald: #10b981;
+    --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--navy-dark); }
+::-webkit-scrollbar-thumb { background: var(--navy-mid); border: 1px solid var(--gold); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+body {
+    background-color: var(--navy-dark);
+    color: var(--slate);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+}
+body.ltr { font-family: 'Montserrat', sans-serif; direction: ltr; }
+
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+img { width: 100%; height: 100%; object-fit: cover; }
+button { font-family: inherit; }
+
+.text-link { color: var(--gold); font-weight: 700; border-bottom: 1px dashed var(--gold); transition: var(--transition); }
+.text-link:hover { color: var(--gold-light); border-bottom-style: solid; text-shadow: 0 0 8px var(--gold-glow); }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 25px; }
+section { padding: 90px 0; position: relative; }
+
+.section-header { margin-bottom: 55px; text-align: center; position: relative; }
+.section-header h2 {
+    font-size: 2.6rem; color: var(--white);
+    display: inline-block; font-weight: 900; letter-spacing: -0.5px;
+}
+.section-header h2::after {
+    content: ''; display: block; width: 80px; height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 15px auto 0; border-radius: 2px;
+    box-shadow: 0 0 12px var(--gold-glow);
+}
+.section-tag {
+    display: inline-block;
+    color: var(--gold); font-size: 0.85rem; font-weight: 800;
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
+    background: rgba(212,175,55,0.08); padding: 4px 16px; border-radius: 20px;
+    border: 1px solid rgba(212,175,55,0.2);
+}
+
+#scroll-progress {
+    position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--cyan));
+    z-index: 10001; transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.cursor { 
+    width: 10px; height: 10px; 
+    background: var(--gold); border-radius: 50%; 
+    position: fixed; pointer-events: none; z-index: 9999;
+    transition: transform 0.15s ease, opacity 0.3s;
+    transform: translate(-50%, -50%);
+}
+.cursor-ring {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(212,175,55,0.6);
+    border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 9998;
+    transition: transform 0.25s ease-out, width 0.2s, height 0.2s;
+    transform: translate(-50%, -50%);
+}
+.cursor-ring.active { width: 55px; height: 55px; background: rgba(212,175,55,0.08); border-color: var(--gold); }
+
+header {
+    position: fixed; top: 0; width: 100%;
+    background: rgba(2, 12, 27, 0.92); backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    padding: 8px 0; transition: var(--transition);
+}
+header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.5); padding: 5px 0; }
+nav { min-height: 70px; display: flex; justify-content: space-between; align-items: center; }
+
+.brand-area { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+.profile-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 2px solid var(--gold); overflow: hidden;
+    box-shadow: 0 0 15px var(--gold-glow); transition: var(--transition);
+    position: relative; flex-shrink: 0;
+}
+.profile-icon img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.brand-area:hover .profile-icon { transform: scale(1.08) rotate(3deg); border-color: var(--gold-light); }
+.brand-text { font-size: 0.88rem; font-weight: 700; color: var(--gold); line-height: 1.3; }
+
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+    color: var(--slate); font-weight: 600; font-size: 0.88rem;
+    position: relative; padding: 5px 0; transition: var(--transition);
+}
+.nav-links a::after {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.3s ease; border-radius: 2px;
+}
+body.ltr .nav-links a::after { right: auto; left: 0; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+.header-actions { display: flex; align-items: center; gap: 12px; }
+
+.icon-btn {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.25);
+    color: var(--gold); width: 38px; height: 38px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: var(--transition); font-size: 0.9rem;
+}
+.icon-btn:hover { background: var(--gold); color: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 0 12px var(--gold-glow); }
+
+.lang-btn {
+    background: transparent; border: 1.5px solid var(--gold);
+    color: var(--gold); padding: 7px 18px; cursor: pointer;
+    font-weight: 700; font-family: inherit; border-radius: 6px;
+    transition: var(--transition); font-size: 0.85rem; display: flex; align-items: center; gap: 6px;
+}
+.lang-btn:hover { background: rgba(212,175,55,0.15); box-shadow: 0 0 12px var(--gold-glow); transform: translateY(-1px); }
+
+#hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: radial-gradient(ellipse at 75% 25%, #112240 0%, #020c1b 70%);
+    padding-top: 100px; overflow: hidden; position: relative;
+}
+#canvas-particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+
+.hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
+
+.hero-text .greeting {
+    color: var(--cyan); font-size: 0.92rem; font-weight: 700;
+    letter-spacing: 1.5px; margin-bottom: 15px; display: inline-flex; align-items: center; gap: 8px;
+    opacity: 0; animation: fade-up 0.8s 0.3s forwards;
+    background: rgba(100,255,218,0.08); padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(100,255,218,0.25);
+}
+.hero-text h1 {
+    font-size: 3.8rem; color: var(--white); font-weight: 900;
+    line-height: 1.12; margin-bottom: 16px; letter-spacing: -1px;
+    opacity: 0; animation: fade-up 0.8s 0.5s forwards;
+}
+.hero-text h1 span.gold { color: var(--gold); text-shadow: 0 0 20px rgba(212,175,55,0.2); }
+.hero-text h2 {
+    font-size: 1.35rem; color: var(--gold-light); font-weight: 700;
+    margin-bottom: 25px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    opacity: 0; animation: fade-up 0.8s 0.7s forwards;
+}
+.hero-text p {
+    font-size: 1.05rem; margin-bottom: 35px;
+    color: var(--slate-light); border-right: 4px solid var(--gold); padding-right: 20px;
+    max-width: 620px; line-height: 1.9;
+    opacity: 0; animation: fade-up 0.8s 0.9s forwards;
+}
+body.ltr .hero-text p { border-right: none; border-left: 4px solid var(--gold); padding-right: 0; padding-left: 20px; }
+
+.hero-badges { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; opacity: 0; animation: fade-up 0.8s 1s forwards; }
+.hero-badge {
+    background: rgba(17,34,64,0.85); border: 1px solid rgba(212,175,55,0.3);
+    color: var(--white); padding: 7px 16px; border-radius: 8px; font-size: 0.84rem;
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.hero-badge i { color: var(--gold); }
+
+.hero-btns {
+    display: flex; gap: 15px; flex-wrap: wrap;
+    opacity: 0; animation: fade-up 0.8s 1.1s forwards;
+}
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-main {
+    padding: 13px 30px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border: none; color: var(--navy-dark);
+    font-weight: 800; border-radius: 6px; font-size: 0.95rem;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 6px 20px var(--gold-glow); transition: var(--transition); position: relative; overflow: hidden;
+}
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(212,175,55,0.5); color: #000; }
+
+.btn-secondary {
+    padding: 13px 28px; background: rgba(255,255,255,0.04);
+    border: 1.5px solid var(--slate); color: var(--white);
+    font-weight: 700; border-radius: 6px; font-size: 0.95rem;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+    transition: var(--transition);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.08); transform: translateY(-3px); }
+
+.btn-cyan {
+    padding: 13px 28px; background: rgba(100,255,218,0.08);
+    border: 1.5px solid var(--cyan); color: var(--cyan);
+    font-weight: 700; border-radius: 6px; font-size: 0.95rem;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+    transition: var(--transition);
+}
+.btn-cyan:hover { background: var(--cyan); color: var(--navy-dark); transform: translateY(-3px); box-shadow: 0 0 20px rgba(100,255,218,0.4); }
+
+.hero-img-box {
+    position: relative; z-index: 1; border-radius: 20px;
+    max-width: 440px; margin: 0 auto; width: 100%;
+    opacity: 0; animation: fade-in 1s 0.5s forwards;
+    perspective: 1000px;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.hero-img-card {
+    border-radius: 20px; overflow: hidden; position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15);
+    border: 2px solid var(--gold);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+    height: 480px; width: 100%;
+}
+.hero-img-card img { 
+    filter: contrast(1.05) brightness(1.03); 
+    display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    transition: transform 0.5s ease;
+}
+.hero-img-card:hover {
+    border-color: var(--gold-light);
+    box-shadow: 0 25px 60px var(--gold-glow), 0 0 35px rgba(212,175,55,0.4);
+}
+.hero-img-card:hover img { transform: scale(1.04); }
+
+.hero-floating-card {
+    position: absolute; bottom: -20px; left: -20px;
+    background: rgba(11, 25, 47, 0.95); backdrop-filter: blur(12px);
+    border: 1px solid var(--gold); padding: 12px 18px; border-radius: 12px;
+    display: flex; align-items: center; gap: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    z-index: 3; animation: float-slow 4s ease-in-out infinite; max-width: 320px;
+}
+body.ltr .hero-floating-card { left: auto; right: -20px; }
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.hero-floating-card i { font-size: 1.6rem; color: var(--gold); flex-shrink: 0; }
+.hero-floating-card .text { font-size: 0.85rem; color: var(--white); font-weight: 700; line-height: 1.2; }
+.hero-floating-card .sub { font-size: 0.73rem; color: var(--slate); font-weight: 400; margin-top: 2px; }
+
+.stats-bar {
+    background: var(--navy-mid); border-top: 1px solid rgba(212,175,55,0.15);
+    border-bottom: 1px solid rgba(212,175,55,0.15); padding: 45px 0;
+    position: relative; z-index: 2;
+}
+.stats-grid { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
+.stat-item { text-align: center; padding: 15px 30px; position: relative; flex: 1; min-width: 180px; }
+.stat-number {
+    font-size: 3rem; font-weight: 900; color: var(--gold);
+    line-height: 1; display: block; font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 0 15px var(--gold-glow);
+}
+.stat-label { color: var(--slate-light); font-size: 0.9rem; margin-top: 8px; display: block; font-weight: 600; }
+
+.partners-strip { background: rgba(17,34,64,0.6); padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.partners-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px; }
+.partner-link {
+    color: var(--slate-light); font-weight: 700; font-size: 0.88rem;
+    opacity: 0.85; transition: var(--transition); display: flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 8px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+}
+.partner-link:hover { opacity: 1; color: var(--gold); background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.4); transform: translateY(-2px); }
+
+.honors-section { background: var(--navy-dark); padding: 90px 0; border-bottom: 1px solid rgba(212,175,55,0.12); }
+.honors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.honor-card {
+    background: var(--navy-mid); border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 16px; padding: 32px; transition: var(--transition);
+    position: relative; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+}
+.honor-card::before {
+    content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--cyan));
+}
+.honor-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 20px 45px rgba(0,0,0,0.5); }
+.honor-badge-icon {
+    width: 55px; height: 55px; background: rgba(212,175,55,0.12);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.3);
+}
+.honor-card h3 { color: var(--white); font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+.honor-org { color: var(--cyan); font-weight: 700; font-size: 0.88rem; margin-bottom: 12px; display: block; }
+.honor-card p { color: var(--slate-light); font-size: 0.92rem; line-height: 1.7; }
+
+.about-container {
+    background: var(--navy-mid); padding: 50px; border-radius: 16px;
+    border-right: 5px solid var(--gold);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    position: relative; overflow: hidden; border-top: 1px solid rgba(212,175,55,0.15);
+}
+body.ltr .about-container { border-right: none; border-left: 5px solid var(--gold); }
+.about-text { margin-bottom: 22px; font-size: 1.08rem; text-align: justify; position: relative; z-index: 1; line-height: 1.95; }
+.about-actions { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+
+.calculator-section { background: var(--navy-dark); padding: 80px 0; border-top: 1px solid rgba(212,175,55,0.1); }
+.calc-card {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-card) 100%);
+    border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 45px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+
+.calc-inputs { display: flex; flex-direction: column; gap: 24px; }
+.input-group label { display: flex; justify-content: space-between; font-weight: 700; color: var(--white); margin-bottom: 8px; font-size: 0.95rem; }
+.input-group label span.val { color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 1.1rem; }
+.calc-slider {
+    width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; outline: none;
+    -webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--navy-dark); box-shadow: 0 0 10px var(--gold-glow); cursor: pointer;
+    transition: transform 0.2s;
+}
+.calc-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+.calc-select {
+    width: 100%; padding: 12px; background: var(--navy-dark); border: 1px solid rgba(212,175,55,0.3);
+    color: var(--white); border-radius: 8px; font-family: inherit; font-size: 0.95rem; outline: none;
+}
+
+.calc-results {
+    background: rgba(2, 12, 27, 0.85); border-radius: 16px; padding: 35px; border: 1px solid rgba(100,255,218,0.2);
+    text-align: center; display: flex; flex-direction: column; gap: 25px;
+}
+.res-box { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 15px; }
+.res-label { font-size: 0.9rem; color: var(--slate-light); text-align: right; }
+body.ltr .res-label { text-align: left; }
+.res-value { font-size: 1.8rem; font-weight: 900; color: var(--gold); font-family: 'Montserrat', sans-serif; }
+.res-value.cyan { color: var(--cyan); }
+.res-value.emerald { color: var(--emerald); }
+
+.skills-section { background: var(--navy-mid); }
+.skills-filter { display: flex; justify-content: center; gap: 12px; margin-bottom: 45px; flex-wrap: wrap; }
+.filter-btn {
+    padding: 8px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2);
+    color: var(--slate-light); border-radius: 20px; font-weight: 700; font-size: 0.85rem;
+    cursor: pointer; transition: var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+    background: var(--gold); color: var(--navy-dark); border-color: var(--gold); box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.skill-group h3 { color: var(--white); font-size: 1.25rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
+.skill-group h3 i { color: var(--gold); }
+
+.skill-item { margin-bottom: 24px; }
+.skill-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.skill-name { color: var(--white); font-weight: 700; font-size: 0.95rem; }
+.skill-pct { color: var(--gold); font-weight: 800; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; }
+.skill-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
+.skill-fill {
+    height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+    border-radius: 10px; width: 0;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.tools-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.tool-tag {
+    padding: 8px 18px; border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 20px; color: var(--slate-light); font-size: 0.85rem; font-weight: 600;
+    transition: var(--transition); cursor: pointer; background: rgba(255,255,255,0.02);
+    display: inline-flex; align-items: center; gap: 6px;
+}
+.tool-tag:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.1); transform: translateY(-2px); }
+.tool-tag.tool-analytics { border-color: rgba(100,255,218,0.35); color: var(--cyan); background: rgba(100,255,218,0.05); }
+.tool-tag.tool-analytics:hover { border-color: var(--cyan); background: rgba(100,255,218,0.15); transform: translateY(-2px); }
+.tool-tag.tool-system { border-color: rgba(212,175,55,0.45); color: var(--gold-light); background: rgba(212,175,55,0.08); font-weight: 700; }
+.tool-tag.tool-system:hover { background: rgba(212,175,55,0.18); transform: translateY(-2px); }
+
+.timeline { position: relative; padding-right: 40px; }
+body.ltr .timeline { padding-right: 0; padding-left: 40px; }
+.timeline::before {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0;
+    width: 3px; background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+body.ltr .timeline::before { right: auto; left: 0; }
+
+.timeline-item {
+    position: relative; margin-bottom: 50px; padding-bottom: 10px;
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+body.ltr .timeline-item { transform: translateX(-30px); }
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+.timeline-dot {
+    position: absolute; right: -50px; top: 8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 3px solid var(--gold); background: var(--navy-dark);
+    box-shadow: 0 0 15px var(--gold-glow);
+    transition: background 0.3s, transform 0.3s;
+}
+body.ltr .timeline-dot { right: auto; left: -50px; }
+.timeline-item:hover .timeline-dot { background: var(--gold); transform: scale(1.3); }
+
+.timeline-card {
+    background: var(--navy-mid); padding: 32px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: var(--transition); position: relative; overflow: hidden;
+}
+.timeline-card:hover {
+    border-color: rgba(212,175,55,0.4);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+}
+.timeline-date {
+    color: var(--gold); font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 1px; margin-bottom: 8px; display: inline-block;
+    background: rgba(212,175,55,0.08); padding: 3px 12px; border-radius: 12px;
+}
+.timeline-title { color: var(--white); font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
+.timeline-company { color: var(--cyan); font-size: 0.95rem; font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.timeline-bullets { padding-right: 15px; margin-bottom: 20px; }
+body.ltr .timeline-bullets { padding-right: 0; padding-left: 15px; }
+.timeline-bullets li {
+    font-size: 0.92rem; margin-bottom: 8px; position: relative; padding-right: 18px; color: var(--slate-light);
+}
+body.ltr .timeline-bullets li { padding-right: 0; padding-left: 18px; }
+.timeline-bullets li::before {
+    content: '▸'; position: absolute; right: 0; color: var(--gold); font-weight: bold;
+}
+body.ltr .timeline-bullets li::before { right: auto; left: 0; }
+
+.case-study-btn {
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;
+    cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px;
+}
+.case-study-btn:hover { background: var(--gold); color: var(--navy-dark); box-shadow: 0 0 12px var(--gold-glow); }
+
+.highlight-section {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-card) 100%);
+    border: 1px solid rgba(212,175,55,0.35); border-radius: 18px; padding: 60px;
+    position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.ahlni-badge {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy-dark);
+    padding: 6px 20px; border-radius: 20px; font-weight: 900;
+    font-size: 0.88rem; margin-bottom: 20px; display: inline-block;
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+.ahlni-stats { display: flex; gap: 30px; margin: 35px 0; flex-wrap: wrap; }
+.ahlni-stat {
+    text-align: center; background: rgba(2,12,27,0.6);
+    border: 1px solid rgba(212,175,55,0.25); border-radius: 12px;
+    padding: 22px 30px; flex: 1; min-width: 130px; transition: var(--transition);
+}
+.ahlni-stat:hover { border-color: var(--gold); transform: translateY(-4px); }
+.ahlni-stat .number { font-size: 2.6rem; font-weight: 900; color: var(--gold); display: block; font-family: 'Montserrat', sans-serif; }
+.ahlni-stat .label { color: var(--slate-light); font-size: 0.88rem; font-weight: 600; margin-top: 4px; }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+.service-card {
+    background: var(--navy-mid); padding: 38px; border-radius: 12px;
+    transition: var(--transition); border: 1px solid rgba(255,255,255,0.05);
+    position: relative; overflow: hidden; cursor: pointer;
+}
+.service-card::before {
+    content: ''; position: absolute; bottom: 0; right: 0;
+    width: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--cyan));
+    transition: width 0.4s ease;
+}
+body.ltr .service-card::before { right: auto; left: 0; }
+.service-card:hover::before { width: 100%; }
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(0,0,0,0.4); border-color: rgba(212,175,55,0.25); }
+.service-card i.icon { color: var(--gold); font-size: 2.3rem; margin-bottom: 20px; display: block; }
+.service-card h3 { color: var(--white); font-size: 1.25rem; margin-bottom: 14px; font-weight: 800; }
+.service-card p { font-size: 0.95rem; line-height: 1.7; color: var(--slate-light); }
+
+.testimonials-section { background: var(--navy-dark); padding: 90px 0; border-top: 1px solid rgba(212,175,55,0.1); }
+.testimonial-card {
+    background: var(--navy-mid); border: 1px solid rgba(212,175,55,0.2); border-radius: 16px;
+    padding: 40px; max-width: 800px; margin: 0 auto; text-align: center; position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4); display: none;
+}
+.testimonial-card.active { display: block; animation: fade-in 0.6s ease; }
+.testimonial-quote { font-size: 1.15rem; color: var(--white); font-style: italic; margin-bottom: 25px; line-height: 1.9; }
+.testimonial-quote::before { content: '“'; font-size: 3rem; color: var(--gold); opacity: 0.5; line-height: 0; vertical-align: -15px; margin-left: 5px; }
+.testimonial-author { font-weight: 800; color: var(--gold); font-size: 1.05rem; }
+.testimonial-role { font-size: 0.85rem; color: var(--cyan); }
+.testimonial-dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.test-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.15); cursor: pointer; transition: var(--transition); }
+.test-dot.active { background: var(--gold); box-shadow: 0 0 10px var(--gold-glow); transform: scale(1.2); }
+
+.certs-section { background: var(--navy-mid); }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
+.cert-card {
+    background: var(--navy-dark); padding: 25px; border-radius: 12px;
+    border: 1px solid rgba(212,175,55,0.15); display: flex; align-items: flex-start; gap: 18px;
+    transition: var(--transition); cursor: pointer; overflow: hidden;
+}
+.cert-card:hover { border-color: rgba(212,175,55,0.4); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+.cert-icon {
+    width: 52px; height: 52px; background: rgba(212,175,55,0.12);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; border: 1px solid rgba(212,175,55,0.3);
+}
+.cert-icon i { color: var(--gold); font-size: 1.4rem; }
+.cert-body { flex: 1; }
+.cert-title { color: var(--white); font-weight: 800; font-size: 0.98rem; margin-bottom: 4px; }
+.cert-org { color: var(--gold); font-size: 0.82rem; font-weight: 700; }
+.cert-year { color: var(--slate); font-size: 0.78rem; margin-top: 4px; font-family: 'Montserrat', sans-serif; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.gallery-item {
+    position: relative; height: 310px; border-radius: 14px;
+    overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.gallery-item.featured { grid-column: span 2; height: 360px; }
+.gallery-item img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+.gallery-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(2,12,27,0.95) 0%, rgba(2,12,27,0.7) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 20px 22px; transform: translateY(15px); opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.gallery-item:hover .gallery-overlay { transform: translateY(0); opacity: 1; }
+.gallery-overlay h3 { color: var(--gold); margin-bottom: 4px; font-size: 1.1rem; font-weight: 800; }
+.gallery-overlay p { color: var(--white); font-size: 0.85rem; line-height: 1.4; }
+.gallery-tag {
+    position: absolute; top: 15px; right: 15px;
+    background: var(--gold); color: var(--navy-dark);
+    padding: 4px 14px; font-weight: 800; border-radius: 20px; font-size: 0.75rem;
+    box-shadow: 0 0 10px var(--gold-glow); z-index: 2;
+}
+body.ltr .gallery-tag { right: auto; left: 15px; }
+
+.langs-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+.lang-card {
+    background: var(--navy-mid); border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 16px; padding: 35px 45px; text-align: center;
+    transition: var(--transition); min-width: 220px;
+}
+.lang-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+.lang-flag { font-size: 2.8rem; margin-bottom: 12px; display: block; }
+.lang-name { color: var(--white); font-weight: 800; font-size: 1.15rem; margin-bottom: 6px; }
+.lang-level { color: var(--gold); font-size: 0.88rem; font-weight: 700; }
+.lang-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+.lang-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+.lang-dot.filled { background: var(--gold); box-shadow: 0 0 8px var(--gold-glow); }
+
+footer { background: var(--navy); padding: 80px 0 40px; text-align: center; position: relative; border-top: 1px solid rgba(212,175,55,0.15); }
+.linkedin-badge {
+    background: linear-gradient(135deg, #0077b5 0%, #005582 100%); color: white; padding: 25px 30px;
+    border-radius: 16px; display: inline-flex; align-items: center; gap: 20px;
+    max-width: 480px; width: 100%; margin: 30px auto;
+    box-shadow: 0 12px 35px rgba(0,119,181,0.35); transition: var(--transition);
+    text-align: right; border: 1px solid rgba(255,255,255,0.2);
+}
+body.ltr .linkedin-badge { text-align: left; }
+.linkedin-badge:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0,119,181,0.5); }
+.linkedin-badge img { width: 60px; height: 60px; border-radius: 50%; border: 2.5px solid white; object-fit: cover; object-position: top center; flex-shrink: 0; }
+
+.contact-quick-actions { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+
+.whatsapp-float {
+    position: fixed; bottom: 30px; left: 30px;
+    background: #25D366; color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+    z-index: 2000; transition: var(--transition);
+}
+.whatsapp-float:hover { transform: scale(1.15) rotate(12deg); box-shadow: 0 12px 30px rgba(37,211,102,0.6); }
+body.ltr .whatsapp-float { left: auto; right: 30px; }
+
+.scroll-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(212,175,55,0.15); border: 1.5px solid var(--gold);
+    color: var(--gold); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 999; transition: var(--transition);
+    opacity: 0; transform: translateY(20px); font-size: 1.1rem;
+}
+body.ltr .scroll-top { right: auto; left: 30px; }
+.scroll-top.show { opacity: 1; transform: translateY(0); }
+.scroll-top:hover { background: var(--gold); color: var(--navy-dark); box-shadow: 0 0 15px var(--gold-glow); }
+
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(2,12,27,0.92);
+    z-index: 10000; display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(12px); padding: 20px;
+}
+.modal-overlay.open { display: flex; animation: fade-in 0.3s ease; }
+
+.modal-box {
+    background: var(--navy-mid); border: 1.5px solid var(--gold); border-radius: 18px;
+    max-width: 650px; width: 100%; padding: 40px; position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6); color: var(--white);
+    max-height: 90vh; overflow-y: auto;
+}
+.modal-close {
+    position: absolute; top: 20px; left: 25px;
+    color: var(--slate); font-size: 1.5rem; cursor: pointer; background: none; border: none;
+    transition: var(--transition); z-index: 100;
+}
+body.ltr .modal-close { left: auto; right: 25px; }
+.modal-close:hover { color: var(--gold); transform: rotate(90deg); }
+
+.lightbox img { max-width: 88vw; max-height: 88vh; border-radius: 12px; object-fit: contain; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(0,0,0,0.8); }
+
+.toast-container {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy-dark); padding: 12px 28px;
+    border-radius: 30px; font-weight: 800; font-size: 0.9rem;
+    box-shadow: 0 10px 30px var(--gold-glow); z-index: 10005;
+    opacity: 0; pointer-events: none; transition: all 0.3s ease;
+}
+.toast-container.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+#intro-screen {
+    position: fixed; inset: 0; z-index: 99999;
+    background: var(--navy-dark);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+}
+#intro-screen.hide { animation: intro-exit 1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+@keyframes intro-exit {
+    0%   { clip-path: inset(0 0 0 0); opacity: 1; }
+    60%  { clip-path: inset(0 0 0 0); opacity: 1; }
+    100% { clip-path: inset(0 100% 0 0); opacity: 0; pointer-events: none; }
+}
+
+.intro-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+        linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+.intro-scan {
+    position: absolute; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 20px var(--gold-glow);
+    animation: scan 2.5s ease-in-out infinite; opacity: 0.6;
+}
+@keyframes scan { 0% { top: -2px; } 100% { top: 100%; } }
+
+.intro-corner {
+    position: absolute; width: 50px; height: 50px;
+    border-color: var(--gold); border-style: solid; opacity: 0.6;
+}
+.intro-corner.tl { top: 40px; right: 40px; border-width: 2px 0 0 2px; }
+.intro-corner.tr { top: 40px; left: 40px;  border-width: 2px 2px 0 0; }
+.intro-corner.bl { bottom: 40px; right: 40px; border-width: 0 0 2px 2px; }
+.intro-corner.br { bottom: 40px; left: 40px;  border-width: 0 2px 2px 0; }
+
+body.ltr .intro-corner.tl { right: auto; left: 40px;  border-width: 2px 2px 0 0; }
+body.ltr .intro-corner.tr { left: auto;  right: 40px; border-width: 2px 0 0 2px; }
+body.ltr .intro-corner.bl { right: auto; left: 40px;  border-width: 0 2px 2px 0; }
+body.ltr .intro-corner.br { left: auto;  right: 40px; border-width: 0 0 2px 2px; }
+
+.intro-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+
+.intro-avatar {
+    width: 120px; height: 120px; border-radius: 50%;
+    overflow: hidden; position: relative; margin-bottom: 25px;
+    opacity: 0; animation: pop-in 0.6s 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+.intro-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.intro-avatar::before {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 50%; z-index: -1;
+    background: conic-gradient(var(--gold), var(--gold-light), transparent, var(--gold));
+    animation: spin-ring 3s linear infinite;
+}
+@keyframes spin-ring { to { transform: rotate(360deg); } }
+@keyframes pop-in { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
+
+.intro-name {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.1; text-align: center; margin-bottom: 12px;
+    opacity: 0; animation: fade-up 0.7s 0.7s forwards;
+}
+.intro-name span { color: var(--gold); display: block; }
+
+.intro-role {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    color: var(--slate); letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 600; text-align: center; margin-bottom: 35px; min-height: 1.5em;
+    opacity: 0; animation: fade-up 0.7s 1s forwards;
+}
+.intro-cursor-blink {
+    display: inline-block; width: 2px; height: 1em;
+    background: var(--gold); margin-right: 2px; vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.intro-loader {
+    width: min(320px, 80vw); height: 3px;
+    background: rgba(255,255,255,0.06); border-radius: 10px;
+    overflow: hidden; margin-bottom: 18px;
+    opacity: 0; animation: fade-up 0.5s 1.2s forwards;
+}
+.intro-loader-fill {
+    height: 100%; width: 0; border-radius: 10px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--cyan));
+    box-shadow: 0 0 12px var(--gold-glow); transition: width 0.05s linear;
+}
+.intro-pct {
+    color: var(--gold); font-size: 0.85rem; font-weight: 800;
+    letter-spacing: 2px; font-family: 'Montserrat', sans-serif;
+    opacity: 0; animation: fade-up 0.5s 1.3s forwards;
+}
+
+.intro-skip {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); color: var(--gold);
+    padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; letter-spacing: 2px; cursor: pointer;
+    font-family: inherit; opacity: 0; font-weight: 700;
+    animation: fade-up 0.5s 1.8s forwards; transition: var(--transition);
+}
+.intro-skip:hover { background: var(--gold); color: var(--navy-dark); box-shadow: 0 0 15px var(--gold-glow); }
+body.intro-active { overflow: hidden; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-img-box { order: -1; margin-bottom: 30px; max-width: 360px; }
+    .hero-img-card { height: 400px; }
+    .hero-text p { border-right: none; border-top: 4px solid var(--gold); padding-right: 0; padding-top: 18px; margin: 0 auto 30px; }
+    body.ltr .hero-text p { border-left: none; padding-left: 0; }
+    .hero-btns { justify-content: center; }
+    .hero-badges { justify-content: center; }
+    .hero-text h2 { justify-content: center; }
+    .nav-links { display: none; }
+    .skills-container { grid-template-columns: 1fr; gap: 40px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.featured { grid-column: span 1; }
+    .calc-grid { grid-template-columns: 1fr; gap: 30px; }
+    .stat-item { padding: 15px; }
+    .section-header h2 { font-size: 2rem; }
+    .highlight-section { padding: 35px; }
+    .hero-floating-card { left: 10px; bottom: 10px; padding: 10px 14px; }
+}
+@media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .langs-grid { flex-direction: column; align-items: center; }
+    .hero-text h1 { font-size: 2.7rem; }
+    .calc-card { padding: 25px; }
+}
+    </style>
 </head>
 <body id="body" class="intro-active">
 
@@ -868,10 +1650,837 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- JavaScript Files -->
-<script src="translations.js"></script>
-<script src="js/translations.js"></script>
-<script src="main.js"></script>
-<script src="js/main.js"></script>
+<script>
+/* ==========================================================================
+   TRANSLATIONS DICTIONARY & MAIN LOGIC INLINED FOR 100% RELIABILITY
+   ========================================================================== */
+const T = {
+    ar: {
+        brandText: 'محمد راشد<br><span style="opacity:0.8; font-weight:400; color:var(--white);">شريك استراتيجي | صاحب أعمال | ذكاء الأعمال</span>',
+        navAbout:'الملف التنفيذي', navHonors:'التكريمات والتميز الأكاديمي', navCalc:'مُحاكي النتائج', navSkills:'المهارات والخبرات', navExp:'المسيرة والشراكات', navAhlni:'أهلني', navOffer:'الكفاءات', navGallery:'المعرض',
+        heroGreeting:'<i class="fas fa-handshake"></i> شريك استراتيجي · بناء نماذج الأعمال والشراكات · خبير ذكاء الأعمال', 
+        heroName:'محمد <span class="gold">راشد</span>', 
+        heroRole:'<i class="fas fa-building"></i> <span>صاحب أعمال | قائد تسويق استراتيجي | خبير ذكاء الأعمال</span>',
+        heroDesc:'رائد أعمال وشريك استراتيجي يجمع بين <strong>تحليل النظم</strong>، <strong>نماذج الاستدامة والنمو</strong>، و<strong>التسويق التنفيذي وذكاء الأعمال</strong>. أقود بناء الشراكات المؤسسية والتحول الرقمي ونمو المبيعات، ومُكرم من جهات حكومية ودولية رفيعة.',
+        btnConsult:'حجز جلسة شراكة استراتيجية', btnVcard:'تحميل بطاقة vCard',
+        floatCardTitle:'نماذج الأعمال وذكاء الاستثمار', floatCardSub:'خبرة تنفيذية في النمو وبناء الشراكات',
+        stat1:'سنوات خبرة تنفيذية', stat2:'أفواج تدريبية في أهلني', stat3:'مكرم من جهات دولية وسامية', stat4:'لغات عالمية متقنة',
+        
+        honorsTag:'التكريمات والتميز الأكاديمي', honorsTitle:'الاعتراف والتكريمات الرسمية والسجل الأكاديمي المتميز',
+        h1Title:'تكريم من معالي وزير البيئة', h1Org:'وزارة البيئة الأردنية', h1Desc:'تكريم رسمي رفيع المستوى تقديراً لبناء نماذج أعمال استراتيجية ومستدامة، وتعزيز الاستدامة المهنية والمبادرات البيئية المؤسسية.',
+        h2Title:'تكريم المدير التنفيذي لمشاريع GIZ', h2Org:'الوكالة الألمانية للتعاون الدولي (GIZ Jordan)', h2Desc:'تقدير استثنائي لقيادة وتطوير مشاريع النماء الاقتصادي، وبناء الشراكات المؤسسية الفعالة وتحقيق أعلى معايير الحوكمة والنمو.',
+        h3Title:'تكريم من سعادة سفير الاتحاد الأوروبي', h3Org:'بعثة الاتحاد الأوروبي (EU Delegation)', h3Desc:'إشادة وتكريم رسمي لتمثيل المبادرات التنموية والشراكات الاستراتيجية الناجحة بين القطاعين العام والخاص والمؤسسات الدولية.',
+        h4Title:'التميز الأكاديمي والبحث العلمي (الأول عالتخصص)', h4Org:'بكالوريوس نظم المعلومات الإدارية (MIS)', h4Desc:'التخرج بالترتيب الأول عالتخصص، نشر 3 أبحاث علمية أثناء فترة البكالوريوس، مع تسجيل 0 غياب (عدم الغياب ولا يوم واحد طول فترة الدراسة الجامعية) والتطوع القيادي بنشاطات التسويق بالجامعة.',
+
+        aboutTag:'عني', aboutTitle:'الملف التنفيذي والرؤية الاستراتيجية',
+        aboutP1:'بصفتي <strong>صاحباً للأعمال وشريكاً استراتيجياً</strong> بخلفية متكينة في <strong>تكنولوجيا معلومات الأعمال (MIS)</strong> وخبرة متقدمة في <strong>ذكاء الأعمال (BI)</strong>، أركز على ابتكار ونشر <strong>نماذج الأعمال المستدامة (Sustainable Business Models)</strong> وصياغة التحالفات الاستراتيجية التي تحقق أقصى عائد استثماري ونمو مؤسسي ملموس.',
+        aboutP2:'أقود التطوير وحملات النمو كرئيس قسم التسويق والدعاية في <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">شركة الأمين للصناعات الغذائية</a>، حيث نجحت في بناء منظومة تسويقية متكاملة تربط بين تحليل البيانات المتقدم (Power BI, SPSS, Tableau) وأتمتة المبيعات وتصدر العلامة التجارية في الأسواق المحلية والإقليمية.',
+        aboutP3:'يتجسد نشاطي التنموي في العمل والشراكة مع كبرى المنظمات الدولية والمؤسسات الرسمية؛ حيث حظيت بتكريمات سامية من <strong>معالي وزير البيئة</strong>، و<strong>المدير التنفيذي لمشاريع GIZ الأردن</strong>، و<strong>سفير الاتحاد الأوروبي</strong>، إلى جانب فوزي بـ<strong>جائزة الابتكار التقني مع ACTED</strong> ولقب <strong>الموظف المثالي في BDC</strong> وتأسيس مبادرة "أهلني" لتمكين الشباب بالتعاون مع Blumont.',
+        btnAboutConsult:'تواصل لبحث فرصة شراكة أو استثمار', btnCopyEmail:'نسخ البريد الإلكتروني الرسمي',
+
+        calcTag:'أداة تفاعلية', calcTitle:'مُحاكي النتائج والعائد على الاستثمار', calcSubtitle:'حدد معايير مشروعك الاستراتيجي:',
+        lblBudget:'الميزانية التسويقية / الاستثمارية الشهرية:', lblMonths:'مدة الشراكة / التطوير (أشهر):', lblChannel:'التركيز الاستراتيجي الأساسي:',
+        calcResHead:'النتائج التقديرية المتوقعة', lblResRoi:'عائد الاستثمار المتوقع (Projected ROI):', lblResReach:'الوصول التقديري المتوقع (Reach):', lblResEff:'كفاءة خفض تكلفة الاستحواذ (CPA):', btnCalcApply:'ناقش خطة الاستثمار والتطوير معي',
+
+        skillsTag:'الخبرات والمنظومة', skillsTitle:'الكفاءات وأدوات تحليل البيانات', skillsCoreTitle:'المهارات الاستراتيجية والقيادية', toolsTitle:'الأدوات التقنية والتحليلية', awardsTitle:'الجوائز والتكريمات الدولية',
+        fltAll:'الكل', fltMkt:'التسويق والاستراتيجية', fltBi:'ذكاء الأعمال و BI', fltSys:'أنظمة CRM & ERP', fltTrn:'الشراكات والتمكين',
+        sk1:'بناء نماذج الأعمال والشراكات الاستراتيجية', sk2:'تحليل البيانات وإتقان أدوات (Power BI / SPSS / Tableau)', sk3:'تطوير وتطبيق أنظمة CRM & ERP وتصميم العمليات', sk4:'قيادة التحول الرقمي والتسويق المستدام', sk5:'إدارة المشاريع الاستثمارية وأنظمة دعم القرار (DSS)', sk6:'تطبيقات الذكاء الاصطناعي في قيادة ونمو الأعمال',
+        award1:'تكريم وزاري ودولي (وزير البيئة & GIZ & EU)', award2:'جائزة الابتكار التقني (ACTED)', award3:'جائزة الموظف المثالي (BDC)',
+
+        expTag:'المسيرة المهنية', expTitle:'الخبرات والشراكات الاستراتيجية',
+        job1Date:'فبراير 2025 – الحاضر', job1Title:'رئيس قسم التسويق والدعاية وتطوير العلامة التجارية', job1Company:'الأمين للصناعات الغذائية',
+        job2Date:'2021 – 2025', job2Title:'مستشار العلاقات العامة وبناء الشراكات التنموية والمشاريع', job2Company:'منظمات دولية ورسمية: GIZ, EU, Blumont, ACTED, BDC',
+        job3Date:'2021 – الحاضر', job3Title:'شريك استراتيجي ومستشار أتمتة الأعمال وخبير CRM', job3Company:'قطاعات استثمارية وبنكية (بنك القاهرة عمان وغيره)',
+        btnCs1:'عرض دراسة الحالة والإنجازات', btnCs2:'تفاصيل الشراكات والمبادرات التنموية',
+
+        ahlniTag:'مبادرة مميزة', ahlniTitle:'مشروع "أهلني" لتمكين الشباب', ahlniBadge:'المؤسس والمدير التنفيذي', ahlniHead:'"أهلني" — الجسر الحقيقي بين التعليم وسوق العمل',
+        ahlniP1:'أفخر بتأسيس وإدارة مبادرة <strong>"أهلني"</strong> بالتعاون والتنسيق الشامل مع منظمة <a href="https://blumont.org" target="_blank" class="text-link">Blumont International</a>. انطلقت هذه المبادرة من رؤية استراتيجية لتحويل الطاقات الشبابية إلى كوادر مؤهلة تطلبها كبرى الشركات.',
+        ahlniP2:'نجحنا في تخريج <strong>ثلاثة أفواج متكاملة</strong> خضعوا لبرامج مكثفة في التفاوض، التواصل، إعداد السير الذاتية الاحترافية، وبناء الملفات على LinkedIn، مع تحقيق <strong>نسبة توظيف وتأهيل قياسية</strong>.',
+        ahlniS1:'أفواج تدريبية مخرَّجة', ahlniS2:'شاب وشابة مؤهَّلين', ahlniS3:'نسبة التقييم الممتاز', btnAhlniDetails:'عرض منهجية وتفاصيل برنامج أهلني',
+
+        offerTag:'ما أقدمه', offerTitle:'الكفاءات الاستراتيجية للشراكة',
+        s1t:'بناء الشراكات ونماذج الأعمال', s1d:'صياغة التحالفات الاستراتيجية، وتصميم نماذج الأعمال المستدامة التي تحقق النمو المتسارع والعائد المالي المرتفع.',
+        s2t:'ذكاء الأعمال والبيانات (BI)', s2d:'بناء لوحات تحكم ديناميكية تفاعلية (Power BI) لدعم القرارات الاستثمارية والتنفيذية بدقة متناهية.',
+        s3t:'التحول الرقمي وأنظمة CRM/ERP', s3d:'أتمتة سير العمل التشغيلي وبناء أنظمة CRM & ERP مخصصة لرفع الكفاءة وخفض النفقات.',
+        s4t:'إدارة السمعة والعلاقات الدولية', s4d:'تمثيل المؤسسات في المؤتمرات الدولية والمعارض الاقتصادية، وبناء اتصالات متينة مع أصحاب القرار.',
+        s5t:'التدريب المهني وتطوير الكوادر', s5d:'تقديم برامج تدريبية استراتيجية لتأهيل الفرق والكوادر القيادية لمتطلبات الأسواق الحديثة.',
+        s6t:'إدارة المشاريع الاستثمارية', s6d:'إدارة المشاريع المعقدة وتطبيق أفضل الممارسات الدولية لضمان تحقيق الأثر المؤسسي المستدام.',
+
+        testTag:'آراء وتوصيات', testTitle:'شهادات القادة الأكاديميين والشركاء الدوليين',
+        t1Quote:'محمد راشد طالب وقائد استثنائي، ضرب أروع الأمثلة في الانضباط حيث لم يغب يوماً واحداً طول فترة دراسته الجامعية (سجل غياب 0%)، وكان عنصراً فاعلاً ومبادراً متطوعاً في إنجاح كافة نشاطات التسويق والعلاقات العامة بالجامعة، بالإضافة لنشره 3 أبحاث علمية متميزة وتخرجه الأول على التخصص.',
+        t1Author:'د. أحمد العتوم', t1Role:'مدير العلاقات العامة والتسويق والأستاذ الجامعي',
+        t2Quote:'محمد راشد يمثل النموذج الاستثنائي للرائد والشريك الاستراتيجي الذي يجمع بين الرؤية الاقتصادية والقدرة التنفيذية العالية في إدارة النمو.',
+        t2Author:'إدارة شركة الأمين للصناعات الغذائية', t2Role:'المجلس التنفيذي',
+        t3Quote:'تكريمه من الجهات الوزارية والألمانية والأوروبية جاء نتيجة طبيعية لنماذج الأعمال الاحترافية والمستدامة التي ابتكرها وقادها بنجاح.',
+        t3Author:'ممثلو GIZ الأردن والاتحاد الأوروبي', t3Role:'قطاع الشراكات والتنمية المستدامة',
+
+        certsTag:'الشهادات والاعتمادات', certsTitle:'الدبلومات والاعتمادات المهنية',
+        cert1:'دبلوم ذكاء الأعمال وتحليل البيانات (2026)', cert1Org:'جامعة الحسين التقنية (HTU)',
+        cert2:'تحليل البيانات المتقدم بـ Power BI & Excel', cert2Org:'اعتماد مايكروسوفت والتحليل المتقدم (Microsoft Certified)',
+        cert3:'دبلوم الاقتصاد الأخضر والاستدامة', cert3Org:'مركز تطوير الأعمال (BDC)',
+        cert4:'أتمتة وحوكمة أنظمة إدارة علاقات العملاء CRM & ERP', cert4Org:'الاستشارات والحلول المؤسسية المتقدمة',
+        cert5:'تطبيقات الذكاء الاصطناعي في الأعمال (AI in Business)', cert5Org:'DataCamp Certified',
+        cert6:'جمع وتحليل البيانات بـ KoboToolbox', cert6Org:'Blumont Humanitarian Academy',
+
+        galleryTag:'محطات التميز', galleryTitle:'معرض الإنجازات والشراكات',
+        langTag:'التواصل والتأثير', langTitle:'اللغات المتقنة',
+        lang1:'العربية', langL1:'اللغة الأم (Native)', lang2:'الإنجليزية', langL2:'مهني متقدم (Professional)', lang3:'اليابانية', langL3:'مستوى متوسط (Intermediate)',
+
+        contactTag:'تواصل قيادي', contactTitle:'لنصنع شراكة استراتيجية وأثراً ملموساً',
+        contactDesc:'مستعد لمناقشة فرص الشراكة والاستثمار، التحول الرقمي، ذكاء الأعمال، والبرامج الاستراتيجية.',
+        btnFooterConsult:'طلب اجتماع شراكة استراتيجية', liName:'محمد راشد', liRole:'شريك استراتيجي | صاحب أعمال | خبير ذكاء الأعمال', liBtn:'عرض الملف على LinkedIn',
+
+        modalConsultTitle:'طلب اجتماع شراكة استراتيجية / استثمار', modalConsultSub:'اختر المجال المطلوب وسأقوم بالتواصل معك مباشرة لمناقشة خطة العمل والتعاون.',
+        lblService:'مجال الشراكة المطلوب:', lblName:'الاسم الكريم / الجهة:', lblNotes:'تفاصيل المشروع أو الفرصة الاستثمارية:', btnSendWa:'إرسال الطلب فوراً عبر WhatsApp',
+
+        g1tag:'الأمين', g1t:'قيادة التسويق والنمو', g1d:'قيادة نمو المبيعات وإدارة العلامة التجارية في شركة الأمين للصناعات الغذائية.',
+        g2tag:'التخرج والتفوق', g2t:'حفل التخرج والتفوق (الأول عالتخصص)', g2d:'المرتبة الأولى، 3 أبحاث محكمة، 0 غياب طوال فترته الجامعية والتطوع القيادي بالتسويق.',
+        g3tag:'المؤسس', g3t:'مبادرة "أهلني"', g3d:'تأهيل 3 أفواج من الشباب الموهوبين لسوق العمل بالتعاون مع Blumont.',
+        g4tag:'جائزة', g4t:'جائزة الابتكار التقني', g4d:'الفوز بمركز المبتكرين في مؤتمر الشباب والتكنولوجيا مع ACTED.',
+        g5tag:'القيادة', g5t:'رئيس اتحاد الطلبة', g5d:'قيادة اتحاد الطلبة العرب والأجانب وتعزيز التعاون والمبادرات.',
+        g6tag:'متحدث', g6t:'التحدث في المؤتمرات', g6d:'مشاركة المعرفة ونماذج الأعمال في المنتديات والمؤتمرات.',
+        g7tag:'مدرب', g7t:'ورش العمل والتطوير', g7d:'قيادة ورش عمل حول تبني التكنولوجيا وتطوير حلول الأعمال.',
+        g8tag:'صانع محتوى', g8t:'صناعة المحتوى المهني', g8d:'كتابة ونصائح حول التسويق وإدارة النظم والتطوير المؤسسي.',
+        g9tag:'بنوك', g9t:'أنظمة CRM المصرفية', g9d:'تطبيق وتجربة العمليات المصرفية في بنك القاهرة عمان.'
+    },
+    en: {
+        brandText: 'Mohammad Rashid<br><span style="opacity:0.8; font-weight:400; color:var(--white);">Strategic Partner | Business Owner | BI Expert</span>',
+        navAbout:'Executive Profile', navHonors:'Honors & Academic Distinction', navCalc:'ROI Simulator', navSkills:'Skills & Matrix', navExp:'Experience & Alliances', navAhlni:'Ahlni', navOffer:'Competencies', navGallery:'Gallery',
+        heroGreeting:'<i class="fas fa-handshake"></i> Strategic Partner · Venture Builder · Business Intelligence Expert',
+        heroName:'Mohammad <span class="gold">Rashid</span>',
+        heroRole:'<i class="fas fa-building"></i> <span>Business Owner | Strategic Marketing Leader | BI Expert</span>',
+        heroDesc:'Entrepreneur and Strategic Partner combining <strong>System Analysis</strong>, <strong>Sustainable Growth Models</strong>, <strong>Executive Marketing</strong>, and <strong>Business Intelligence</strong>. Driving institutional alliances, digital transformation, and high-impact sales growth.',
+        btnConsult:'Schedule Strategic Partnership Session', btnVcard:'Download vCard Contact',
+        floatCardTitle:'Business Models & Investment Intelligence', floatCardSub:'Executive Leadership in Growth & Alliances',
+        stat1:'Years of Executive Experience', stat2:'Ahlni Empowered Cohorts', stat3:'Honored by Global Entities', stat4:'Fluent Global Languages',
+
+        honorsTag:'Honors & Academic Record', honorsTitle:'Official Recognitions & Stellar Academic Distinction',
+        h1Title:'Recognition from the Minister of Environment', h1Org:'Ministry of Environment (Jordan)', h1Desc:'High-level official honor for building sustainable strategic business models, promoting professional sustainability, and leading green initiatives.',
+        h2Title:'Recognition from GIZ Executive Director', h2Org:'GIZ Jordan (German International Cooperation)', h2Desc:'Prestigious recognition for leading economic growth projects, fostering public-private partnerships, and adhering to top governance standards.',
+        h3Title:'Recognition from the EU Ambassador', h3Org:'Delegation of the European Union', h3Desc:'Official commendation for representing developmental partnerships and building successful strategic alliances between government and international sectors.',
+        h4Title:'Academic Distinction & Scientific Research (Ranked 1st)', h4Org:'Bachelor of Business Information Systems (MIS)', h4Desc:'Graduated Ranked 1st in Specialization, published 3 peer-reviewed research papers during Bachelor’s degree, maintained a 0% absence record (100% attendance), and served as student volunteer marketing leader.',
+
+        aboutTag:'About', aboutTitle:'Executive Profile & Strategic Vision',
+        aboutP1:'As a <strong>Business Owner and Strategic Partner</strong> with a solid background in <strong>Business Information Systems (MIS)</strong> and advanced expertise in <strong>Business Intelligence (BI)</strong>, I focus on creating and scaling <strong>Sustainable Business Models</strong> and forging strategic alliances that maximize ROI.',
+        aboutP2:'I direct growth as Head of Marketing & Advertising at <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">Al-Ameen Food Industries</a>, building integrated ecosystems connecting data analytics (Power BI, SPSS, Tableau) with automated sales funnels.',
+        aboutP3:'My developmental partnerships span top international organizations; I have received official honors from the <strong>Minister of Environment</strong>, the <strong>Executive Director of GIZ Jordan</strong>, and the <strong>EU Ambassador</strong>, along with winning the <strong>ACTED Tech Innovation Award</strong>, <strong>BDC Ideal Employee Award</strong>, and founding "Ahlni".',
+        btnAboutConsult:'Connect for Partnership Opportunities', btnCopyEmail:'Copy Official Email Address',
+
+        calcTag:'Interactive Tool', calcTitle:'ROI & Strategic Impact Simulator', calcSubtitle:'Configure Your Strategic Venture Parameters:',
+        lblBudget:'Planned Monthly Marketing / Investment Budget:', lblMonths:'Partnership / Growth Duration (Months):', lblChannel:'Core Strategic Focus:',
+        calcResHead:'Estimated Impact & Results', lblResRoi:'Projected Return on Investment (ROI):', lblResReach:'Estimated Campaign Reach:', lblResEff:'CPA Cost Reduction Efficiency:', btnCalcApply:'Discuss Investment & Growth Strategy',
+
+        skillsTag:'Expertise Matrix', skillsTitle:'Competencies & Data Analytics Stack', skillsCoreTitle:'Strategic & Leadership Competencies', toolsTitle:'Technical & Analytics Tools', awardsTitle:'International Honors & Awards',
+        fltAll:'All', fltMkt:'Marketing & Strategy', fltBi:'Business Intelligence & BI', fltSys:'CRM & ERP Systems', fltTrn:'Alliances & Capacity',
+        sk1:'Venture Building & Strategic Alliances', sk2:'Data Analytics & BI Mastery (Power BI / SPSS / Tableau)', sk3:'CRM & ERP Architecture & Workflow Automation', sk4:'Digital Transformation & Sustainable Growth', sk5:'Venture Management & Decision Support Systems (DSS)', sk6:'AI Applications in Executive Growth',
+        award1:'Ministerial & Diplomatic Honors (Minister of Env, GIZ, EU)', award2:'Tech Innovation Award (ACTED)', award3:'Ideal Employee Award (BDC)',
+
+        expTag:'Career Journey', expTitle:'Experience & Strategic Alliances',
+        job1Date:'Feb 2025 – Present', job1Title:'Head of Marketing & Advertising Department', job1Company:'Al-Ameen Food Industries',
+        job2Date:'2021 – 2025', job2Title:'PR & Strategic Alliances Consultant', job2Company:'International Entities: GIZ, EU, Blumont, ACTED, BDC',
+        job3Date:'2021 – Present', job3Title:'Strategic Partner & CRM Automation Advisor', job3Company:'Banking & Commercial Ventures (Cairo Amman Bank et al.)',
+        btnCs1:'View Executive Case Study', btnCs2:'View Alliances & Social Impact Case Study',
+
+        ahlniTag:'Featured Initiative', ahlniTitle:'Project "Ahlni" Youth Empowerment', ahlniBadge:'Founder & Executive Director', ahlniHead:'"Ahlni" — The Bridge Between Education & Work',
+        ahlniP1:'Proud to have founded and managed <strong>"Ahlni"</strong> in partnership with <a href="https://blumont.org" target="_blank" class="text-link">Blumont International</a>, empowering young university talent with market-ready skills.',
+        ahlniP2:'Successfully graduated <strong>3 full cohorts (50+ youth)</strong> trained in negotiation, personal branding, professional CV writing, and LinkedIn positioning with high career transition rates.',
+        ahlniS1:'Graduated Cohorts', ahlniS2:'Empowered Youth', ahlniS3:'Partner Satisfaction', btnAhlniDetails:'Explore Ahlni Program Methodology',
+
+        offerTag:'What I Offer', offerTitle:'Strategic Partnership Competencies',
+        s1t:'Partnership & Venture Building', s1d:'Formulating strategic alliances and designing sustainable business models that deliver accelerated growth and high ROI.',
+        s2t:'Business Intelligence (BI)', s2d:'Building dynamic Power BI dashboards for executive decision-making and data-driven investment strategies.',
+        s3t:'Digital Transformation & CRM/ERP', s3d:'Workflow automation, designing custom CRM & ERP solutions to modernize business operations.',
+        s4t:'Brand Reputation & Global Relations', s4d:'Representing corporate brands at international expos and managing high-stakes stakeholder relations.',
+        s5t:'Executive Training & Team Enablement', s5d:'Delivering customized workshops and strategic training programs to prepare teams for market demands.',
+        s6t:'Venture & Project Management', s6d:'Managing complex multi-stakeholder projects with strict standards to ensure lasting impact.',
+
+        testTag:'Endorsements', testTitle:'Academic & International Leadership Endorsements',
+        t1Quote:'Mohammad Rashid is an extraordinary student and leader who set a gold standard in discipline with a 0% absence record (100% perfect attendance) throughout his university studies. He published 3 research papers and volunteered as a leader in university PR & marketing.',
+        t1Author:'Dr. Ahmad Al-Atoum', t1Role:'Director of PR & Marketing / University Professor',
+        t2Quote:'Mohammad Rashid represents an exceptional model of an entrepreneur and strategic partner combining economic vision with execution power in driving growth.',
+        t2Author:'Executive Board', t2Role:'Al-Ameen Food Industries',
+        t3Quote:'Receiving official recognitions from German (GIZ), EU, and Ministerial leadership is a natural result of his sustainable business models.',
+        t3Author:'GIZ Jordan & EU Representatives', t3Role:'Partnerships & Sustainability Sector',
+
+        certsTag:'Certifications', certsTitle:'Diplomas & Professional Credentials',
+        cert1:'Diploma in Business Intelligence & Data Analytics (2026)', cert1Org:'Al-Hussein Technical University (HTU)',
+        cert2:'Advanced Power BI & Excel Data Analytics', cert2Org:'Microsoft Certified & Advanced Analytics',
+        cert3:'Green Economy & Sustainability Diploma', cert3Org:'Business Development Center (BDC)',
+        cert4:'CRM & ERP Enterprise Architecture & Automation', cert4Org:'Enterprise Solutions & Consulting',
+        cert5:'AI Applications in Business (AI in Business)', cert5Org:'DataCamp Certified',
+        cert6:'KoboToolbox Data Collection & Processing', cert6Org:'Blumont Humanitarian Academy',
+
+        galleryTag:'Milestones', galleryTitle:'Alliances & Milestones Gallery',
+        langTag:'Global Reach', langTitle:'Languages',
+        lang1:'Arabic', langL1:'Native Language', lang2:'English', langL2:'Professional Proficiency', lang3:'Japanese', langL3:'Intermediate Level',
+
+        contactTag:'Connect', contactTitle:"Let's Forge a Strategic Partnership",
+        contactDesc:'Available for strategic alliances, venture investments, BI implementation, digital transformation, and executive enablement.',
+        btnFooterConsult:'Request Strategic Partnership Meeting', liName:'Mohammad Rashid', liRole:'Strategic Partner | Business Owner | BI Expert', liBtn:'View LinkedIn Profile',
+
+        modalConsultTitle:'Request Strategic Partnership / Investment Meeting', modalConsultSub:'Select your requirement and I will connect with you directly to align on execution.',
+        lblService:'Required Partnership Scope:', lblName:'Your Full Name / Entity:', lblNotes:'Venture Scope / Key Objectives:', btnSendWa:'Send Request Directly via WhatsApp',
+
+        g1tag:'Alameen', g1t:'Head of Marketing & Growth', g1d:'Driving sales growth and digital brand dominance at Al-Ameen Food Industries.',
+        g2tag:'Academic Distinction', g2t:'Graduation & Academic Excellence', g2d:'Ranked 1st in MIS, 3 research papers published, 0 absences record, and student marketing leader.',
+        g3tag:'Founder', g3t:'Project "Ahlni"', g3d:'Prepared 3 cohorts of young talent for market opportunities.',
+        g4tag:'Award', g4t:'Tech Innovation Award', g4d:'Winner at the ACTED Youth & Tech Conference.',
+        g5tag:'Leadership', g5t:'Student Union President', g5d:'Led International Students Union promoting collaboration.',
+        g6tag:'Speaker', g6t:'Conference Keynote', g6d:'Sharing expertise at business and tech forums.',
+        g7tag:'Trainer', g7t:'Executive Workshops', g7d:'Leading seminars on digital adoption and business growth.',
+        g8tag:'Content', g8t:'Thought Leadership Content', g8d:'Daily professional insights on marketing and system management.',
+        g9tag:'Banking', g9t:'Banking CRM Specialist', g9d:'Enhancing customer relation workflows at Cairo Amman Bank.'
+    }
+};
+
+let audioEnabled = false;
+let audioCtx = null;
+
+function toggleAudioFeedback() {
+    audioEnabled = !audioEnabled;
+    const btnIcon = document.getElementById('audio-icon');
+    if (audioEnabled) {
+        btnIcon.className = 'fas fa-volume-up';
+        showToast(lang === 'ar' ? 'تم تفعيل المؤثرات الصوتية التفاعلية 🔊' : 'Audio Feedback Enabled 🔊');
+        playSynthBeep(600, 0.08);
+    } else {
+        btnIcon.className = 'fas fa-volume-mute';
+        showToast(lang === 'ar' ? 'تم إيقاف الصوت 🔇' : 'Audio Feedback Disabled 🔇');
+    }
+}
+
+function playSynthBeep(freq = 440, duration = 0.05) {
+    if (!audioEnabled) return;
+    try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    } catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('button, a, .tool-tag, .service-card, .cert-card, .honor-card').forEach(el => {
+        el.addEventListener('mouseenter', () => playSynthBeep(520, 0.03));
+        el.addEventListener('click', () => playSynthBeep(780, 0.06));
+    });
+});
+
+(function() {
+    const roles = [
+        'صاحب أعمال وشريك استراتيجي',
+        'بناء نماذج الأعمال والشراكات',
+        'مُكرم من وزير البيئة و GIZ وسفير الاتحاد الأوروبي',
+        'خبير ذكاء الأعمال والتحول الرقمي (BI Expert)',
+        'رئيس قسم التسويق والدعاية'
+    ];
+
+    const roleEl   = document.getElementById('intro-role');
+    const fillEl   = document.getElementById('intro-fill');
+    const pctEl    = document.getElementById('intro-pct');
+    const screen   = document.getElementById('intro-screen');
+
+    if (!roleEl || !screen) return;
+
+    let roleIdx = 0, charIdx = 0, typing = true;
+    let pct = 0;
+    let introDone = false;
+
+    function typeNext() {
+        if (introDone) return;
+        const current = roles[roleIdx];
+        const cursor  = '<span class="intro-cursor-blink"></span>';
+
+        if (typing) {
+            charIdx++;
+            roleEl.innerHTML = current.slice(0, charIdx) + cursor;
+            if (charIdx < current.length) {
+                setTimeout(typeNext, 55);
+            } else {
+                setTimeout(() => { typing = false; typeNext(); }, 900);
+            }
+        } else {
+            charIdx--;
+            roleEl.innerHTML = current.slice(0, charIdx) + cursor;
+            if (charIdx > 0) {
+                setTimeout(typeNext, 30);
+            } else {
+                roleIdx = (roleIdx + 1) % roles.length;
+                typing  = true;
+                setTimeout(typeNext, 250);
+            }
+        }
+    }
+
+    function tick() {
+        if (introDone) return;
+        const increment = pct < 40 ? 1.8 : pct < 85 ? 1.1 : 1.6;
+        pct = Math.min(pct + increment, 100);
+        fillEl.style.width = pct + '%';
+        pctEl.textContent  = Math.round(pct) + '%';
+
+        if (pct < 100) {
+            setTimeout(tick, 28);
+        } else {
+            setTimeout(exitIntro, 350);
+        }
+    }
+
+    function exitIntro() {
+        if (introDone) return;
+        introDone = true;
+        screen.classList.add('hide');
+        document.getElementById('body').classList.remove('intro-active');
+        setTimeout(() => { screen.style.display = 'none'; }, 1050);
+    }
+
+    window.skipIntro = exitIntro;
+    setTimeout(typeNext, 700);
+    setTimeout(tick, 1000);
+})();
+
+(function() {
+    const canvas = document.getElementById('canvas-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.7;
+            this.vy = (Math.random() - 0.5) * 0.7;
+            this.radius = Math.random() * 2 + 1;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#d4af37';
+            ctx.globalAlpha = 0.35;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 40; i++) {
+        particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = '#d4af37';
+                    ctx.globalAlpha = (1 - dist / 120) * 0.15;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+})();
+
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { 
+    mx=e.clientX; my=e.clientY; 
+    if(cursor) { cursor.style.left=mx+'px'; cursor.style.top=my+'px'; }
+});
+setInterval(() => { 
+    if(ring) {
+        rx += (mx-rx)*0.14; ry += (my-ry)*0.14; 
+        ring.style.left=rx+'px'; ring.style.top=ry+'px'; 
+    }
+}, 16);
+
+document.querySelectorAll('a, button, .service-card, .gallery-item, .cert-card, .honor-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring && ring.classList.add('active'));
+    el.addEventListener('mouseleave', () => ring && ring.classList.remove('active'));
+});
+
+const tiltCard = document.getElementById('tilt-card');
+if (tiltCard) {
+    tiltCard.addEventListener('mousemove', e => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const imgCard = tiltCard.querySelector('.hero-img-card');
+        if (imgCard) imgCard.style.transform = `rotateY(${x * 0.03}deg) rotateX(${-y * 0.03}deg)`;
+    });
+    tiltCard.addEventListener('mouseleave', () => {
+        const imgCard = tiltCard.querySelector('.hero-img-card');
+        if (imgCard) imgCard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+}
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollY / docHeight) * 100;
+    const progressEl = document.getElementById('scroll-progress');
+    if (progressEl) progressEl.style.width = progress + '%';
+
+    const header = document.getElementById('header');
+    if (header) header.classList.toggle('scrolled', scrollY > 40);
+
+    const scrollTop = document.getElementById('scrollTop');
+    if (scrollTop) scrollTop.classList.toggle('show', scrollY > 400);
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+        if (scrollY >= top && scrollY < top + height) {
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+    });
+});
+
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal, .timeline-item').forEach(el => revealObs.observe(el));
+
+const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if(e.isIntersecting){
+            e.target.querySelectorAll('.skill-fill').forEach(bar => {
+                bar.style.width = bar.dataset.width + '%';
+            });
+        }
+    });
+}, { threshold: 0.25 });
+document.querySelectorAll('.skill-group').forEach(g => skillObs.observe(g));
+
+function animateCounter(el) {
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if(progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if(e.isIntersecting){
+            e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+            counterObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.4 });
+document.querySelectorAll('.stats-bar, .highlight-section').forEach(s => counterObs.observe(s));
+
+function filterSkills(category, btnEl) {
+    document.querySelectorAll('.skills-filter .filter-btn').forEach(b => b.classList.remove('active'));
+    btnEl.classList.add('active');
+
+    const items = document.querySelectorAll('.skill-item');
+    items.forEach(item => {
+        if (category === 'all' || item.classList.contains(`skill-cat-${category}`)) {
+            item.style.display = 'block';
+            setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 50);
+        } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(10px)';
+            setTimeout(() => { item.style.display = 'none'; }, 300);
+        }
+    });
+}
+
+function updateCalculator() {
+    const budgetEl = document.getElementById('slider-budget');
+    const monthsEl = document.getElementById('slider-months');
+    const strategyEl = document.getElementById('select-strategy');
+
+    if (!budgetEl || !monthsEl || !strategyEl) return;
+
+    const budget = +budgetEl.value;
+    const months = +monthsEl.value;
+    const strategy = strategyEl.value;
+
+    document.getElementById('val-budget').textContent = '$' + budget.toLocaleString();
+    document.getElementById('val-months').textContent = months + (lang === 'ar' ? ' أشهر' : ' Months');
+
+    let roiBase = 240;
+    let reachMultiplier = 95;
+    let cpaReduction = 35;
+
+    if (strategy === 'bi') { roiBase = 320; reachMultiplier = 65; cpaReduction = 42; }
+    else if (strategy === 'crm') { roiBase = 300; reachMultiplier = 80; cpaReduction = 48; }
+    else if (strategy === 'training') { roiBase = 260; reachMultiplier = 45; cpaReduction = 30; }
+
+    const roi = Math.round(roiBase + (budget / 2000) * 8 + (months * 4));
+    const reach = Math.round((budget * reachMultiplier * (months / 4)) / 1000);
+    const cpa = Math.min(60, Math.round(cpaReduction + (months * 0.8)));
+
+    document.getElementById('res-roi').textContent = '+' + roi + '%';
+    document.getElementById('res-reach').textContent = (reach > 1000 ? (reach/1000).toFixed(1) + 'M+' : reach + 'K+');
+    document.getElementById('res-eff').textContent = '-' + cpa + '%';
+}
+
+let currentTest = 1;
+function showTestimonial(idx) {
+    document.querySelectorAll('.testimonial-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.test-dot').forEach(d => d.classList.remove('active'));
+    
+    const card = document.getElementById(`test-${idx}`);
+    if (card) card.classList.add('active');
+    const dots = document.querySelectorAll('.test-dot');
+    if (dots[idx - 1]) dots[idx - 1].classList.add('active');
+    currentTest = idx;
+}
+setInterval(() => {
+    currentTest = (currentTest % 3) + 1;
+    showTestimonial(currentTest);
+}, 6500);
+
+function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function openConsultModal() {
+    document.getElementById('consult-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeConsultModal() {
+    document.getElementById('consult-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function handleConsultSubmit(e) {
+    e.preventDefault();
+    const service = document.getElementById('consult-service').value;
+    const name = document.getElementById('consult-name').value;
+    const notes = document.getElementById('consult-notes').value;
+
+    const message = encodeURIComponent(`مرحباً أستاذ محمد راشد،\nأنا: ${name}\nأرغب في بحث فرصة شراكة استراتيجية / مشاريع في: ${service}\nالتفاصيل: ${notes}`);
+    window.open(`https://wa.me/962777935564?text=${message}`, '_blank');
+    closeConsultModal();
+    showToast(lang === 'ar' ? 'جاري توجيهك إلى واتساب مباشرة...' : 'Redirecting to WhatsApp...');
+}
+
+const caseStudies = {
+    alameen: {
+        ar: {
+            title: 'شركة الأمين للصناعات الغذائية — بناء المنظومة التسويقية والنمو',
+            sub: 'إدارة العلامة التجارية والتحول الرقمي وحملات ROI العالية',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">التحدي والرؤية:</h4>
+                <p style="margin-bottom:15px; color:var(--slate-light);">تطوير وتوسيع الحصة السوقية لشركة الأمين عبر الجمع بين التسويق الرقمي الحديث، تحسين محركات البحث SEO، وأتمتة تحليل البيانات.</p>
+                <h4 style="color:var(--gold); margin-bottom:8px;">النهج الاستراتيجي:</h4>
+                <ul style="margin-bottom:15px; padding-right:20px; color:var(--slate-light);">
+                    <li>بناء مسارات تسويقية متكاملة (Meta & Google Ads) بنسب استهداف دقيقة.</li>
+                    <li>إنشاء dashboards تفاعلية بـ Power BI لتتبع أداء الحملات والمبيعات لحظياً.</li>
+                    <li>صياغة الهوية المؤسسية الشاملة وتصدّر محركات البحث.</li>
+                </ul>
+                <h4 style="color:var(--cyan); margin-bottom:8px;">النتائج المحققة:</h4>
+                <p style="color:var(--white); font-weight:700;">ارتفاع ملموس في نمو المبيعات وتصدر العلامة التجارية في النتائج البحثية الرقمية.</p>
+            `
+        },
+        en: {
+            title: 'Al-Ameen Food Industries — Marketing & Growth Ecosystem',
+            sub: 'Brand Strategy, Digital Transformation & High-ROI Campaigns',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">Challenge & Vision:</h4>
+                <p style="margin-bottom:15px; color:var(--slate-light);">Expanding market share by integrating modern digital marketing, SEO dominance, and automated data analytics.</p>
+                <h4 style="color:var(--gold); margin-bottom:8px;">Strategic Approach:</h4>
+                <ul style="margin-left:20px; margin-bottom:15px; color:var(--slate-light);">
+                    <li>Building integrated conversion funnels (Meta & Google Ads).</li>
+                    <li>Creating dynamic Power BI dashboards for real-time sales tracking.</li>
+                    <li>Establishing complete corporate identity and search dominance.</li>
+                </ul>
+                <h4 style="color:var(--cyan); margin-bottom:8px;">Key Results:</h4>
+                <p style="color:var(--white); font-weight:700;">Substantial sales growth and market leadership across digital search engines.</p>
+            `
+        }
+    },
+    ahlni: {
+        ar: {
+            title: 'مشروع "أهلني" — تمكين الشباب الأردني والجاهزية لسوق العمل',
+            sub: 'بالشراكة والتعاون مع منظمة Blumont International',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">فكرة المبادرة:</h4>
+                <p style="margin-bottom:15px; color:var(--slate-light);">سد الفجوة بين المخرجات الأكاديمية ومتطلبات شركات القطاع الخاص عبر تدريب عملي مكثف.</p>
+                <h4 style="color:var(--gold); margin-bottom:8px;">الإنجازات بالأرقام:</h4>
+                <ul style="margin-bottom:15px; padding-right:20px; color:var(--slate-light);">
+                    <li>تخريج 3 أفواج متكاملة (أكثر من 50 شاب وشابة).</li>
+                    <li>إعداد سير ذاتية احترافية وملفات LinkedIn متميزة لكل مشارك.</li>
+                    <li>نسبة رضا وتقييم إيجابي بلغت 100%.</li>
+                </ul>
+            `
+        },
+        en: {
+            title: 'Project "Ahlni" — Youth Readiness & Empowerment',
+            sub: 'In Partnership with Blumont International',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">Initiative Vision:</h4>
+                <p style="margin-bottom:15px; color:var(--slate-light);">Bridging the gap between university graduates and modern job market demands through intensive hands-on training.</p>
+                <h4 style="color:var(--gold); margin-bottom:8px;">Impact in Numbers:</h4>
+                <ul style="margin-left:20px; margin-bottom:15px; color:var(--slate-light);">
+                    <li>3 successful cohorts graduated (50+ youth empowered).</li>
+                    <li>100% professional CV & LinkedIn profile creation rate.</li>
+                    <li>100% satisfaction rate among beneficiaries and partners.</li>
+                </ul>
+            `
+        }
+    },
+    ngos: {
+        ar: {
+            title: 'التكريمات والمشاريع الدولية والشراكات الرسمية',
+            sub: 'مع وزير البيئة، GIZ، الاتحاد الأوروبي، ACTED، BDC',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">أهم المحطات التكريمية والرسمية:</h4>
+                <ul style="margin-bottom:15px; padding-right:20px; color:var(--slate-light);">
+                    <li><strong>تكريم معالي وزير البيئة:</strong> لبناء نماذج الأعمال المستدامة والمبادرات الخضراء.</li>
+                    <li><strong>تكريم المدير التنفيذي لـ GIZ:</strong> لقيادة الشراكات التنموية والمشاريع الاقتصادية.</li>
+                    <li><strong>تكريم سفير الاتحاد الأوروبي:</strong> لتمثيل التحالفات الاستراتيجية والتنمية المستدامة.</li>
+                    <li><strong>جائزة الابتكار التقني:</strong> مؤتمر الشباب والتكنولوجيا مع منظمة ACTED.</li>
+                    <li><strong>الموظف المثالي:</strong> مركز تطوير الأعمال (BDC).</li>
+                </ul>
+            `
+        },
+        en: {
+            title: 'Official Honors & International Strategic Alliances',
+            sub: 'With Minister of Environment, GIZ, EU Ambassador, ACTED, BDC',
+            content: `
+                <h4 style="color:var(--gold); margin-bottom:8px;">Key Official Recognitions & Milestones:</h4>
+                <ul style="margin-left:20px; margin-bottom:15px; color:var(--slate-light);">
+                    <li><strong>Minister of Environment Recognition:</strong> Sustainable Business Models.</li>
+                    <li><strong>GIZ Executive Director Honor:</strong> Economic growth & strategic alliances.</li>
+                    <li><strong>EU Ambassador Commendation:</strong> Public-private development partnerships.</li>
+                    <li><strong>Tech Innovation Award:</strong> ACTED Youth & Tech Conference.</li>
+                    <li><strong>Ideal Employee Award:</strong> Business Development Center (BDC).</li>
+                </ul>
+            `
+        }
+    }
+};
+
+function openCaseStudy(key) {
+    const data = caseStudies[key][lang];
+    const html = `
+        <h3 style="color:var(--gold); font-size:1.6rem; margin-bottom:6px;">${data.title}</h3>
+        <p style="color:var(--cyan); font-size:0.9rem; margin-bottom:20px; font-weight:600;">${data.sub}</p>
+        ${data.content}
+        <button class="btn-main" onclick="openConsultModal()" style="margin-top:20px; width:100%; justify-content:center;">
+            <i class="fas fa-handshake"></i> ${lang === 'ar' ? 'تواصل لمناقشة فرصة شراكة مشابهة' : 'Discuss a Partnership Opportunity'}
+        </button>
+    `;
+    document.getElementById('modal-content').innerHTML = html;
+    document.getElementById('case-study-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCaseStudy() {
+    document.getElementById('case-study-modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function showToolInfo(name) {
+    showToast(`${lang === 'ar' ? 'خبرة تنفيذية في' : 'Expertise in'} ${name}`);
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function copyContactInfo(text, label) {
+    navigator.clipboard.writeText(text);
+    showToast(lang === 'ar' ? `تم نسخ ${label} إلى الحافظة!` : `Copied ${label} to clipboard!`);
+}
+
+function downloadVCard() {
+    const vcardData = `BEGIN:VCARD
+VERSION:3.0
+N:Rashid;Mohammad;;;
+FN:Mohammad Rashid
+TITLE:Strategic Partner | Business Owner | MSc BI Candidate
+ORG:Al-Ameen Food Industries & Strategic Ventures
+TEL;TYPE=CELL,VOICE:+962777935564
+EMAIL:mohammad.r.alhariri@gmail.com
+URL:https://linkedin.com/in/mohammad-rashid-alhariri
+NOTE:Honored by Minister of Environment, GIZ Exec Director, and EU Ambassador. Founder of Ahlni.
+END:VCARD`;
+
+    const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Mohammad_Rashid.vcf';
+    link.click();
+    showToast(lang === 'ar' ? 'تم تحضير وتنزيل بطاقة vCard 📇' : 'vCard Downloaded 📇');
+}
+
+document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLightbox();
+            closeCaseStudy();
+            closeConsultModal();
+        }
+    });
+});
+document.addEventListener('keydown', e => { 
+    if(e.key === 'Escape') {
+        closeLightbox();
+        closeCaseStudy();
+        closeConsultModal();
+    }
+});
+
+let lang = 'ar';
+
+function setT(id, val, asHTML=false) {
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(asHTML) el.innerHTML = val;
+    else el.textContent = val;
+}
+
+function toggleLanguage() {
+    lang = lang === 'ar' ? 'en' : 'ar';
+    const t = T[lang];
+    const body = document.getElementById('body');
+
+    if(lang === 'en') { 
+        body.classList.add('ltr'); body.dir='ltr'; document.documentElement.lang='en'; 
+    } else { 
+        body.classList.remove('ltr'); body.dir='rtl'; document.documentElement.lang='ar'; 
+    }
+
+    setT('brand-text', t.brandText, true);
+    setT('lang-text', lang === 'ar' ? 'EN / عربي' : 'عربي / EN');
+
+    const lnAbout = document.querySelector('.ln-about'); if (lnAbout) lnAbout.textContent = t.navAbout;
+    const lnHonors = document.querySelector('.ln-honors'); if (lnHonors) lnHonors.textContent = t.navHonors;
+    const lnCalc = document.querySelector('.ln-calc'); if (lnCalc) lnCalc.textContent = t.navCalc;
+    const lnSkills = document.querySelector('.ln-skills'); if (lnSkills) lnSkills.textContent = t.navSkills;
+    const lnExp = document.querySelector('.ln-exp'); if (lnExp) lnExp.textContent = t.navExp;
+    const lnAhlni = document.querySelector('.ln-ahlni'); if (lnAhlni) lnAhlni.textContent = t.navAhlni;
+    const lnOffer = document.querySelector('.ln-offer'); if (lnOffer) lnOffer.textContent = t.navOffer;
+    const lnGallery = document.querySelector('.ln-gallery'); if (lnGallery) lnGallery.textContent = t.navGallery;
+
+    setT('hero-greeting', t.heroGreeting, true);
+    setT('hero-name', t.heroName, true);
+    setT('hero-role', t.heroRole, true);
+    setT('hero-desc', t.heroDesc, true);
+    setT('btn-consult', t.btnConsult);
+    setT('btn-vcard', t.btnVcard);
+    setT('float-card-title', t.floatCardTitle);
+    setT('float-card-sub', t.floatCardSub);
+
+    setT('stat1-label', t.stat1); setT('stat2-label', t.stat2); setT('stat3-label', t.stat3); setT('stat4-label', t.stat4);
+
+    setT('honors-tag', t.honorsTag); setT('honors-title', t.honorsTitle);
+    setT('h1-title', t.h1Title); setT('h1-org', t.h1Org); setT('h1-desc', t.h1Desc);
+    setT('h2-title', t.h2Title); setT('h2-org', t.h2Org); setT('h2-desc', t.h2Desc);
+    setT('h3-title', t.h3Title); setT('h3-org', t.h3Org); setT('h3-desc', t.h3Desc);
+    setT('h4-title', t.h4Title); setT('h4-org', t.h4Org); setT('h4-desc', t.h4Desc);
+
+    setT('about-tag', t.aboutTag); setT('about-title', t.aboutTitle);
+    setT('about-p1', t.aboutP1, true); setT('about-p2', t.aboutP2, true); setT('about-p3', t.aboutP3, true);
+    setT('btn-about-consult', t.btnAboutConsult); setT('btn-copy-email', t.btnCopyEmail);
+
+    setT('calc-tag', t.calcTag); setT('calc-title', t.calcTitle); setT('calc-subtitle', t.calcSubtitle);
+    setT('lbl-budget', t.lblBudget); setT('lbl-months', t.lblMonths); setT('lbl-channel', t.lblChannel);
+    setT('calc-res-head', t.calcResHead); setT('lbl-res-roi', t.lblResRoi); setT('lbl-res-reach', t.lblResReach);
+    setT('lbl-res-eff', t.lblResEff); setT('btn-calc-apply', t.btnCalcApply);
+
+    setT('skills-tag', t.skillsTag); setT('skills-title', t.skillsTitle);
+    setT('skills-core-title', t.skillsCoreTitle); setT('tools-title', t.toolsTitle); setT('awards-title', t.awardsTitle);
+    setT('flt-all', t.fltAll); setT('flt-mkt', t.fltMkt); setT('flt-bi', t.fltBi); setT('flt-sys', t.fltSys); setT('flt-trn', t.fltTrn);
+    ['sk1','sk2','sk3','sk4','sk5','sk6'].forEach((id,i) => setT(id, t[`sk${i+1}`]));
+    setT('award1-title', t.award1); setT('award2-title', t.award2); setT('award3-title', t.award3);
+
+    setT('exp-tag', t.expTag); setT('exp-title', t.expTitle);
+    setT('job1-date', t.job1Date); setT('job1-title', t.job1Title); setT('job1-company', t.job1Company, true);
+    setT('job2-date', t.job2Date); setT('job2-title', t.job2Title); setT('job2-company', t.job2Company, true);
+    setT('job3-date', t.job3Date); setT('job3-title', t.job3Title); setT('job3-company', t.job3Company, true);
+    setT('btn-cs-1', t.btnCs1); setT('btn-cs-2', t.btnCs2);
+
+    setT('ahlni-tag', t.ahlniTag); setT('ahlni-title', t.ahlniTitle);
+    setT('ahlni-badge', t.ahlniBadge); setT('ahlni-head', t.ahlniHead);
+    setT('ahlni-p1', t.ahlniP1, true); setT('ahlni-p2', t.ahlniP2, true);
+    setT('ahlni-s1', t.ahlniS1); setT('ahlni-s2', t.ahlniS2); setT('ahlni-s3', t.ahlniS3);
+    setT('btn-ahlni-details', t.btnAhlniDetails);
+
+    setT('offer-tag', t.offerTag); setT('offer-title', t.offerTitle);
+    ['s1','s2','s3','s4','s5','s6'].forEach(s => { setT(`${s}-title`, t[`${s}t`]); setT(`${s}-desc`, t[`${s}d`]); });
+
+    setT('test-tag', t.testTag); setT('test-title', t.testTitle);
+    setT('t1-quote', t.t1Quote); setT('t1-author', t.t1Author); setT('t1-role', t.t1Role);
+    setT('t2-quote', t.t2Quote); setT('t2-author', t.t2Author); setT('t2-role', t.t2Role);
+    setT('t3-quote', t.t3Quote); setT('t3-author', t.t3Author); setT('t3-role', t.t3Role);
+
+    setT('certs-tag', t.certsTag); setT('certs-title', t.certsTitle);
+    ['cert1','cert2','cert3','cert4','cert5','cert6'].forEach((id,i) => setT(`${id}-title`, t[`cert${i+1}`]));
+
+    setT('gallery-tag', t.galleryTag); setT('gallery-title', t.galleryTitle);
+    for(let i=1;i<=9;i++){ setT(`g${i}-tag`, t[`g${i}tag`]); setT(`g${i}-title`, t[`g${i}t`]); setT(`g${i}-desc`, t[`g${i}d`]); }
+
+    setT('lang-tag', t.langTag); setT('lang-title', t.langTitle);
+    setT('lang1-name', t.lang1); setT('lang1-level', t.langL1);
+    setT('lang2-name', t.lang2); setT('lang2-level', t.langL2);
+    setT('lang3-name', t.lang3); setT('lang3-level', t.langL3);
+
+    setT('contact-tag', t.contactTag); setT('contact-title', t.contactTitle); setT('contact-desc', t.contactDesc);
+    setT('btn-footer-consult', t.btnFooterConsult); setT('li-name', t.liName); setT('li-role', t.liRole); setT('li-btn', t.liBtn);
+    
+    setT('modal-consult-title', t.modalConsultTitle); setT('modal-consult-sub', t.modalConsultSub);
+    setT('lbl-service', t.lblService); setT('lbl-name', t.lblName); setT('lbl-notes', t.lblNotes); setT('btn-send-wa', t.btnSendWa);
+
+    updateCalculator();
+}
+</script>
 </body>
 </html>
