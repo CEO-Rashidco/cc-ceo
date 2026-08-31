@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد راشد | شريك استراتيجي وصاحب أعمال وخبير ذكاء الأعمال</title>
+    <meta name="description" content="الموقع الرسمي لمحمد راشد - صاحب أعمال، شريك استراتيجي لبناء نماذج الأعمال والشراكات، رئيس قسم التسويق، خبير ذكاء الأعمال ومُكرم من وزير البيئة ومدير GIZ وسفير الاتحاد الأوروبي.">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet (Root & Subfolder Fallbacks) -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="body" class="intro-active">
+
+<!-- Reading Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- Toast Alert -->
+<div class="toast-container" id="toast">تم النسخ بنجاح!</div>
+
+<!-- ===== INTRO SCREEN ===== -->
+<div id="intro-screen">
+    <div class="intro-grid"></div>
+    <div class="intro-scan"></div>
+    <div class="intro-corner tl"></div>
+    <div class="intro-corner tr"></div>
+    <div class="intro-corner bl"></div>
+    <div class="intro-corner br"></div>
+
+    <div class="intro-content">
+        <div class="intro-avatar">
+            <img src="https://lh3.googleusercontent.com/d/1var0fLzzADvJhqeWVlPz7eUXa77CFGNK" alt="Mohammad Rashid">
+        </div>
+        <div class="intro-name">
+            محمد <span>راشد</span>
+        </div>
+        <div class="intro-role" id="intro-role">
+            <span class="intro-cursor-blink"></span>
+        </div>
+        <div class="intro-loader">
+            <div class="intro-loader-fill" id="intro-fill"></div>
+        </div>
+        <div class="intro-pct" id="intro-pct">0%</div>
+    </div>
+
+    <button class="intro-skip" onclick="skipIntro()" id="intro-skip-btn">تخطي المقدمة ←</button>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Lightbox Modal -->
+<div class="modal-overlay lightbox" id="lightbox">
+    <button class="modal-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <img id="lightbox-img" src="" alt="Enlarged Image">
+</div>
+
+<!-- Case Study / Project Detail Modal -->
+<div class="modal-overlay" id="case-study-modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeCaseStudy()"><i class="fas fa-times"></i></button>
+        <div id="modal-content">
+            <!-- Dynamic Content Injected via JS -->
+        </div>
+    </div>
+</div>
+
+<!-- Strategy Consultation Modal -->
+<div class="modal-overlay" id="consult-modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeConsultModal()"><i class="fas fa-times"></i></button>
+        <h3 style="color:var(--gold); font-size:1.6rem; margin-bottom:10px;" id="modal-consult-title">طلب اجتماع شراكة استراتيجية / استثمار</h3>
+        <p style="color:var(--slate-light); font-size:0.95rem; margin-bottom:25px;" id="modal-consult-sub">اختر المجال المطلوب وسأقوم بالتواصل معك مباشرة لمناقشة خطة العمل والتعاون.</p>
+        
+        <form id="consult-form" onsubmit="handleConsultSubmit(event)">
+            <div style="margin-bottom:18px;">
+                <label style="display:block; color:var(--white); font-weight:700; margin-bottom:6px;" id="lbl-service">مجال الشراكة المطلوب:</label>
+                <select class="calc-select" id="consult-service" required>
+                    <option value="بناء شراكات استراتيجية ونماذج أعمال">بناء شراكات استراتيجية ونماذج أعمال (Strategic Partnerships)</option>
+                    <option value="تسويق تنفيذي وزيادة مبيعات">تسويق تنفيذي وتطوير المبيعات (Executive Marketing)</option>
+                    <option value="ذكاء أعمال وتحليل بيانات Power BI">ذكاء أعمال وتحليل بيانات (Power BI & Advanced Analytics)</option>
+                    <option value="تطوير وتطبيق أنظمة CRM/ERP">تطوير وتطبيق أنظمة CRM & ERP أوتوماتيكية</option>
+                    <option value="برنامج تدريب تمكيني للكوادر">برنامج تدريب واستشارات تمكينية (Executive Enablement)</option>
+                </select>
+            </div>
+            <div style="margin-bottom:18px;">
+                <label style="display:block; color:var(--white); font-weight:700; margin-bottom:6px;" id="lbl-name">الاسم الكريم / الجهة:</label>
+                <input type="text" id="consult-name" required placeholder="أدخل اسمك أو اسم المؤسسة" style="width:100%; padding:12px; background:var(--navy-dark); border:1px solid rgba(212,175,55,0.3); color:var(--white); border-radius:8px; font-family:inherit; outline:none;">
+            </div>
+            <div style="margin-bottom:25px;">
+                <label style="display:block; color:var(--white); font-weight:700; margin-bottom:6px;" id="lbl-notes">تفاصيل المشروع أو الفرصة الاستثمارية:</label>
+                <textarea id="consult-notes" rows="4" placeholder="اكتب نبذة مختصرة عن الأهداف والنتائج المرجوة..." style="width:100%; padding:12px; background:var(--navy-dark); border:1px solid rgba(212,175,55,0.3); color:var(--white); border-radius:8px; font-family:inherit; outline:none; resize:none;"></textarea>
+            </div>
+            <button type="submit" class="btn-main" style="width:100%; justify-content:center;">
+                <i class="fab fa-whatsapp"></i> <span id="btn-send-wa">إرسال الطلب فوراً عبر WhatsApp</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Header -->
+<header id="header">
+    <div class="container">
+        <nav>
+            <div class="brand-area" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                <div class="profile-icon">
+                    <img src="https://lh3.googleusercontent.com/d/1var0fLzzADvJhqeWVlPz7eUXa77CFGNK" alt="Mohammad Rashid">
+                </div>
+                <div class="brand-text" id="brand-text">
+                    محمد راشد<br>
+                    <span style="opacity:0.8; font-weight:400; color:var(--white);">شريك استراتيجي | صاحب أعمال | ذكاء الأعمال</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="ln-about">الملف التنفيذي</a></li>
+                <li><a href="#honors" class="ln-honors">التكريمات والتميز الأكاديمي</a></li>
+                <li><a href="#calculator" class="ln-calc">مُحاكي النتائج</a></li>
+                <li><a href="#skills" class="ln-skills">المهارات والخبرات</a></li>
+                <li><a href="#experience" class="ln-exp">المسيرة والشراكات</a></li>
+                <li><a href="#ahlni" class="ln-ahlni">أهلني</a></li>
+                <li><a href="#offer" class="ln-offer">الكفاءات</a></li>
+                <li><a href="#gallery" class="ln-gallery">المعرض</a></li>
+            </ul>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="toggleAudioFeedback()" title="تشغيل/إيقاف المؤثرات الصوتية" id="audio-toggle-btn">
+                    <i class="fas fa-volume-mute" id="audio-icon"></i>
+                </button>
+                <button class="lang-btn" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i> <span id="lang-text">EN / عربي</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section id="hero">
+    <canvas id="canvas-particles"></canvas>
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <span class="greeting" id="hero-greeting"><i class="fas fa-handshake"></i> شريك استراتيجي · بناء نماذج الأعمال والشراكات · خبير ذكاء الأعمال</span>
+            <h1 id="hero-name">محمد <span class="gold">راشد</span></h1>
+            <h2 id="hero-role"><i class="fas fa-building"></i> <span>صاحب أعمال | قائد تسويق استراتيجي | خبير ذكاء الأعمال</span></h2>
+            <p id="hero-desc">
+                رائد أعمال وشريك استراتيجي يجمع بين <strong>تحليل النظم</strong>، <strong>نماذج الاستدامة والنمو</strong>، و<strong>التسويق التنفيذي وذكاء الأعمال</strong>. أقود بناء الشراكات المؤسسية والتحول الرقمي ونمو المبيعات، ومُكرم من جهات حكومية ودولية رفيعة.
+            </p>
+            
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-award"></i> مكرم من معالي وزير البيئة</span>
+                <span class="hero-badge"><i class="fas fa-handshake"></i> مكرم من مدير GIZ الأردن</span>
+                <span class="hero-badge"><i class="fas fa-globe-europe"></i> مكرم من سفير الاتحاد الأوروبي</span>
+                <span class="hero-badge"><i class="fas fa-chart-line"></i> خبير ذكاء الأعمال (BI Analytics)</span>
+            </div>
+
+            <div class="hero-btns">
+                <button onclick="openConsultModal()" class="btn-main">
+                    <i class="fas fa-calendar-check"></i> <span id="btn-consult">حجز جلسة شراكة استراتيجية</span>
+                </button>
+                <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" class="btn-secondary">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+                <button onclick="downloadVCard()" class="btn-cyan">
+                    <i class="fas fa-address-card"></i> <span id="btn-vcard">تحميل بطاقة vCard</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-img-box" id="tilt-card">
+            <div class="hero-img-card">
+                <img src="https://lh3.googleusercontent.com/d/1XewfJaxEIesoVBcle5D_Ed0ocW_z7mIr" alt="Mohammad Rashid Desk Office">
+            </div>
+            <div class="hero-floating-card">
+                <i class="fas fa-chart-pie"></i>
+                <div>
+                    <div class="text" id="float-card-title">نماذج الأعمال وذكاء الاستثمار</div>
+                    <div class="sub" id="float-card-sub">خبرة تنفيذية في النمو وبناء الشراكات</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="5" data-suffix="+">0</span>
+                <span class="stat-label" id="stat1-label">سنوات خبرة تنفيذية</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3" data-suffix="">0</span>
+                <span class="stat-label" id="stat2-label">أفواج تدريبية في أهلني</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="1" data-suffix="st">0</span>
+                <span class="stat-label" id="stat3-label">مكرم من جهات دولية وسامية</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3" data-suffix="">0</span>
+                <span class="stat-label" id="stat4-label">لغات عالمية متقنة</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PARTNERS & ORGANIZATIONS STRIP -->
+<div class="partners-strip">
+    <div class="container partners-grid">
+        <a href="https://www.giz.de/en/worldwide/362.html" target="_blank" class="partner-link"><i class="fas fa-globe-europe"></i> GIZ Jordan (التعاون الألماني)</a>
+        <a href="https://www.eeas.europa.eu/delegations/jordan_en" target="_blank" class="partner-link"><i class="fas fa-flag"></i> الاتحاد الأوروبي (EU Delegation)</a>
+        <a href="https://moenv.gov.jo" target="_blank" class="partner-link"><i class="fas fa-leaf"></i> وزارة البيئة الأردنية</a>
+        <a href="http://www.AlAmeenfood.Com" target="_blank" class="partner-link"><i class="fas fa-building"></i> الأمين للصناعات الغذائية</a>
+        <a href="https://blumont.org" target="_blank" class="partner-link"><i class="fas fa-hand-holding-heart"></i> Blumont International</a>
+        <a href="https://www.bdc.org.jo" target="_blank" class="partner-link"><i class="fas fa-award"></i> مركز تطوير الأعمال BDC</a>
+        <a href="https://www.acted.org" target="_blank" class="partner-link"><i class="fas fa-lightbulb"></i> ACTED</a>
+        <a href="https://www.savethechildren.net" target="_blank" class="partner-link"><i class="fas fa-child"></i> Save the Children</a>
+        <a href="https://www.cab.jo" target="_blank" class="partner-link"><i class="fas fa-university"></i> بنك القاهرة عمان</a>
+    </div>
+</div>
+
+<!-- OFFICIAL RECOGNITIONS & ACADEMIC DISTINCTION -->
+<section id="honors" class="honors-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="honors-tag">التكريمات والتميز الأكاديمي</span>
+            <h2 id="honors-title">الاعتراف والتكريمات الرسمية والسجل الأكاديمي المتميز</h2>
+        </div>
+
+        <div class="honors-grid reveal">
+            <div class="honor-card">
+                <div class="honor-badge-icon"><i class="fas fa-award"></i></div>
+                <h3 id="h1-title">تكريم من معالي وزير البيئة</h3>
+                <span class="honor-org" id="h1-org">وزارة البيئة الأردنية</span>
+                <p id="h1-desc">تكريم رسمي رفيع المستوى تقديراً لبناء نماذج أعمال استراتيجية ومستدامة، وتعزيز الاستدامة المهنية والمبادرات البيئية المؤسسية.</p>
+            </div>
+
+            <div class="honor-card">
+                <div class="honor-badge-icon"><i class="fas fa-handshake"></i></div>
+                <h3 id="h2-title">تكريم المدير التنفيذي لمشاريع GIZ</h3>
+                <span class="honor-org" id="h2-org">الوكالة الألمانية للتعاون الدولي (GIZ Jordan)</span>
+                <p id="h2-desc">تقدير استثنائي لقيادة وتطوير مشاريع النماء الاقتصادي، وبناء الشراكات المؤسسية الفعالة وتحقيق أعلى معايير الحوكمة والنمو.</p>
+            </div>
+
+            <div class="honor-card">
+                <div class="honor-badge-icon"><i class="fas fa-globe-europe"></i></div>
+                <h3 id="h3-title">تكريم من سعادة سفير الاتحاد الأوروبي</h3>
+                <span class="honor-org" id="h3-org">بعثة الاتحاد الأوروبي (EU Delegation)</span>
+                <p id="h3-desc">إشادة وتكريم رسمي لتمثيل المبادرات التنموية والشراكات الاستراتيجية الناجحة بين القطاعين العام والخاص والمؤسسات الدولية.</p>
+            </div>
+
+            <div class="honor-card">
+                <div class="honor-badge-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3 id="h4-title">التميز الأكاديمي والبحث العلمي (الأول عالتخصص)</h3>
+                <span class="honor-org" id="h4-org">بكالوريوس نظم المعلومات الإدارية (MIS)</span>
+                <p id="h4-desc">التخرج بالترتيب الأول عالتخصص، نشر 3 أبحاث علمية أثناء فترة البكالوريوس، مع تسجيل 0 غياب (عدم الغياب ولا يوم واحد طول فترة الدراسة الجامعية) والتطوع القيادي بنشاطات التسويق بالجامعة.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="about-tag">عني</span>
+            <h2 id="about-title">الملف التنفيذي والرؤية الاستراتيجية</h2>
+        </div>
+        <div class="about-container reveal">
+            <p class="about-text" id="about-p1">
+                بصفتي <strong>صاحباً للأعمال وشريكاً استراتيجياً</strong> بخلفية متكينة في <strong>تكنولوجيا معلومات الأعمال (MIS)</strong> وخبرة متقدمة في <strong>ذكاء الأعمال (BI)</strong>، أركز على ابتكار ونشر <strong>نماذج الأعمال المستدامة (Sustainable Business Models)</strong> وصياغة التحالفات الاستراتيجية التي تحقق أقصى عائد استثماري ونمو مؤسسي ملموس.
+            </p>
+            <p class="about-text" id="about-p2">
+                أقود التطوير وحملات النمو كرئيس قسم التسويق والدعاية في <a href="http://www.AlAmeenfood.Com" target="_blank" class="text-link">شركة الأمين للصناعات الغذائية</a>، حيث نجحت في بناء منظومة تسويقية متكاملة تربط بين تحليل البيانات المتقدم (Power BI, SPSS, Tableau) وأتمتة المبيعات وتصدر العلامة التجارية في الأسواق المحلية والإقليمية.
+            </p>
+            <p class="about-text" id="about-p3">
+                يتجسد نشاطي التنموي في العمل والشراكة مع كبرى المنظمات الدولية والمؤسسات الرسمية؛ حيث حظيت بتكريمات سامية من <strong>معالي وزير البيئة</strong>، و<strong>المدير التنفيذي لمشاريع GIZ الأردن</strong>، و<strong>سفير الاتحاد الأوروبي</strong>، إلى جانب فوزي بـ<strong>جائزة الابتكار التقني مع ACTED</strong> ولقب <strong>الموظف المثالي في BDC</strong> وتأسيس مبادرة "أهلني" لتمكين الشباب بالتعاون مع Blumont.
+            </p>
+
+            <div class="about-actions">
+                <button class="btn-main" onclick="openConsultModal()">
+                    <i class="fas fa-handshake"></i> <span id="btn-about-consult">تواصل لبحث فرصة شراكة أو استثمار</span>
+                </button>
+                <button class="btn-secondary" onclick="copyContactInfo('mohammad.r.alhariri@gmail.com', 'البريد الإلكتروني')">
+                    <i class="fas fa-copy"></i> <span id="btn-copy-email">نسخ البريد الإلكتروني الرسمي</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE STRATEGY & ROI CALCULATOR -->
+<section id="calculator" class="calculator-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="calc-tag">أداة تفاعلية</span>
+            <h2 id="calc-title">مُحاكي النتائج والعائد على الاستثمار</h2>
+        </div>
+        
+        <div class="calc-card reveal">
+            <div class="calc-grid">
+                <div class="calc-inputs">
+                    <h3 style="color:var(--white); font-size:1.25rem; font-weight:800; margin-bottom:10px;" id="calc-subtitle">حدد معايير مشروعك الاستراتيجي:</h3>
+                    
+                    <div class="input-group">
+                        <label><span id="lbl-budget">الميزانية التسويقية / الاستثمارية الشهرية:</span> <span class="val" id="val-budget">$5,000</span></label>
+                        <input type="range" class="calc-slider" id="slider-budget" min="1000" max="50000" step="1000" value="5000" oninput="updateCalculator()">
+                    </div>
+
+                    <div class="input-group">
+                        <label><span id="lbl-months">مدة الشراكة / التطوير (أشهر):</span> <span class="val" id="val-months">6 أشهر</span></label>
+                        <input type="range" class="calc-slider" id="slider-months" min="1" max="24" step="1" value="6" oninput="updateCalculator()">
+                    </div>
+
+                    <div class="input-group">
+                        <label id="lbl-channel">التركيز الاستراتيجي الأساسي:</label>
+                        <select class="calc-select" id="select-strategy" onchange="updateCalculator()">
+                            <option value="digital">بناء شراكات استراتيجية ونماذج أعمال متكاملة (Partnership & Growth)</option>
+                            <option value="bi">تحليل بيانات وذكاء أعمال (Power BI & Advanced Analytics)</option>
+                            <option value="crm">تطوير وتطبيق أنظمة CRM & ERP أوتوماتيكية</option>
+                            <option value="training">برامج تدريب رفع كفاءة الفريق والكوادر (Executive Enablement)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calc-results">
+                    <h3 style="color:var(--gold); font-size:1.15rem; font-weight:800;" id="calc-res-head">النتائج التقديرية المتوقعة</h3>
+                    
+                    <div class="res-box">
+                        <span class="res-label" id="lbl-res-roi">عائد الاستثمار المتوقع (Projected ROI):</span>
+                        <span class="res-value emerald" id="res-roi">+280%</span>
+                    </div>
+
+                    <div class="res-box">
+                        <span class="res-label" id="lbl-res-reach">الوصول التقديري المتوقع (Reach):</span>
+                        <span class="res-value cyan" id="res-reach">450K+</span>
+                    </div>
+
+                    <div class="res-box">
+                        <span class="res-label" id="lbl-res-eff">كفاءة خفض تكلفة الاستحواذ (CPA):</span>
+                        <span class="res-value" id="res-eff">-35%</span>
+                    </div>
+
+                    <button class="btn-main" onclick="openConsultModal()" style="width:100%; justify-content:center;">
+                        <i class="fas fa-rocket"></i> <span id="btn-calc-apply">ناقش خطة الاستثمار والتطوير معي</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS & TOOLS -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="skills-tag">الخبرات والمنظومة</span>
+            <h2 id="skills-title">الكفاءات وأدوات تحليل البيانات</h2>
+        </div>
+
+        <div class="skills-filter reveal">
+            <button class="filter-btn active" onclick="filterSkills('all', this)" id="flt-all">الكل</button>
+            <button class="filter-btn" onclick="filterSkills('mkt', this)" id="flt-mkt">التسويق والاستراتيجية</button>
+            <button class="filter-btn" onclick="filterSkills('bi', this)" id="flt-bi">ذكاء الأعمال و BI</button>
+            <button class="filter-btn" onclick="filterSkills('system', this)" id="flt-sys">أنظمة CRM & ERP</button>
+            <button class="filter-btn" onclick="filterSkills('train', this)" id="flt-trn">الشراكات والتمكين</button>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-group reveal">
+                <h3><i class="fas fa-chart-pie"></i> <span id="skills-core-title">المهارات الاستراتيجية والقيادية</span></h3>
+                
+                <div class="skill-item skill-cat-mkt">
+                    <div class="skill-header"><span class="skill-name" id="sk1">بناء نماذج الأعمال والشراكات الاستراتيجية</span><span class="skill-pct">96%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="96"></div></div>
+                </div>
+
+                <div class="skill-item skill-cat-bi">
+                    <div class="skill-header"><span class="skill-name" id="sk2">تحليل البيانات وإتقان أدوات (Power BI / SPSS / Tableau)</span><span class="skill-pct">92%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+                </div>
+
+                <div class="skill-item skill-cat-system">
+                    <div class="skill-header"><span class="skill-name" id="sk3">تطوير وتطبيق أنظمة CRM & ERP وتصميم العمليات</span><span class="skill-pct">90%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                </div>
+
+                <div class="skill-item skill-cat-mkt">
+                    <div class="skill-header"><span class="skill-name" id="sk4">قيادة التحول الرقمي والتسويق المستدام</span><span class="skill-pct">94%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="94"></div></div>
+                </div>
+
+                <div class="skill-item skill-cat-system">
+                    <div class="skill-header"><span class="skill-name" id="sk5">إدارة المشاريع الاستثمارية وأنظمة دعم القرار (DSS)</span><span class="skill-pct">88%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                </div>
+
+                <div class="skill-item skill-cat-train">
+                    <div class="skill-header"><span class="skill-name" id="sk6">تطبيقات الذكاء الاصطناعي في قيادة ونمو الأعمال</span><span class="skill-pct">89%</span></div>
+                    <div class="skill-bar"><div class="skill-fill" data-width="89"></div></div>
+                </div>
+            </div>
+
+            <div class="skill-group reveal">
+                <h3><i class="fas fa-laptop-code"></i> <span id="tools-title">الأدوات التقنية والتحليلية</span></h3>
+                <div class="tools-grid" id="tools-grid">
+                    <span class="tool-tag tool-analytics" onclick="showToolInfo('Power BI')"><i class="fas fa-chart-line"></i> Power BI</span>
+                    <span class="tool-tag tool-analytics" onclick="showToolInfo('Tableau')"><i class="fas fa-project-diagram"></i> Tableau</span>
+                    <span class="tool-tag tool-analytics" onclick="showToolInfo('SPSS')"><i class="fas fa-calculator"></i> SPSS</span>
+                    <span class="tool-tag tool-system" onclick="showToolInfo('أنظمة ERP')"><i class="fas fa-network-wired"></i> أنظمة ERP</span>
+                    <span class="tool-tag tool-system" onclick="showToolInfo('تصميم CRM')"><i class="fas fa-users-cog"></i> تصميم CRM</span>
+                    <span class="tool-tag tool-system" onclick="showToolInfo('أنظمة DSS')"><i class="fas fa-brain"></i> أنظمة دعم القرار (DSS)</span>
+                    <span class="tool-tag" onclick="showToolInfo('Meta Business')"><i class="fab fa-facebook"></i> Meta Business Suite</span>
+                    <span class="tool-tag" onclick="showToolInfo('Google Analytics')"><i class="fab fa-google"></i> Google Analytics</span>
+                    <span class="tool-tag" onclick="showToolInfo('HubSpot')"><i class="fas fa-bullhorn"></i> HubSpot / Mailchimp</span>
+                    <span class="tool-tag" onclick="showToolInfo('Excel Advanced')"><i class="fas fa-file-excel"></i> MS Excel Advanced</span>
+                    <span class="tool-tag" onclick="showToolInfo('KoboToolbox')"><i class="fas fa-tasks"></i> KoboToolbox</span>
+                    <span class="tool-tag" onclick="showToolInfo('Google Ads & SEO')"><i class="fas fa-ad"></i> Google Ads & SEO</span>
+                    <span class="tool-tag" onclick="showToolInfo('LinkedIn Ads')"><i class="fab fa-linkedin"></i> LinkedIn Ads</span>
+                </div>
+                
+                <br>
+                <h3 style="margin-top: 30px;"><i class="fas fa-trophy"></i> <span id="awards-title">الجوائز والتكريمات الدولية</span></h3>
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                    <div class="cert-card" style="border-color:rgba(212,175,55,0.3);">
+                        <div class="cert-icon"><i class="fas fa-award"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-title" id="award1-title">تكريم وزاري ودولي (وزير البيئة & GIZ & EU)</div>
+                            <div class="cert-org">الاستدامة ونماذج الأعمال للشراكات</div>
+                        </div>
+                    </div>
+                    <div class="cert-card" style="border-color:rgba(212,175,55,0.3);">
+                        <div class="cert-icon"><i class="fas fa-medal"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-title" id="award2-title">جائزة الابتكار التقني (ACTED)</div>
+                            <div class="cert-org">مؤتمر الشباب والتكنولوجيا</div>
+                        </div>
+                    </div>
+                    <div class="cert-card" style="border-color:rgba(212,175,55,0.3);">
+                        <div class="cert-icon"><i class="fas fa-trophy"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-title" id="award3-title">جائزة الموظف المثالي (BDC)</div>
+                            <div class="cert-org">مركز تطوير الأعمال BDC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE & ALLIANCES TIMELINE -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="exp-tag">المسيرة المهنية</span>
+            <h2 id="exp-title">الخبرات والشراكات الاستراتيجية</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date" id="job1-date">فبراير 2025 – الحاضر</span>
+                    <div class="timeline-title" id="job1-title">رئيس قسم التسويق والدعاية وتطوير العلامة التجارية</div>
+                    <div class="timeline-company" id="job1-company"><i class="fas fa-building"></i> الأمين للصناعات الغذائية</div>
+                    <ul class="timeline-bullets">
+                        <li>قيادة وتنفيذ الاستراتيجيات التسويقية الرقمية المتكاملة عبر منصات Meta و Google Ads لتحقيق أقصى عائد استثماري.</li>
+                        <li>إدارة وتوجيه هوية العلامة التجارية وتوزيع المحتوى الإعلاني لضمان الانتشار وتصدّر محركات البحث.</li>
+                        <li>تحليل مؤشرات الأداء الرئيسية (KPIs, ROI, CPA) وإعداد لوحات تحكم تفاعلية لاتخاذ القرارات التسويقية.</li>
+                        <li>توظيف أدوات ذكاء الأعمال والبيانات لرفع معدلات التحويل وزيادة المبيعات المباشرة.</li>
+                        <li>قيادة وتوجيه فريق التسويق الرقمي والتنسيق مع كافة الأقسام لتحقيق أهداف النمو المؤسسي.</li>
+                    </ul>
+                    <button class="case-study-btn" onclick="openCaseStudy('alameen')"><i class="fas fa-folder-open"></i> <span id="btn-cs-1">عرض دراسة الحالة والإنجازات</span></button>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date" id="job2-date">2021 – 2025</span>
+                    <div class="timeline-title" id="job2-title">مستشار العلاقات العامة وبناء الشراكات التنموية والمشاريع</div>
+                    <div class="timeline-company" id="job2-company"><i class="fas fa-globe"></i> منظمات دولية ورسمية: GIZ, EU, Blumont, ACTED, BDC</div>
+                    <ul class="timeline-bullets">
+                        <li>تخطيط وتنسيق حملات التوعية والمبادرات التنموية عالية الأثر وتنسيق الشراكات المؤسسية.</li>
+                        <li>إدارة العلاقات العامة والاتصال مع الشركاء الدوليين والمؤسسات الحكومية والخاصة.</li>
+                        <li>تأسيس وإدارة مبادرة "أهلني" بالتعاون مع منظمة Blumont لتمكين وإعداد الشباب لسوق العمل.</li>
+                        <li>الحصول على تكريمات سامية من وزير البيئة، مدير GIZ، وسفير الاتحاد الأوروبي، وجائزة الابتكار التقني بـ ACTED والموظف المثالي بـ BDC.</li>
+                    </ul>
+                    <button class="case-study-btn" onclick="openCaseStudy('ngos')"><i class="fas fa-folder-open"></i> <span id="btn-cs-2">تفاصيل الشراكات والمبادرات التنموية</span></button>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date" id="job3-date">2021 – الحاضر</span>
+                    <div class="timeline-title" id="job3-title">شريك استراتيجي ومستشار أتمتة الأعمال وخبير CRM</div>
+                    <div class="timeline-company" id="job3-company"><i class="fas fa-briefcase"></i> قطاعات استثمارية وبنكية (بنك القاهرة عمان وغيره)</div>
+                    <ul class="timeline-bullets">
+                        <li>تطوير مسارات التسويق (Funnel Design) واستراتيجيات النمو للشركات الناشئة والمتوسطة.</li>
+                        <li>تصميم وبناء أنظمة إدارة علاقات العملاء (CRM) والعمليات المصرفية التجريبية (بنك القاهرة عمان).</li>
+                        <li>تقديم استشارات متخصصة في كتابة الإعلانات وتطوير المبيعات والتحول الرقمي.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- AHLNI PROJECT HIGHLIGHT -->
+<section id="ahlni">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="ahlni-tag">مبادرة مميزة</span>
+            <h2 id="ahlni-title">مشروع "أهلني" لتمكين الشباب</h2>
+        </div>
+        <div class="highlight-section reveal">
+            <span class="ahlni-badge" id="ahlni-badge">المؤسس والمدير التنفيذي</span>
+            <h3 id="ahlni-head" style="color:var(--white); font-size:2rem; margin-bottom:20px;">"أهلني" — الجسر الحقيقي بين التعليم وسوق العمل</h3>
+            <div style="color:var(--slate-light); font-size:1.08rem; line-height:1.95;">
+                <p id="ahlni-p1" style="margin-bottom:18px;">
+                    أفخر بتأسيس وإدارة مبادرة <strong>"أهلني"</strong> بالتعاون والتنسيق الشامل مع منظمة <a href="https://blumont.org" target="_blank" class="text-link">Blumont International</a>. انطلقت هذه المبادرة من رؤية استراتيجية لتحويل الطاقات الشبابية إلى كوادر مؤهلة تطلبها كبرى الشركات.
+                </p>
+                <p id="ahlni-p2" style="margin-bottom:18px;">
+                    نجحنا في تخريج <strong>ثلاثة أفواج متكاملة</strong> خضعوا لبرامج مكثفة في التفاوض، التواصل، إعداد السير الذاتية الاحترافية، وبناء الملفات على LinkedIn، مع تحقيق <strong>نسبة توظيف وتأهيل قياسية</strong>.
+                </p>
+            </div>
+            <div class="ahlni-stats">
+                <div class="ahlni-stat">
+                    <span class="number" data-target="3">0</span>
+                    <span class="label" id="ahlni-s1">أفواج تدريبية مخرَّجة</span>
+                </div>
+                <div class="ahlni-stat">
+                    <span class="number" data-target="50" data-suffix="+">0</span>
+                    <span class="label" id="ahlni-s2">شاب وشابة مؤهَّلين</span>
+                </div>
+                <div class="ahlni-stat">
+                    <span class="number" data-target="100" data-suffix="%">0</span>
+                    <span class="label" id="ahlni-s3">نسبة التقييم الممتاز</span>
+                </div>
+            </div>
+            <button class="btn-main" onclick="openCaseStudy('ahlni')">
+                <i class="fas fa-award"></i> <span id="btn-ahlni-details">عرض منهجية وتفاصيل برنامج أهلني</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- COMPETENCIES & SERVICES -->
+<section id="offer">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="offer-tag">ما أقدمه</span>
+            <h2 id="offer-title">الكفاءات الاستراتيجية للشراكة</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-handshake icon"></i>
+                <h3 id="s1-title">بناء الشراكات ونماذج الأعمال</h3>
+                <p id="s1-desc">صياغة التحالفات الاستراتيجية، وتصميم نماذج الأعمال المستدامة التي تحقق النمو المتسارع والعائد المالي المرتفع.</p>
+            </div>
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-brain icon"></i>
+                <h3 id="s2-title">ذكاء الأعمال والبيانات (BI)</h3>
+                <p id="s2-desc">بناء لوحات تحكم ديناميكية تفاعلية (Power BI) لدعم القرارات الاستثمارية والتنفيذية بدقة متناهية.</p>
+            </div>
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-laptop-code icon"></i>
+                <h3 id="s3-title">التحول الرقمي وأنظمة CRM/ERP</h3>
+                <p id="s3-desc">أتمتة سير العمل التشغيلي وبناء أنظمة CRM & ERP مخصصة لرفع الكفاءة وخفض النفقات.</p>
+            </div>
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-globe icon"></i>
+                <h3 id="s4-title">إدارة السمعة والعلاقات الدولية</h3>
+                <p id="s4-desc">تمثيل المؤسسات في المؤتمرات الدولية والمعارض الاقتصادية، وبناء اتصالات متينة مع أصحاب القرار.</p>
+            </div>
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-chalkboard-teacher icon"></i>
+                <h3 id="s5-title">التدريب المهني وتطوير الكوادر</h3>
+                <p id="s5-desc">تقديم برامج تدريبية استراتيجية لتأهيل الفرق والكوادر القيادية لمتطلبات الأسواق الحديثة.</p>
+            </div>
+            <div class="service-card reveal" onclick="openConsultModal()">
+                <i class="fas fa-tasks icon"></i>
+                <h3 id="s6-title">إدارة المشاريع الاستثمارية</h3>
+                <p id="s6-desc">إدارة المشاريع المعقدة وتطبيق أفضل الممارسات الدولية لضمان تحقيق الأثر المؤسسي المستدام.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="testimonials-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="test-tag">آراء وتوصيات</span>
+            <h2 id="test-title">شهادات القادة الأكاديميين والشركاء الدوليين</h2>
+        </div>
+
+        <div class="testimonial-card active" id="test-1">
+            <p class="testimonial-quote" id="t1-quote">محمد راشد طالب وقائد استثنائي، ضرب أروع الأمثلة في الانضباط حيث لم يغب يوماً واحداً طول فترة دراسته الجامعية (سجل غياب 0%)، وكان عنصراً فاعلاً ومبادراً متطوعاً في إنجاح كافة نشاطات التسويق والعلاقات العامة بالجامعة، بالإضافة لنشره 3 أبحاث علمية متميزة وتخرجه الأول على التخصص.</p>
+            <div class="testimonial-author" id="t1-author">د. أحمد العتوم</div>
+            <div class="testimonial-role" id="t1-role">مدير العلاقات العامة والتسويق والأستاذ الجامعي</div>
+        </div>
+
+        <div class="testimonial-card" id="test-2">
+            <p class="testimonial-quote" id="t2-quote">محمد راشد يمثل النموذج الاستثنائي للرائد والشريك الاستراتيجي الذي يجمع بين الرؤية الاقتصادية والقدرة التنفيذية العالية في إدارة النمو.</p>
+            <div class="testimonial-author" id="t2-author">إدارة شركة الأمين للصناعات الغذائية</div>
+            <div class="testimonial-role" id="t2-role">المجلس التنفيذي</div>
+        </div>
+
+        <div class="testimonial-card" id="test-3">
+            <p class="testimonial-quote" id="t3-quote">تكريمه من الجهات الوزارية والألمانية والأوروبية جاء نتيجة طبيعية لنماذج الأعمال الاحترافية والمستدامة التي ابتكرها وقادها بنجاح.</p>
+            <div class="testimonial-author" id="t3-author">ممثلو GIZ الأردن والاتحاد الأوروبي</div>
+            <div class="testimonial-role" id="t3-role">قطاع الشراكات والتنمية المستدامة</div>
+        </div>
+
+        <div class="testimonial-dots">
+            <div class="test-dot active" onclick="showTestimonial(1)"></div>
+            <div class="test-dot" onclick="showTestimonial(2)"></div>
+            <div class="test-dot" onclick="showTestimonial(3)"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CERTIFICATIONS & DIPLOMAS -->
+<section id="certs" class="certs-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="certs-tag">الشهادات والاعتمادات</span>
+            <h2 id="certs-title">الدبلومات والاعتمادات المهنية</h2>
+        </div>
+        <div class="certs-grid reveal">
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert1-title">دبلوم ذكاء الأعمال وتحليل البيانات (2026)</div>
+                    <div class="cert-org" id="cert1-org"><a href="https://htu.edu.jo" target="_blank" class="text-link">جامعة الحسين التقنية (HTU)</a></div>
+                    <div class="cert-year">2026</div>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert2-title">تحليل البيانات المتقدم بـ Power BI & Excel</div>
+                    <div class="cert-org" id="cert2-org">اعتماد مايكروسوفت والتحليل المتقدم (Microsoft Certified)</div>
+                    <div class="cert-year">2024</div>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-leaf"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert3-title">دبلوم الاقتصاد الأخضر والاستدامة</div>
+                    <div class="cert-org" id="cert3-org">مركز تطوير الأعمال (BDC)</div>
+                    <div class="cert-year">2024</div>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert4-title">أتمتة وحوكمة أنظمة إدارة علاقات العملاء CRM & ERP</div>
+                    <div class="cert-org" id="cert4-org">الاستشارات والحلول المؤسسية المتقدمة</div>
+                    <div class="cert-year">2023</div>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-robot"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert5-title">تطبيقات الذكاء الاصطناعي في الأعمال (AI in Business)</div>
+                    <div class="cert-org" id="cert5-org">DataCamp Certified</div>
+                    <div class="cert-year">2024</div>
+                </div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon"><i class="fas fa-database"></i></div>
+                <div class="cert-body">
+                    <div class="cert-title" id="cert6-title">جمع وتحليل البيانات بـ KoboToolbox</div>
+                    <div class="cert-org" id="cert6-org">Blumont Humanitarian Academy</div>
+                    <div class="cert-year">2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="gallery-tag">محطات التميز</span>
+            <h2 id="gallery-title">معرض الإنجازات والشراكات</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item featured" onclick="openLightbox('https://i.postimg.cc/rwzSPY6G/Screenshot-20251210-183429.jpg')">
+                <img src="https://i.postimg.cc/rwzSPY6G/Screenshot-20251210-183429.jpg" alt="Alameen Board">
+                <span class="gallery-tag" id="g1-tag">الأمين</span>
+                <div class="gallery-overlay">
+                    <h3 id="g1-title">قيادة التسويق والنمو</h3>
+                    <p id="g1-desc">قيادة نمو المبيعات وإدارة العلامة التجارية في شركة الأمين للصناعات الغذائية.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://lh3.googleusercontent.com/d/1eLj6q605C_V4bJdFaoYYUsI0HHvD2WIt')">
+                <img src="https://lh3.googleusercontent.com/d/1eLj6q605C_V4bJdFaoYYUsI0HHvD2WIt" alt="Graduation Ceremony">
+                <span class="gallery-tag" id="g2-tag">التخرج والتفوق</span>
+                <div class="gallery-overlay">
+                    <h3 id="g2-title">حفل التخرج والتفوق (الأول عالتخصص)</h3>
+                    <p id="g2-desc">المرتبة الأولى، 3 أبحاث محكمة، 0 غياب طوال فترته الجامعية والتطوع القيادي بالتسويق.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/K8VDg9mG/IMG-20251210-WA0199.jpg')">
+                <img src="https://i.postimg.cc/K8VDg9mG/IMG-20251210-WA0199.jpg" alt="Ahlni">
+                <span class="gallery-tag" id="g3-tag">المؤسس</span>
+                <div class="gallery-overlay">
+                    <h3 id="g3-title">مبادرة "أهلني"</h3>
+                    <p id="g3-desc">تأهيل 3 أفواج من الشباب الموهوبين لسوق العمل بالتعاون مع Blumont.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/hjLHJ109/IMG-20250922-WA0133(1).jpg')">
+                <img src="https://i.postimg.cc/hjLHJ109/IMG-20250922-WA0133(1).jpg" alt="Award">
+                <span class="gallery-tag" id="g4-tag">جائزة</span>
+                <div class="gallery-overlay">
+                    <h3 id="g4-title">جائزة الابتكار التقني</h3>
+                    <p id="g4-desc">الفوز بمركز المبتكرين في مؤتمر الشباب والتكنولوجيا مع ACTED.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/25LvGqs0/DSC04937.jpg')">
+                <img src="https://i.postimg.cc/25LvGqs0/DSC04937.jpg" alt="Union">
+                <span class="gallery-tag" id="g5-tag">القيادة</span>
+                <div class="gallery-overlay">
+                    <h3 id="g5-title">رئيس اتحاد الطلبة</h3>
+                    <p id="g5-desc">قيادة اتحاد الطلبة العرب والأجانب وتعزيز التعاون والمبادرات.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/ht4PKfKn/IMG-20251209-162707-249.jpg')">
+                <img src="https://i.postimg.cc/ht4PKfKn/IMG-20251209-162707-249.jpg" alt="Speaking">
+                <span class="gallery-tag" id="g6-tag">متحدث</span>
+                <div class="gallery-overlay">
+                    <h3 id="g6-title">التحدث في المؤتمرات</h3>
+                    <p id="g6-desc">مشاركة المعرفة ونماذج الأعمال في المنتديات والمؤتمرات.</p>
+                </div>
+            </div>
+            <div class="gallery-item featured" onclick="openLightbox('https://i.postimg.cc/Ss6wXfGZ/IMG-20251209-162801-004.jpg')">
+                <img src="https://i.postimg.cc/Ss6wXfGZ/IMG-20251209-162801-004.jpg" alt="Seminar">
+                <span class="gallery-tag" id="g7-tag">مدرب</span>
+                <div class="gallery-overlay">
+                    <h3 id="g7-title">ورش العمل والتطوير</h3>
+                    <p id="g7-desc">قيادة ورش عمل حول تبني التكنولوجيا وتطوير حلول الأعمال.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/LXDxKCDH/DSC7899.jpg')">
+                <img src="https://i.postimg.cc/LXDxKCDH/DSC7899.jpg" alt="Content">
+                <span class="gallery-tag" id="g8-tag">صانع محتوى</span>
+                <div class="gallery-overlay">
+                    <h3 id="g8-title">صناعة المحتوى المهني</h3>
+                    <p id="g8-desc">كتابة ونصائح حول التسويق وإدارة النظم والتطوير المؤسسي.</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/zGXqRj0w/Screenshot-20251210-214752.jpg')">
+                <img src="https://i.postimg.cc/zGXqRj0w/Screenshot-20251210-214752.jpg" alt="Cairo Amman Bank">
+                <span class="gallery-tag" id="g9-tag">بنوك</span>
+                <div class="gallery-overlay">
+                    <h3 id="g9-title">أنظمة CRM المصرفية</h3>
+                    <p id="g9-desc">تطبيق وتجربة العمليات المصرفية في بنك القاهرة عمان.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages" style="background: var(--navy-mid);">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="lang-tag">التواصل والتأثير</span>
+            <h2 id="lang-title">اللغات المتقنة</h2>
+        </div>
+        <div class="langs-grid reveal">
+            <div class="lang-card">
+                <span class="lang-flag">🇸🇦</span>
+                <div class="lang-name" id="lang1-name">العربية</div>
+                <div class="lang-level" id="lang1-level">اللغة الأم (Native)</div>
+                <div class="lang-dots">
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                </div>
+            </div>
+            <div class="lang-card">
+                <span class="lang-flag">🇬🇧</span>
+                <div class="lang-name" id="lang2-name">الإنجليزية</div>
+                <div class="lang-level" id="lang2-level">مهني متقدم (Professional)</div>
+                <div class="lang-dots">
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot"></div>
+                </div>
+            </div>
+            <div class="lang-card">
+                <span class="lang-flag">🇯🇵</span>
+                <div class="lang-name" id="lang3-name">اليابانية</div>
+                <div class="lang-level" id="lang3-level">مستوى متوسط (Intermediate)</div>
+                <div class="lang-dots">
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot filled"></div>
+                    <div class="lang-dot"></div>
+                    <div class="lang-dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER & CONTACT -->
+<footer id="contact">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" id="contact-tag">تواصل قيادي</span>
+            <h2 id="contact-title">لنصنع شراكة استراتيجية وأثراً ملموساً</h2>
+        </div>
+        <p id="contact-desc" style="font-size: 1.1rem; max-width: 580px; margin: 0 auto 30px; color: var(--slate-light);">
+            مستعد لمناقشة فرص الشراكة والاستثمار، التحول الرقمي، ذكاء الأعمال، والبرامج الاستراتيجية.
+        </p>
+
+        <div class="contact-quick-actions">
+            <a href="mailto:mohammad.r.alhariri@gmail.com" class="btn-main">
+                <i class="fas fa-envelope"></i> mohammad.r.alhariri@gmail.com
+            </a>
+            <button onclick="openConsultModal()" class="btn-cyan">
+                <i class="fas fa-calendar-alt"></i> <span id="btn-footer-consult">طلب اجتماع شراكة استراتيجية</span>
+            </button>
+        </div>
+
+        <br>
+        <a href="https://linkedin.com/in/mohammad-rashid-alhariri" target="_blank" class="linkedin-badge">
+            <img src="https://lh3.googleusercontent.com/d/1var0fLzzADvJhqeWVlPz7eUXa77CFGNK" alt="Mohammad Rashid">
+            <div>
+                <div style="font-weight:800; font-size:1.1rem; margin-bottom:4px;" id="li-name">محمد راشد</div>
+                <div style="opacity:0.9; font-size:0.85rem; margin-bottom:10px; color:var(--white);" id="li-role">شريك استراتيجي | صاحب أعمال | خبير ذكاء الأعمال</div>
+                <span style="background:white; color:#0077b5; padding:6px 18px; border-radius:20px; font-weight:800; font-size:0.85rem; display:inline-block;" id="li-btn">عرض الملف على LinkedIn</span>
+            </div>
+        </a>
+
+        <p style="margin-top: 50px; opacity: 0.5; font-size: 0.85rem; color: var(--slate);">
+            &copy; 2025 Mohammad Rashid · All Rights Reserved
+        </p>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp Action -->
+<a href="https://wa.me/962777935564" target="_blank" class="whatsapp-float" title="تواصل مباشر عبر واتساب">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="إلى الأعلى">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- JavaScript Files (Root & Subfolder Fallbacks) -->
+<script src="translations.js"></script>
+<script src="js/translations.js"></script>
+<script src="main.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
